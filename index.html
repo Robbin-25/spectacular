@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Animation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="bg-black">
 
+  <!-- Navbar Container -->
+  <nav id="navbar" 
+       class="fixed top-6 left-1/2 -translate-x-1/2 bg-gray-200 h-16 rounded-full shadow-lg flex items-center px-6 overflow-hidden"
+       style="width: 0;">
+    
+    <!-- Logo (links) -->
+    <div class="absolute left-6 text-xl font-bold text-gray-800">
+      LOGO
+    </div>
+
+    <!-- Links (zentriert) -->
+    <ul class="mx-auto flex space-x-8 text-gray-700 font-medium">
+      <li><a href="#" class="hover:text-black transition">Home</a></li>
+      <li><a href="#" class="hover:text-black transition">Services</a></li>
+      <li><a href="#" class="hover:text-black transition">About</a></li>
+      <li><a href="#" class="hover:text-black transition">Contact</a></li>
+    </ul>
+
+    <!-- Button (rechts) -->
+    <button class="absolute right-6 px-5 py-2 rounded-full bg-black text-white font-semibold hover:bg-gray-800 transition">
+      Sign Up
+    </button>
+  </nav>
+
+  <script>
+    // GSAP Load Animation (from middle)
+    gsap.fromTo("#navbar",
+      { width: "0", xPercent: -50, left: "50%", transformOrigin: "center center" },
+      { width: "70%", duration: 1.6, ease: "elastic.out(1, 0.6)" }
+    );
+  </script>
+
+</body>
+</html>
