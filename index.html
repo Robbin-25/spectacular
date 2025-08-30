@@ -15,7 +15,45 @@
     .nav-hamburger.active .nav-bar:nth-child(1){transform:translateY(10px) rotate(-135deg) scaleX(1.4)}
     .nav-hamburger.active .nav-bar:nth-child(2){opacity:0}
     .nav-hamburger.active .nav-bar:nth-child(3){transform:translateY(-10px) rotate(135deg) scaleX(1.4)}
-     
+
+
+    .bg-left, .bg-right {
+      width: 50%;
+      height: 100%;
+    }
+
+    /* Linke Seite */
+    .bg-left {
+      background: conic-gradient(
+        from 90deg at 50% 90%,
+        #040404 0deg,
+        #060881 210deg,
+        #B0B0D3 240deg,
+        #F4F4F4 360deg
+      );
+    }
+
+    /* Rechte Seite – gespiegelt */
+    .bg-right {
+      background: conic-gradient(
+        from 270deg at 50% 90%,
+        #F4F4F4 0deg,
+        #B0B0D3 120deg,
+        #060881 150deg,
+        #040404 360deg
+      );
+    }
+    .bg-100 {
+    background: linear-gradient(
+        to bottom, 
+        #040404 0%, 
+        transparent 71%, 
+        transparent 92%, 
+        #08081B 100%
+    );
+    }
+
+    
     html, body {
       background: #040404;
     }
@@ -396,6 +434,61 @@
       </source>
     </div>
   </main>
+
+<!-- Footer -->
+      <div class="flex size-full absolute">
+      <div class="bg-left"></div>
+      <div class="bg-right"></div>
+      <div class="bg-100 size-full absolute"></div>
+      <div class="absolute size-full grid grid-rows-[10%_50%_30%_10%]">
+        <div></div>
+        <!-- Text Overlay -->
+        <div class="w-[85%] mx-auto rounded-[2rem] overflow-hidden shadow-2xl">
+          <img src="YOUR-MOCKUP-IMAGE.png" alt="Website Mockup" class="w-full h-auto">
+        </div>
+
+        <!-- Footer -->
+        <footer class="relative z-10 w-[60%] mx-auto py-16 px-8 flex flex-col md:flex-row justify-between items-start gap-12">
+          <!-- Links -->
+          <div class="max-w-xs text-sm">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">🌐</span>
+            </div>
+            <p>We’re Rob and Eno – full-stack developer, freelancer & problem solver. Thanks for been our favorite costomer.</p>
+          </div>
+
+          <!-- Mitte -->
+          <div class="flex flex-col gap-2">
+            <h3 class="font-semibold mb-2">General</h3>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Blog</a>
+          </div>
+
+          <!-- Kontakt -->
+          <div class="flex flex-col gap-2">
+           <h3 class="font-semibold mb-2">Kontakt</h3>
+            <p>Adresse<br><span class="text-xs">Straßenname 123</span></p>
+            <p>Telefonnummer<br><span class="text-xs">+49 123 456789</span></p>
+            <p>E-mail<br><span class="text-xs">web@gmail.com</span></p>
+          </div>
+
+          <!-- Socials -->
+          <div class="flex flex-col gap-2">
+            <h3 class="font-semibold mb-2">More</h3>
+            <a href="#">GitHub</a>
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+          </div>
+        </footer>
+
+        <!-- Copyright -->
+        <div class="relative z-10 text-center text-white text-xs py-4">
+          © 2025 Web plants. All rights reserved | Privacy Policy | Terms & Conditions
+        </div>
+      </div>
+    </div>
 
 <script>
   const navHamburger = document.querySelector('.nav-hamburger');
