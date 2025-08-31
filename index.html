@@ -53,6 +53,84 @@
     );
     }
 
+     body {
+        background-color: #040404;
+    }
+
+    .service-card {
+        background: #040404;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 
+            0 25px 50px -12px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.02),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+
+    .service-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Ensure content is above the pseudo-elements */
+    .service-card > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Custom grid for inverted pyramid layout */
+    .inverted-pyramid-grid {
+        display: grid;
+        gap: 1.5rem;
+        max-width: 84rem;
+        margin: 0 auto;
+    }
+
+    /* Mobile: single column */
+    @media (max-width: 767px) {
+        .inverted-pyramid-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Medium screens: 2 cards top, 1 card bottom (inverted pyramid) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .inverted-pyramid-grid {
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+        }
+        
+        .service-card:nth-child(3) {
+            grid-column: 1 / -1;
+            max-width: 50%;
+        }
+    }
+
+    /* Large screens: 3 columns */
+    @media (min-width: 1024px) {
+        .inverted-pyramid-grid {
+            grid-template-columns: repeat(3, 1fr);
+    
+
   </style>
 </head>
 
@@ -90,6 +168,41 @@
       Contact US
     </button>
   </nav>
+
+  
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <p class="text-center text-lg text-gray-400 mb-2 max-w-4xl mx-auto">Services</p>
+        <h2 class="text-center text-3xl md:text-4xl font-bold mb-12 text-white">Professional Digital Solutions to Elevate<br>Your Business Presence and Performance</h2>
+        
+        <div class="inverted-pyramid-grid">
+            <div class="service-card rounded-3xl p-6 text-center">
+                <div class="w-44 h-44 mx-auto mb-4">
+                    <img src="Web.png" alt="Web Design Icon" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-white">Web Design</h3>
+                <p class="text-gray-400">Modern, responsive websites that captivate and convert.</p>
+            </div>
+
+            <div class="service-card rounded-3xl p-6 text-center">
+                <div class="w-44 h-44 mx-auto mb-4">
+                    <img src="Ui.png" alt="UI/UX Design Icon" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-white">UI/UX Design</h3>
+                <p class="text-gray-400">Intuitive interfaces that delight users and drive engagement.</p>
+            </div>
+
+            <div class="service-card rounded-3xl p-6 text-center">
+                <div class="w-44 h-44 mx-auto mb-4">
+                    <img src="SE.png" alt="SEO Optimization Icon" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-white">SEO Optimization</h3>
+                <p class="text-gray-400">Boost visibility and drive organic traffic to your website.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 
   <!-- Footer -->
    <footer class="block size-full">
