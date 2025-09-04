@@ -1,92 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-
+        
     html, body {
       height: 100%;
-      overflow: hidden; /* verhindert jegliches Scrollen */
+      overflow-x: hidden;
       background: #040404;
     }
-
+        
     .main {
       position: relative;
       width: 100%;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-end;
+      justify-content: flex-end;
+      overflow-y: hidden;
     }
-
-    .main-title {
-      font-size: 50px;
-      color: #ffffff;
-      font-family: sans-serif;
-      text-align: center;
-      font-weight: bold;
-      margin-top: 80px; /* Abstand von oben */
-      z-index: 20;
+        
+  .light-rec {
+  width: 110%;
+  height: 80%;
+  border-radius: clamp(8rem, 15vw, 50rem); /* zwischen ~32px und 400px */
+  background-color: #040404;
+  margin-left: -5%;
+  margin-right: -5%;
+  position: relative;
+  top: 25%;
+  box-shadow: 
+    0px -250px 54px -130px rgb(4 40 132 / 25%),
+    0px -20px 54px 0px rgba(13, 74, 228, 0.54),
+    inset 0px 4px 23px 0px rgba(13, 74, 228, 1);
+}
+        
+    section{
+        height: 100vh;
     }
-
-    .main-buttons {
-      display: flex;
-      gap: 20px;
-      margin-top: 40px; /* Abstand zwischen Title und Buttons */
-      z-index: 20;
-    }
-
-    .main-button-white {
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .main-button-trans {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 30px;
-    }
-
-    .ligh-curve-box {
-      z-index: 0;
-      position: absolute;
-      bottom: -200px; /* Positioniert den Bogen am unteren Rand */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 110%;
-      height: 500px;
-      border-radius: 400px;
-      background-color: #040404;
-      box-shadow: 
-        0px -10px 54px 1px rgba(13, 74, 228, 0.54), /* äußerer Schatten */
-        inset 0px 4px 23px 0px rgba(13, 74, 228, 1); /* innerer Schatten */
-    }
-  </style>
-</head>
+</style>
 <body>
-  <main class="main">
-    <h1 class="main-title">Your Partner for Digital <br> Growth & Scalable Websites</h1>
-    <div class="main-buttons">
-        <button class="main-button-white">Contact US</button>
-        <button class="main-button-trans">Speak with us →</button>
-    </div>
-    <div class="ligh-curve-box"></div>
-  </main>
+   <main class="main">
+        <div class="light-rec">
+        </div>
+   </main>
+   <section></section>
 </body>
 </html>
