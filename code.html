@@ -7,53 +7,53 @@
     <title>Document</title>
 </head>
 <style>
-    *{
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
-        
+    
     html, body {
-      height: 100%;
-      overflow-x: hidden;
-      background: #040404;
+        height: 100%;
+        overflow-x: hidden;
+        background: #040404;
     }
-        
+    
     .main {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: flex-end;
-      overflow-y: hidden;
-    }
-        
-  .light-rec {
-  width: 110%;
-  height: 80%;
-  border-radius: clamp(8rem, 15vw, 50rem); /* zwischen ~32px und 400px */
-  background-color: #040404;
-  margin-left: -5%;
-  margin-right: -5%;
-  position: relative;
-  top: 25%;
-  box-shadow: 
-    0px -250px 54px -130px rgb(4 40 132 / 25%),
-    0px -20px 54px 0px rgba(13, 74, 228, 0.54),
-    inset 0px 4px 23px 0px rgba(13, 74, 228, 1);
-}
-        
-    section{
+        position: relative;
+        width: 100%;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        overflow: hidden; /* Verhindert Overflow in beide Richtungen */
+    }
+    
+    .light-rec {
+        width: 110%; /* Zurück zu 110% für den Überhang-Effekt */
+        height: 80%;
+        border-radius: clamp(8rem, 15vw, 50rem);
+        background-color: #040404;
+        margin-left: -5%; /* Element ragt 5% nach links über */
+        margin-right: -5%; /* Element ragt 5% nach rechts über */
+        position: relative;
+        top: 25%;
+        box-shadow: 
+            0px -250px 54px -130px rgb(4 40 132 / 25%),
+            0px -20px 54px 0px rgba(13, 74, 228, 0.54),
+            inset 0px 4px 23px 0px rgba(13, 74, 228, 1);
+    }
+    
+    section {
+        height: 100vh;
+        width: 100%; /* Explizit auf 100% gesetzt */
     }
 </style>
 <body>
-   <main class="main">
-        <div class="light-rec">
-        </div>
-   </main>
-   <section></section>
+    <main class="main">
+        <div class="light-rec"></div>
+    </main>
+    <section></section>
 </body>
 </html>
