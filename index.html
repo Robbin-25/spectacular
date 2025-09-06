@@ -12,16 +12,13 @@
       padding: 0;
       box-sizing: border-box;
     }
+    /* NAVBAR */
     .nav-hamburger.active .nav-bar:nth-child(1){transform:translateY(10px) rotate(-135deg) scaleX(1.4)}
     .nav-hamburger.active .nav-bar:nth-child(2){opacity:0}
     .nav-hamburger.active .nav-bar:nth-child(3){transform:translateY(-10px) rotate(135deg) scaleX(1.4)}
 
   
-
-     body {
-        background-color: #040404;
-    }
-
+    /* SERVICE */
     .service-card {
         background: #040404;
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -33,7 +30,6 @@
         overflow: hidden;
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-
     .service-card::before {
         content: '';
         position: absolute;
@@ -43,7 +39,6 @@
         height: 1px;
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     }
-
     .service-card::after {
         content: '';
         position: absolute;
@@ -55,13 +50,11 @@
         pointer-events: none;
         z-index: 0;
     }
-
     /* Ensure content is above the pseudo-elements */
     .service-card > * {
         position: relative;
         z-index: 1;
     }
-
     /* Custom grid for inverted pyramid layout */
     .inverted-pyramid-grid {
         display: grid;
@@ -69,14 +62,12 @@
         max-width: 84rem;
         margin: 0 auto;
     }
-
     /* Mobile: single column */
     @media (max-width: 767px) {
         .inverted-pyramid-grid {
             grid-template-columns: 1fr;
         }
     }
-
     /* Medium screens: 2 cards top, 1 card bottom (inverted pyramid) */
     @media (min-width: 768px) and (max-width: 1023px) {
         .inverted-pyramid-grid {
@@ -89,14 +80,14 @@
             max-width: 50%;
         }
     }
-
     /* Large screens: 3 columns */
     @media (min-width: 1024px) {
         .inverted-pyramid-grid {
             grid-template-columns: repeat(3, 1fr);
           }
 
-           body { background-color: #040404; }
+
+        /* CONTACT */ 
         .form-floating { position: relative; }
         .form-floating input, .form-floating textarea { padding-top: 1rem; padding-bottom: 0.5rem; }
         .form-floating label {
@@ -110,7 +101,6 @@
             transform: translateY(-0.5rem) scale(0.8);
         }
         .form-floating input::placeholder, .form-floating textarea::placeholder { color: transparent; }
-        
         .card-gradient {
             background: #040404;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -121,7 +111,6 @@
             transform: translateY(-1px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7), inset 0 1px 3px rgba(0, 0, 0, 0.4);
         }
-        
         .form-floating input, .form-floating textarea {
             background: #040404 !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -134,7 +123,7 @@
         }
 
 
-        /* Footer */
+  /* FOOTER */
   .bg-unified {
     position:absolute;
     top:0;
@@ -149,7 +138,6 @@
     background-position:left top,right top;
     background-size:calc(50% + 1px) 100%,calc(50% + 1px) 100%;
   }
-
   .bg-overlay {
     position:absolute;
     top:0;
@@ -160,7 +148,6 @@
     pointer-events:none;
     background:linear-gradient(to bottom, #040404 0%, transparent 70%, transparent 92%, #08081B 100%);
   }
-
   @media(max-width:768px){
     .bg-unified{
       background-image:
@@ -171,8 +158,8 @@
   }
   </style>
 </head>
-
 <body class="bg-[#040404]">
+
   <!-- Navbar -->
   <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-10 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
     
@@ -207,7 +194,8 @@
     </button>
   </nav>
 
-  
+
+<!-- SERVICE -->  
 <section class="py-20">
     <div class="container mx-auto px-4">
         <p class="text-center text-lg text-gray-400 mb-2 max-w-4xl mx-auto">Services</p>
@@ -240,6 +228,9 @@
         </div>
     </div>
 </section>
+
+
+<!-- CONTACT -->
 <section>
     <div class="text-white font-sans py-12" style="background-color: #040404;">
         <div class="max-w-4xl mx-auto px-6">
@@ -357,7 +348,8 @@
     </div>
 </section>
 
-  <!-- Footer -->
+
+<!-- FOOTER -->
 <section class="relative isolate overflow-hidden pb-12">
   <!-- Hintergrund -->
   <div aria-hidden="true" class="bg-unified"></div>
@@ -417,7 +409,7 @@
 </section>
 
 <script>
-    // Elemente
+    // NAVBAR
     const navHamburger = document.querySelector('.nav-hamburger');
     const navLinks     = document.getElementById('nav-links');
     const navListItems = navLinks.querySelectorAll('li');
@@ -457,7 +449,5 @@
       }
     });
 </script>
-
-
 </body>
 </html>
