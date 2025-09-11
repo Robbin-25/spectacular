@@ -1,1 +1,698 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Animation</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth;}
+
+    .nav-hamburger.active .nav-bar:nth-child(1){transform:translateY(10px) rotate(-135deg) scaleX(1.4)}
+    .nav-hamburger.active .nav-bar:nth-child(2){opacity:0}
+    .nav-hamburger.active .nav-bar:nth-child(3){transform:translateY(-10px) rotate(135deg) scaleX(1.4)}
+    
+    .active-link {
+      background-color: #1f2937; /* = bg-gray-800 */
+    }
+
+  
+    /* SERVICE */
+    .service-card {
+        background: #040404;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 
+            0 25px 50px -12px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.02),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+    .service-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    /* Ensure content is above the pseudo-elements */
+    .service-card > * {
+        position: relative;
+        z-index: 1;
+    }
+    /* Custom grid for inverted pyramid layout */
+    .inverted-pyramid-grid {
+        display: grid;
+        gap: 1.5rem;
+        max-width: 84rem;
+        margin: 0 auto;
+    }
+    /* Mobile: single column */
+    @media (max-width: 767px) {
+        .inverted-pyramid-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    /* Medium screens: 2 cards top, 1 card bottom (inverted pyramid) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .inverted-pyramid-grid {
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+        }
+        
+        .service-card:nth-child(3) {
+            grid-column: 1 / -1;
+            max-width: 50%;
+        }
+    }
+    /* Large screens: 3 columns */
+    @media (min-width: 1024px) {
+        .inverted-pyramid-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          }
+
+
+
+          /* GRID */
+  .card-inner-top,
+  .card-inner-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 66%;
+    height: 3.2rem;
+    pointer-events: none;
+  }
+  .card-inner-top {
+    top: -1.6rem;
+    border-bottom-left-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  }
+  .card-inner-bottom {
+    bottom: -1.6rem;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+  }
+
+  /* Hochhäuser */
+  .building { 
+    width: 44px;
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+
+  /* Ringe für Profile */
+  .ring {
+    position: absolute;
+    border-radius: 9999px;
+    border: 2px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .ring.r1 { width: 140px; height: 140px; }
+  .ring.r2 { width: 110px; height: 110px; }
+
+  /* Responsive Anpassung */
+  @media (max-width: 900px) {
+    .card-inner-top, .card-inner-bottom { width: 80%; height: 2.4rem; }
+    .ring.r1 { width: 120px; height: 120px; }
+    .ring.r2 { width: 90px; height: 90px; }
+    .building { width: 36px; }
+  }
+
+
+        /* CONTACT */ 
+        .form-floating { position: relative; }
+        .form-floating input, .form-floating textarea { padding-top: 1rem; padding-bottom: 0.5rem; }
+        .form-floating label {
+            position: absolute; left: 0.75rem; top: 0.75rem;
+            transition: all 0.2s; pointer-events: none; transform-origin: left top;
+        }
+        .form-floating input:focus + label,
+        .form-floating input:not(:placeholder-shown) + label,
+        .form-floating textarea:focus + label,
+        .form-floating textarea:not(:placeholder-shown) + label {
+            transform: translateY(-0.5rem) scale(0.8);
+        }
+        .form-floating input::placeholder, .form-floating textarea::placeholder { color: transparent; }
+        .card-gradient {
+            background: #040404;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        .card-gradient:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7), inset 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        .form-floating input, .form-floating textarea {
+            background: #040404 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+        }
+        .form-floating input:focus, .form-floating textarea:focus {
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+        }
+
+
+  /* FOOTER */
+  .bg-unified {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%; /* Höhe des Eltern-Elements, also der Section */
+    z-index:-10;
+    background-image:
+      conic-gradient(from 90deg at 50% 90%, #040404 0deg, #060881 210deg, #B0B0D3 250deg, #F4F4F4 360deg),
+      conic-gradient(from 270deg at 50% 90%, #F4F4F4 0deg, #B0B0D3 110deg, #060881 140deg, #040404 360deg);
+    background-repeat:no-repeat,no-repeat;
+    background-position:left top,right top;
+    background-size:calc(50% + 1px) 100%,calc(50% + 1px) 100%;
+  }
+
+  .bg-overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%; /* Höhe des Eltern-Elements */
+    z-index:-5;
+    pointer-events:none;
+    background:linear-gradient(to bottom, #040404 0%, transparent 70%, transparent 92%, #08081B 100%);
+  }
+
+  @media(max-width:768px){
+    .bg-unified{
+      background-image:
+        conic-gradient(from 90deg at 50% 90%, #040404 0deg, #060881 250deg, #B0B0D3 260deg, #F4F4F4 360deg),
+        conic-gradient(from 270deg at 50% 90%, #F4F4F4 0deg, #B0B0D3 100deg, #060881 110deg, #040404 360deg);
+      background-size:calc(50% + 1px) 100%,calc(50% + 1px) 100%;
+    }
+  }
+  </style>
+</head>
+<body class="bg-[#040404]">
+
+  <!-- Navbar -->
+  <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-10 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
+    
+    <!-- Logo + Hamburger -->
+    <div class="flex w-full h-full md:w-auto items-center justify-between">
+      <img src="img/Logo.svg" alt="Web-Plants" class="h-full pr-20">
+      <button class="nav-hamburger flex md:hidden flex-col cursor-pointer gap-1.5 transition-all duration-300 items-center" aria-label="Menü öffnen/schließen">
+        <span class="nav-bar bg-white w-5 h-1 transition-all duration-300 rounded-full"></span>
+        <span class="nav-bar bg-white w-8 h-1 transition-all duration-300 rounded-full"></span>
+        <span class="nav-bar bg-white w-5 h-1 transition-all duration-300 rounded-full"></span>
+      </button>
+    </div>
+
+    <!-- Nav-Links -->
+    <div id="nav-links" class="flex flex-col md:flex-row md:space-x-1 text-gray-200 font-medium items-center md:h-full overflow-hidden max-h-0 md:max-h-none w-full md:w-auto">
+      <ul class="flex flex-col md:flex-row gap-1 mt-4 md:mt-0 items-center w-full md:w-auto">
+        <li class="w-full md:w-auto"><a href="#home" class="nav-link hover:bg-gray-800 rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Home</a></li>
+        <li class="w-full md:w-auto"><a href="#services" class="nav-link hover:bg-gray-800 rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Services</a></li>
+        <li class="w-full md:w-auto"><a href="#about" class="nav-link hover:bg-gray-800 rounded-full px-5 py-1 transition block w-full text-center md:w-auto">About</a></li>
+        <li class="w-full md:w-auto"><a href="#carts" class="nav-link hover:bg-gray-800 rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Carts</a></li>
+      </ul>
+
+      <!-- Mobile Button -->
+      <a href="#contact" class="mt-3 md:hidden w-full rounded-full px-4 py-2 bg-white text-black font-semibold hover:bg-gray-300 transition text-center">
+        Contact US
+      </a>
+    </div>
+
+    <!-- Desktop Button -->
+    <a href="#contact" class="hidden md:flex items-center justify-center h-full rounded-full px-4 bg-white text-black font-semibold hover:bg-gray-300 transition">
+      Contact US
+    </a>
+  </nav>
+
+<div id="home" class="h-[80vh]"></div>
+<!-- SERVICE -->  
+<section id="services" class="py-20">
+    <div class="container mx-auto px-4">
+        <p class="text-center text-lg text-gray-400 mb-2 max-w-4xl mx-auto">Services</p>
+        <h2 class="text-center text-3xl md:text-4xl font-bold mb-12 text-white">Professional Digital Solutions to Elevate<br>Your Business Presence and Performance</h2>
+        
+        <div class="inverted-pyramid-grid">
+            <div class="service-card rounded-3xl p-6 text-center">
+                <div class="w-44 h-44 mx-auto mb-4">
+                    <img src="Web.png" alt="Web Design Icon" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-white">Web Design</h3>
+                <p class="text-gray-400">Modern, responsive websites that captivate and convert.</p>
+            </div>
+
+            <div class="service-card rounded-3xl p-6 text-center">
+                <div class="w-44 h-44 mx-auto mb-4">
+                    <img src="Ui.png" alt="UI/UX Design Icon" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-white">UI/UX Design</h3>
+                <p class="text-gray-400">Intuitive interfaces that delight users and drive engagement.</p>
+            </div>
+
+            <div class="service-card rounded-3xl p-6 text-center">
+                <div class="w-44 h-44 mx-auto mb-4">
+                    <img src="SE.png" alt="SEO Optimization Icon" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-white">SEO Optimization</h3>
+                <p class="text-gray-400">Boost visibility and drive organic traffic to your website.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- GRID -->
+<main id="carts" class="max-w-7xl mx-auto text-white p-6">
+  <section class="aspect-square w-full">
+    <!-- 3×3 Grid -->
+    <div class="grid grid-cols-3 grid-rows-3 gap-6 w-full h-full">
+
+      <!-- Hochhäuser (links, 2 Reihen hoch) -->
+      <div id="buildings-card" class="col-start-1 row-start-1 row-span-2 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 relative overflow-hidden shadow-2xl flex flex-col justify-between items-center">
+        <h3 class="text-2xl font-bold leading-tight text-left self-start">
+          Rise your<br>Business<br><span class="text-sky-400">to the max</span>
+        </h3>
+
+        <div class="relative w-full flex items-end justify-center" style="height:52%;">
+          <div class="building building-1" style="left:45%">
+            <img src="img/building1.svg" alt="">
+          </div>
+          <div class="building building-2" style="left:50%">
+            <img src="img/building2.svg" alt="">
+          </div>
+          <div class="building building-3" style="left:55%">
+            <img src="img/building3.svg" alt="">
+          </div>
+        </div>
+
+        <div class="card-inner-top bg-[#070707]"></div>
+        <div class="card-inner-bottom bg-[#070707]"></div>
+      </div>
+
+      <!-- Profil 1 -->
+      <div class="col-start-2 row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 relative overflow-hidden shadow-2xl group flex items-center justify-center">
+        <div class="ring r1 opacity-30"></div>
+        <div class="ring r2 opacity-30"></div>
+
+        <img src="https://via.placeholder.com/120" alt="Marlon" class="w-28 h-28 rounded-full z-10 object-cover">
+        <div class="absolute bottom-6 text-center z-10">
+          <div class="font-semibold">Marlon Garcia</div>
+          <div class="text-xs text-gray-400 max-w-[180px]">Frontend & Backend, HTML/CSS, PHP/MySQL</div>
+        </div>
+
+        <div class="card-inner-top bg-[#070707]"></div>
+        <div class="card-inner-bottom bg-[#070707]"></div>
+      </div>
+
+      <!-- Profil 2 -->
+      <div class="col-start-3 row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 relative overflow-hidden shadow-2xl group flex items-center justify-center">
+        <div class="ring r1 opacity-30"></div>
+        <div class="ring r2 opacity-30"></div>
+
+        <img src="https://via.placeholder.com/120" alt="Nick" class="w-28 h-28 rounded-full z-10 object-cover">
+        <div class="absolute bottom-6 text-center z-10">
+          <div class="font-semibold">Nick Fosco</div>
+          <div class="text-xs text-gray-400 max-w-[180px]">Design + saubere Frontend-Architektur</div>
+        </div>
+
+        <div class="card-inner-top bg-[#070707]"></div>
+        <div class="card-inner-bottom bg-[#070707]"></div>
+      </div>
+
+      <!-- Web Plants -->
+      <div id="webplants-card" class="col-start-2 col-span-2 row-start-2 rounded-3xl bg-gradient-to-b from-[#090909] to-[#0f0f0f] p-6 relative overflow-hidden shadow-2xl flex items-center justify-center">
+        <img src="img/Black 4.png" alt="abstract" class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <h2 class="text-5xl font-extrabold z-10 tracking-wide">WEB-PLANTS</h2>
+
+        <div class="card-inner-top bg-[#070707]"></div>
+        <div class="card-inner-bottom bg-[#070707]"></div>
+      </div>
+
+      <!-- Timeline -->
+      <div id="timeline-card" class="col-start-1 col-span-3 row-start-3 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#131313] p-6 relative overflow-hidden shadow-2xl">
+        <div class="absolute left-6 right-6 top-10 h-1 bg-[#0b546f] rounded"></div>
+
+        <div class="relative mt-12 grid grid-cols-5 gap-6 items-start">
+          <div class="timeline-step bg-[#0e0e0f] p-6 rounded-2xl shadow-lg" data-step="0">
+            <h4 class="font-bold mb-2">We started learning</h4>
+            <p class="text-xs text-gray-400">We began programming in 2024 and learned fast.</p>
+          </div>
+          <div class="timeline-step bg-[#0e0e0f] p-6 rounded-2xl shadow-lg opacity-60" data-step="1">
+            <h4 class="font-bold mb-2">First Projects</h4>
+            <p class="text-xs text-gray-400">Small projects & prototypes.</p>
+          </div>
+          <div class="timeline-step bg-[#0e0e0f] p-6 rounded-2xl shadow-lg opacity-60" data-step="2">
+            <h4 class="font-bold mb-2">Growth</h4>
+            <p class="text-xs text-gray-400">Team and clients grew.</p>
+          </div>
+          <div class="timeline-step bg-[#0e0e0f] p-6 rounded-2xl shadow-lg opacity-60" data-step="3">
+            <h4 class="font-bold mb-2">Scaling</h4>
+            <p class="text-xs text-gray-400">Bigger apps & infra.</p>
+          </div>
+          <div class="timeline-step bg-[#0e0e0f] p-6 rounded-2xl shadow-lg opacity-60" data-step="4">
+            <h4 class="font-bold mb-2">Now</h4>
+            <p class="text-xs text-gray-400">Ongoing improvements & services.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="text-white font-sans py-12" style="background-color: #040404;">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-8">
+                <p class="text-gray-400 mb-1">Kontakt</p>
+                <h1 class="text-2xl md:text-3xl font-bold mb-6">Haben Sie Fragen zu unseren Weinen?</h1>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Contact Form -->
+                <div class="card-gradient rounded-2xl p-6">
+                    <h2 class="text-xl font-bold mb-4">Schreiben Sie uns</h2>
+                    
+                    <div class="bg-emerald-600 text-white p-3 rounded-lg mb-4 text-center hidden" id="success-message">
+                        ✓ Nachricht gesendet!
+                    </div>
+                    
+                    <form id="contact-form" class="space-y-4">
+                        <div class="form-floating">
+                            <input type="email" id="email" name="email" placeholder="ihre.email@beispiel.de" 
+                                   class="w-full rounded-lg px-3 py-3 text-white outline-none" required>
+                            <label for="email" class="text-gray-400">E-Mail Adresse</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="text" id="name" name="name" placeholder="Ihr Name" 
+                                   class="w-full rounded-lg px-3 py-3 text-white outline-none" required>
+                            <label for="name" class="text-gray-400">Name</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="tel" id="phone" name="phone" placeholder="+49 123 456 789" 
+                                   class="w-full rounded-lg px-3 py-3 text-white outline-none">
+                            <label for="phone" class="text-gray-400">Telefon (optional)</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea id="message" name="message" placeholder="Ihre Nachricht..." rows="4"
+                                      class="w-full rounded-lg px-3 py-3 text-white outline-none resize-none" required></textarea>
+                            <label for="message" class="text-gray-400">Nachricht</label>
+                        </div>
+
+                        <div class="flex items-start text-gray-400 text-sm">
+                            <input type="checkbox" id="consent" name="consent" class="w-4 h-4 mr-3 mt-1 accent-white" required>
+                            <label for="consent" class="cursor-pointer">
+                                Ich stimme der <a href="#" class="text-blue-400 underline">Datenschutzerklärung</a> zu.
+                            </label>
+                        </div>
+
+                        <button type="submit" 
+                               class="w-full bg-blue-900 text-white font-semibold py-3 rounded-lg transition-all hover:bg-blue-800 hover:-translate-y-0.5 hover:shadow-lg">
+                            Nachricht senden
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="flex flex-col h-full">
+                    <!-- Visit Us -->
+                    <div class="card-gradient rounded-2xl p-6 flex-1">
+                        <h3 class="text-xl font-bold mb-3">Besuchen Sie uns</h3>
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <div>
+                                <p class="font-semibold">Weingut Hermann</p>
+                                <p class="text-gray-300 text-sm">Weinbergstraße 15</p>
+                                <p class="text-gray-300 text-sm">65375 Oestrich-Winkel</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="card-gradient rounded-2xl p-6 flex-1 my-4">
+                        <h3 class="text-xl font-bold mb-3">Kontakt</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                <p class="font-semibold">+49 6723 12345</p>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                <p class="font-semibold">info@weingut-hermann.de</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Opening Hours -->
+                    <div class="card-gradient rounded-2xl p-6 flex-1">
+                        <h3 class="text-xl font-bold mb-3">Öffnungszeiten</h3>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Mo - Fr</span>
+                                <span class="font-semibold">9:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Samstag</span>
+                                <span class="font-semibold">10:00 - 16:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Sonntag</span>
+                                <span class="font-semibold">Nach Vereinbarung</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<section class="relative isolate overflow-hidden pb-12">
+  <!-- Hintergrund -->
+  <div aria-hidden="true" class="bg-unified"></div>
+  <div aria-hidden="true" class="bg-overlay"></div>
+
+  <!-- Mockup -->
+  <div class="flex justify-center items-center px-6 py-12">
+    <div class="w-[95%] md:w-[85%] 2xl:w-[60%] rounded-[2rem] overflow-hidden shadow-2xl">
+      <img src="img/moguo.png" alt="Website Mockup" class="w-full h-auto block">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-[90%] md:w-[70%] mx-auto pb-20 px-4 md:px-[6%] lg:px-[10%] 
+                 flex flex-col md:flex-row justify-center md:justify-between 
+                 items-center md:items-start gap-8 text-sm bg-transparent">
+
+    <!-- Intro -->
+    <div class="max-w-xs text-black flex flex-col items-center md:items-start text-center md:text-left">
+      <div class="flex items-center gap-2 mb-3 justify-center md:justify-start">
+        <img src="img/Logofooter.svg" alt="" />
+        <span class="font-semibold">Web plants</span>
+      </div>
+      <p>We’re Rob and Eno – full-stack developers, freelancers & problem solvers. Thanks for being our favorite customer.</p>
+    </div>
+
+    <!-- General -->
+    <nav class="flex flex-col gap-2 text-black items-center md:items-start text-center md:text-left">
+      <h3 class="font-semibold mb-2 text-black">General</h3>
+      <a href="#" class="hover:text-gray-800">Home</a>
+      <a href="#" class="hover:text-gray-800">About</a>
+      <a href="#" class="hover:text-gray-800">Projects</a>
+      <a href="#" class="hover:text-gray-800">Blog</a>
+    </nav>
+
+    <!-- Kontakt -->
+    <div class="flex flex-col gap-2 text-black items-center md:items-start text-center md:text-left">
+      <h3 class="font-semibold mb-2 text-black">Kontakt</h3>
+      <p>Adresse<br><span class="text-xs text-gray-600">Straßenname 123</span></p>
+      <p>Telefonnummer<br><span class="text-xs text-gray-600">+49 123 456789</span></p>
+      <p>E-Mail<br><span class="text-xs text-gray-600">web@gmail.com</span></p>
+    </div>
+
+    <!-- Socials -->
+    <div class="flex flex-col gap-2 text-black items-center md:items-start text-center md:text-left">
+      <h3 class="font-semibold mb-2 text-black">More</h3>
+      <a href="#" class="hover:text-gray-800">GitHub</a>
+      <a href="#" class="hover:text-gray-800">Instagram</a>
+      <a href="#" class="hover:text-gray-800">TikTok</a>
+    </div>
+  </footer>
+
+  <!-- Copyright -->
+  <div class="text-center text-white/70 mx-auto -mb-3 text-xs w-[50%]">
+    © 2025 Web plants. All rights reserved | Privacy Policy | Terms &amp; Conditions
+  </div>
+</section>
+
+<script>
+    // NAVBAR
+    gsap.registerPlugin(ScrollTrigger);
+
+    const navHamburger = document.querySelector('.nav-hamburger');
+    const navLinks     = document.getElementById('nav-links');
+    const navListItems = navLinks.querySelectorAll('li');
+    const navAnchors   = document.querySelectorAll('.nav-link');
+
+    // Navbar-Intro
+    gsap.set('#navbar', { scaleX: 0, transformOrigin: 'center' });
+    gsap.to('#navbar', { scaleX: 1, duration: 1.1, ease: 'elastic.out(1,0.6)' });
+
+    // Menü-Toggle (mobil)
+    function toggleMenu() {
+      navHamburger.classList.toggle('active');
+      const open = navHamburger.classList.contains('active');
+
+      gsap.to(navLinks, {
+        maxHeight: open ? navLinks.scrollHeight + 80 : 0,
+        duration: 0.35,
+        ease: 'power2.inOut'
+      });
+
+      if (open) {
+        gsap.fromTo(navListItems, { y: -10, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.3, stagger: 0.07, delay: 0.1, ease: 'power2.out'
+        });
+      }
+    }
+    navHamburger.addEventListener('click', toggleMenu);
+
+    // Resize Handling
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        gsap.set(navLinks, { clearProps: 'maxHeight' });
+        navHamburger.classList.remove('active');
+      } else {
+        gsap.set(navLinks, { maxHeight: 0 });
+      }
+    });
+
+    // ScrollSpy: Aktives Menü markieren
+    document.querySelectorAll("section").forEach(section => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 50%",
+        end: "bottom 50%",
+        onEnter: () => setActive(section.id),
+        onEnterBack: () => setActive(section.id)
+      });
+    });
+
+    function setActive(id) {
+      navAnchors.forEach(link => {
+        link.classList.remove("active-link");
+        if (link.getAttribute("href") === "#" + id) {
+          link.classList.add("active-link");
+        }
+      });
+    }
+
+
+// CONTACT
+  /* Hochhäuser Animation */
+  const buildingCard = document.getElementById('buildings-card');
+  const buildings = buildingCard.querySelectorAll('.building');
+  gsap.set(buildings, { yPercent: 50 });
+  let buildUp = gsap.timeline({ paused: true });
+  buildUp.to('.building-1', { yPercent: 0, duration: 0.5, ease: "power3.out" }, 0)
+         .to('.building-2', { yPercent: 0, duration: 0.6, ease: "power3.out" }, 0.1)
+         .to('.building-3', { yPercent: 0, duration: 0.7, ease: "power3.out" }, 0.2);
+  buildingCard.addEventListener('mouseenter', () => buildUp.play());
+  buildingCard.addEventListener('mouseleave', () => buildUp.reverse());
+
+  /* Profile Hover */
+  document.querySelectorAll('.group').forEach(group => {
+    const rings = group.querySelectorAll('.ring');
+    const avatar = group.querySelector('img');
+    group.addEventListener('mouseenter', () => {
+      gsap.to(rings, { scale: 1.06, opacity: 1, duration: 0.45, stagger: 0.06 });
+      gsap.to(avatar, { scale: 1.06, duration: 0.45 });
+    });
+    group.addEventListener('mouseleave', () => {
+      gsap.to(rings, { scale: 1, opacity: 0.35, duration: 0.45, stagger: 0.06 });
+      gsap.to(avatar, { scale: 1, duration: 0.45 });
+    });
+  });
+
+  /* Web-Plants Hover */
+  const webCard = document.getElementById('webplants-card');
+  const webBg = webCard.querySelector('img');
+  webCard.addEventListener('mouseenter', () => gsap.to(webBg, { scale: 1.06, duration: 0.6 }));
+  webCard.addEventListener('mouseleave', () => gsap.to(webBg, { scale: 1, duration: 0.6 }));
+
+  /* Timeline Hover */
+  document.querySelectorAll('.timeline-step').forEach(step => {
+    step.addEventListener('mouseenter', () => {
+      gsap.to(step, { scale: 1.04, opacity: 1, boxShadow: "0 18px 40px rgba(0,0,0,0.6)", duration: 0.28 });
+    });
+    step.addEventListener('mouseleave', () => {
+      gsap.to(step, { scale: 1, opacity: 0.65, boxShadow: "0 8px 20px rgba(0,0,0,0.4)", duration: 0.28 });
+    });
+  });
+
+  gsap.set('.ring', { opacity: 0.35 });
+  gsap.set('.timeline-step', { opacity: 0.65 });
+
+
+  // CONTACT
+// ScrollTrigger registrieren
+gsap.registerPlugin(ScrollTrigger);
+
+// Startzustand festlegen
+gsap.set(".service-card", { opacity: 0, y: 100 });
+
+gsap.to(".service-card", {
+  scrollTrigger: {
+    trigger: ".inverted-pyramid-grid",
+    start: "top 80%",   // Animation startet, wenn Grid zu 80% im Viewport
+  },
+  y: 0,
+  opacity: 1,
+  duration: 0.8,
+  stagger: 0.3,
+  ease: "power3.out"
+});
+
+</script>
+</body>
+</html>
