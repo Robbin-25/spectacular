@@ -114,6 +114,21 @@
           background-size:calc(50% + 1px) 100%,calc(50% + 1px) 100%;
         }
     }
+
+  /* Custom scrollbar for textarea */
+    textarea::-webkit-scrollbar {
+      width: 6px;
+    }
+    textarea::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    textarea::-webkit-scrollbar-thumb {
+      background-color: #555;
+      border-radius: 6px;
+    }
+    textarea::-webkit-scrollbar-thumb:hover {
+      background-color: #666;
+    }
   </style>
 </head>
 <body class="bg-[#040404] m-0 p-0 box-border">
@@ -275,64 +290,61 @@
 
   <!-- CONTACT -->
   
-  <section id="contact" class="bg-[#040404] text-white font-sans min-h-screen flex items-center justify-center">
-     <div class="w-full max-w-7xl px-4 sm:px-6">
+<section id="contact" class="bg-[#040404] text-white font-sans min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-7xl px-4 sm:px-6">
       <div class="text-center mb-8">
-        <p class="text-gray-400 mb-1">Kontakt</p>
-        <h1 class="text-2xl md:text-3xl font-bold mb-6">Haben Sie Fragen zu unseren Weinen?</h1>
+        <p class="text-gray-400 mb-1">Contact</p>
+        <h1 class="text-2xl md:text-3xl font-bold mb-6">Do you have questions about our Business <br> or anything else you want to ask?</h1>
       </div>
 
       <div class="flex justify-center">
         <!-- Contact Form -->
         <div class="w-full sm:w-[95%] md:w-[80%] lg:w-[70%] bg-[#040404] rounded-2xl p-6">
-          <h2 class="text-xl font-bold mb-6">Schreiben Sie uns</h2>
-
+          
           <div class="bg-emerald-600 text-white p-3 rounded-lg mb-4 text-center hidden" id="success-message">
-            ✓ Nachricht gesendet!
+            ✓ Message sent!
           </div>
 
           <form id="contact-form" class="space-y-5">
             <div>
-              <input type="email" id="email" name="email" placeholder="ihre.email@beispiel.de"
+              <input type="email" id="email" name="email" placeholder="Email address"
                      class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg" required>
-              <label for="email" class="text-gray-400 text-sm">E-Mail Adresse</label>
             </div>
 
             <div>
-              <input type="text" id="name" name="name" placeholder="Ihr Name"
+              <input type="text" id="name" name="name" placeholder="Full name"
                      class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg" required>
-              <label for="name" class="text-gray-400 text-sm">Name</label>
             </div>
 
             <div>
-              <input type="tel" id="phone" name="phone" placeholder="+49 123 456 789"
+              <input type="tel" id="phone" name="phone" placeholder="Phone (optional)"
                      class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg">
-              <label for="phone" class="text-gray-400 text-sm">Telefon (optional)</label>
             </div>
 
             <div>
-              <textarea id="message" name="message" placeholder="Ihre Nachricht..." rows="6"
+              <textarea id="message" name="message" placeholder="Your message..." rows="6"
                         class="w-full rounded-lg px-5 py-3 text-white outline-none resize-none bg-[#040404] border border-white/20 text-lg" required></textarea>
-              <label for="message" class="text-gray-400 text-sm">Nachricht</label>
             </div>
 
             <div class="flex items-start text-gray-400 text-sm">
               <input type="checkbox" id="consent" name="consent" class="w-4 h-4 mr-2 mt-1 accent-white" required>
               <label for="consent" class="cursor-pointer">
-                Ich stimme der <a href="#" class="text-blue-400 underline">Datenschutzerklärung</a> zu.
+                I agree to the <a href="#" class="text-blue-400 underline">Privacy Policy</a>.
               </label>
             </div>
 
+            <!-- Button with Font Awesome Paper Plane Icon -->
             <button type="submit"
-                    class="w-full bg-blue-900 text-white font-semibold py-3 rounded-lg text-lg">
-              Nachricht senden
+                    class="w-full flex items-center justify-center gap-2 bg-white text-black font-semibold py-3 rounded-lg text-lg transition hover:bg-gray-100">
+              <span>Send message</span>
+              <!-- Font Awesome paper plane icon -->
+              <i class="fas fa-paper-plane"></i>
             </button>
           </form>
         </div>
       </div>
     </div>
   </section>
-
 
   <!-- FOOTER -->
   <footer class="relative isolate overflow-hidden pb-12">
