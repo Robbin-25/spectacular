@@ -134,6 +134,11 @@
 </head>
 <body class="bg-[#040404] m-0 p-0 box-border">
 
+  <!-- CURSOR -->
+  <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
+    Our favourite
+  </div>
+
   <!-- NAVBAR -->
   <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-11 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
     
@@ -407,6 +412,25 @@
   </footer>
 
 <script>
+    // CURSOR
+    const cursorTag = document.getElementById("cursorTag");
+
+    // Check: coarse = Finger → nicht anzeigen. fine = Maus, Trackpad, Stift → anzeigen
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+    if (isFinePointer) {
+      cursorTag.classList.remove("hidden");
+
+      document.addEventListener("pointermove", (e) => {
+        gsap.to(cursorTag, {
+          x: e.clientX + 36,  // rechts neben Cursor
+          y: e.clientY + 36,  // leicht nach oben
+          duration: 0.2,
+          ease: "power3.out"
+        });
+      });
+    }
+  
     // NAVBAR
     gsap.registerPlugin(ScrollTrigger);
 
