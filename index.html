@@ -6,6 +6,7 @@
   <title>Web-Plants</title>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* NAVBAR */
@@ -80,19 +81,20 @@
     }
 
     /* CONTACT */
-    .form-floating { position: relative; }
-    .form-floating input, .form-floating textarea { padding-top: 1rem; padding-bottom: 0.5rem; }
-    .form-floating label {
-        position: absolute; left: 0.75rem; top: 0.75rem;
-        transition: all 0.2s; pointer-events: none; transform-origin: left top;
+    /* Custom scrollbar for textarea */
+    textarea::-webkit-scrollbar {
+      width: 6px;
     }
-    .form-floating input:focus + label,
-    .form-floating input:not(:placeholder-shown) + label,
-    .form-floating textarea:focus + label,
-    .form-floating textarea:not(:placeholder-shown) + label {
-        transform: translateY(-0.5rem) scale(0.8);
+    textarea::-webkit-scrollbar-track {
+      background: transparent;
     }
-    .form-floating input::placeholder, .form-floating textarea::placeholder { color: transparent; }
+    textarea::-webkit-scrollbar-thumb {
+      background-color: #555;
+      border-radius: 6px;
+    }
+    textarea::-webkit-scrollbar-thumb:hover {
+      background-color: #666;
+    }
 
     /* FOOTER */
     .bg-unified {
@@ -283,119 +285,60 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="bg-[#040404] text-white font-sans py-12">
-      <div class="max-w-4xl mx-auto px-6">
-          <div class="text-center mb-8">
-              <p class="text-gray-400 mb-1">Kontakt</p>
-              <h1 class="text-2xl md:text-3xl font-bold mb-6">Haben Sie Fragen zu unseren Weinen?</h1>
-          </div>
-
-          <div class="grid lg:grid-cols-2 gap-6">
-              <!-- Contact Form -->
-              <div class="bg-[#040404] border border-white/10 shadow-[0_8px_16px_rgba(0,0,0,0.6),inset_0_1px_3px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.7),inset_0_1px_3px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 rounded-2xl p-6">
-                  <h2 class="text-xl font-bold mb-4">Schreiben Sie uns</h2>
-                  
-                  <div class="bg-emerald-600 text-white p-3 rounded-lg mb-4 text-center hidden" id="success-message">
-                      ✓ Nachricht gesendet!
-                  </div>
-                  
-                  <form id="contact-form" class="space-y-4">
-                      <div class="form-floating">
-                          <input type="email" id="email" name="email" placeholder="ihre.email@beispiel.de" 
-                                 class="w-full rounded-lg px-3 py-3 text-white outline-none bg-[#040404] border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)] focus:border-white/20 focus:shadow-[0_4px_8px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(0,0,0,0.4)] transition-all duration-200" required>
-                          <label for="email" class="text-gray-400">E-Mail Adresse</label>
-                      </div>
-
-                      <div class="form-floating">
-                          <input type="text" id="name" name="name" placeholder="Ihr Name" 
-                                 class="w-full rounded-lg px-3 py-3 text-white outline-none bg-[#040404] border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)] focus:border-white/20 focus:shadow-[0_4px_8px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(0,0,0,0.4)] transition-all duration-200" required>
-                          <label for="name" class="text-gray-400">Name</label>
-                      </div>
-
-                      <div class="form-floating">
-                          <input type="tel" id="phone" name="phone" placeholder="+49 123 456 789" 
-                                 class="w-full rounded-lg px-3 py-3 text-white outline-none bg-[#040404] border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)] focus:border-white/20 focus:shadow-[0_4px_8px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(0,0,0,0.4)] transition-all duration-200">
-                          <label for="phone" class="text-gray-400">Telefon (optional)</label>
-                      </div>
-
-                      <div class="form-floating">
-                          <textarea id="message" name="message" placeholder="Ihre Nachricht..." rows="4"
-                                    class="w-full rounded-lg px-3 py-3 text-white outline-none resize-none bg-[#040404] border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)] focus:border-white/20 focus:shadow-[0_4px_8px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(0,0,0,0.4)] transition-all duration-200" required></textarea>
-                          <label for="message" class="text-gray-400">Nachricht</label>
-                      </div>
-
-                      <div class="flex items-start text-gray-400 text-sm">
-                          <input type="checkbox" id="consent" name="consent" class="w-4 h-4 mr-3 mt-1 accent-white" required>
-                          <label for="consent" class="cursor-pointer">
-                              Ich stimme der <a href="#" class="text-blue-400 underline">Datenschutzerklärung</a> zu.
-                          </label>
-                      </div>
-
-                      <button type="submit" 
-                             class="w-full bg-blue-900 text-white font-semibold py-3 rounded-lg transition-all hover:bg-blue-800 hover:-translate-y-0.5 hover:shadow-lg">
-                          Nachricht senden
-                      </button>
-                  </form>
-              </div>
-
-              <!-- Contact Information -->
-              <div class="flex flex-col h-full">
-                  <!-- Visit Us -->
-                  <div class="bg-[#040404] border border-white/10 shadow-[0_8px_16px_rgba(0,0,0,0.6),inset_0_1px_3px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.7),inset_0_1px_3px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 rounded-2xl p-6 flex-1">
-                      <h3 class="text-xl font-bold mb-3">Besuchen Sie uns</h3>
-                      <div class="flex items-start">
-                          <svg class="w-5 h-5 mr-3 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                          </svg>
-                          <div>
-                              <p class="font-semibold">Weingut Hermann</p>
-                              <p class="text-gray-300 text-sm">Weinbergstraße 15</p>
-                              <p class="text-gray-300 text-sm">65375 Oestrich-Winkel</p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <!-- Contact Details -->
-                  <div class="bg-[#040404] border border-white/10 shadow-[0_8px_16px_rgba(0,0,0,0.6),inset_0_1px_3px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.7),inset_0_1px_3px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 rounded-2xl p-6 flex-1 my-4">
-                      <h3 class="text-xl font-bold mb-3">Kontakt</h3>
-                      <div class="space-y-2">
-                          <div class="flex items-center">
-                              <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                              </svg>
-                              <p class="font-semibold">+49 6723 12345</p>
-                          </div>
-                          <div class="flex items-center">
-                              <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                              </svg>
-                              <p class="font-semibold">info@weingut-hermann.de</p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <!-- Opening Hours -->
-                  <div class="bg-[#040404] border border-white/10 shadow-[0_8px_16px_rgba(0,0,0,0.6),inset_0_1px_3px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.7),inset_0_1px_3px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 rounded-2xl p-6 flex-1">
-                      <h3 class="text-xl font-bold mb-3">Öffnungszeiten</h3>
-                      <div class="space-y-1 text-sm">
-                          <div class="flex justify-between">
-                              <span class="text-gray-300">Mo - Fr</span>
-                              <span class="font-semibold">9:00 - 18:00</span>
-                          </div>
-                          <div class="flex justify-between">
-                              <span class="text-gray-300">Samstag</span>
-                              <span class="font-semibold">10:00 - 16:00</span>
-                          </div>
-                          <div class="flex justify-between">
-                              <span class="text-gray-300">Sonntag</span>
-                              <span class="font-semibold">Nach Vereinbarung</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+ <section id="contact" class="bg-[#040404] text-white font-sans min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-7xl px-4 sm:px-6">
+      <div class="text-center mb-8">
+        <p class="text-gray-400 mb-1">Contact</p>
+        <h1 class="text-2xl md:text-3xl font-bold mb-6">Do you have questions about our Business <br> or anything else you want to ask?</h1>
       </div>
+
+      <div class="flex justify-center">
+        <!-- Contact Form -->
+        <div class="w-full sm:w-[95%] md:w-[80%] lg:w-[70%] bg-[#040404] rounded-2xl p-6">
+          
+          <div class="bg-emerald-600 text-white p-3 rounded-lg mb-4 text-center hidden" id="success-message">
+            ✓ Message sent!
+          </div>
+
+          <form id="contact-form" class="space-y-5">
+            <div>
+              <input type="email" id="email" name="email" placeholder="Email address"
+                     class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg" required>
+            </div>
+
+            <div>
+              <input type="text" id="name" name="name" placeholder="Full name"
+                     class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg" required>
+            </div>
+
+            <div>
+              <input type="tel" id="phone" name="phone" placeholder="Phone (optional)"
+                     class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg">
+            </div>
+
+            <div>
+              <textarea id="message" name="message" placeholder="Your message..." rows="6"
+                        class="w-full rounded-lg px-5 py-3 text-white outline-none resize-none bg-[#040404] border border-white/20 text-lg" required></textarea>
+            </div>
+
+            <div class="flex items-start text-gray-400 text-sm">
+              <input type="checkbox" id="consent" name="consent" class="w-4 h-4 mr-2 mt-1 accent-white" required>
+              <label for="consent" class="cursor-pointer">
+                I agree to the <a href="#" class="text-blue-400 underline">Privacy Policy</a>.
+              </label>
+            </div>
+
+            <!-- Button with Font Awesome Paper Plane Icon -->
+            <button type="submit"
+                    class="w-full flex items-center justify-center gap-2 bg-white text-black font-semibold py-3 rounded-lg text-lg transition hover:bg-gray-100">
+              <span>Send message</span>
+              <!-- Font Awesome paper plane icon -->
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
