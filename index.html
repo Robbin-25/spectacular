@@ -257,7 +257,7 @@
   .ring.r1 { width: 150px; height: 150px; }
   .ring.r2 { width: 135px; height: 135px; }
   .ring.r3 { width: 120px; height: 120px; }
-  @media (max-width: 900px) {
+  @media (max-width: 639px) {
       .ring.r1 { width: 120px; height: 120px; }
       .ring.r2 { width: 105px; height: 105px; }
       .ring.r3 { width: 90px; height: 90px; }
@@ -444,7 +444,7 @@
 
         <!-- Buildings Card -->
         <div id="buildings-card" class="col-start-1 row-start-1 row-span-2 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-0 relative shadow-2xl flex flex-col justify-between overflow-hidden">
-          <h3 class="text-5xl text-center font-bold leading-tight">
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl text-center font-bold leading-tight">
             Rise your<br>Business to<br>the <span class="text-sky-400">MAX</span>
           </h3>
           <div class="relative w-full flex items-end justify-center" style="height:52%;">
@@ -461,24 +461,24 @@
         </div>
 
         <!-- Profile 1 -->
-        <div class="col-start-2 row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 relative shadow-2xl group flex flex-col items-center justify-center">
+        <div class="col-start-2 row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-20 relative shadow-2xl group flex flex-col items-center justify-center">
           <div class="ring r1 opacity-30"></div>
           <div class="ring r2 opacity-30"></div>
           <div class="ring r3 opacity-30"></div>
-          <img src="img/marlon.png" alt="Marlon" class="w-28 h-28 rounded-full z-10 object-cover">
-          <div class="absolute bottom-6 text-center z-10">
+          <img src="img/marlon.png" alt="Marlon" class="w-24 h-24 sm:h-28 sm:w-28 rounded-full z-10 object-cover">
+          <div class="absolute bottom-4 md:bottom-8 text-center z-10">
             <div class="font-semibold">Marlon Garcia</div>
             <div class="text-xs text-gray-400 max-w-[180px] text-center">Frontend & Backend, HTML/CSS, PHP/MySQL</div>
           </div>
         </div>
 
         <!-- Profile 2 -->
-        <div class="col-start-2 row-start-2 md:col-start-3 md:row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 relative shadow-2xl group flex flex-col items-center justify-center">
+        <div class="col-start-2 row-start-2 md:col-start-3 md:row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-20  relative shadow-2xl group flex flex-col items-center justify-center">
           <div class="ring r1 opacity-30"></div>
           <div class="ring r2 opacity-30"></div>
           <div class="ring r3 opacity-30"></div>
-          <img src="img/Lacy.png" alt="Nick" class="w-28 h-28 rounded-full z-10 object-cover">
-          <div class="absolute bottom-6 text-center z-10">
+          <img src="img/Lacy.png" alt="Nick" class="w-24 h-24 sm:h-28 sm:w-28 rounded-full z-10 object-cover">
+          <div class="absolute bottom-4 md:bottom-8 text-center z-10">
             <div class="font-semibold">Nick Fosco</div>
             <div class="text-xs text-gray-400 max-w-[180px] text-center">Design + saubere Frontend-Architektur</div>
           </div>
@@ -491,7 +491,7 @@
         </div>
 
         <!-- Timeline Card -->
-        <div id="timeline-card" class="col-start-1 col-span-2 row-start-4 md:col-span-3 md:row-start-3 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#131313] p-6 relative shadow-2xl overflow-hidden">
+        <div id="timeline-card" class="col-start-1 col-span-2 row-start-4 md:col-span-3 md:row-start-3 min-h-min max-h-max xl:pb-20 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#131313] p-6 relative shadow-2xl overflow-hidden">
 
           <!-- Hauptlinie -->
           <div class="absolute left-8 right-8 top-12 h-1 bg-gray-700 rounded overflow-hidden">
@@ -499,15 +499,15 @@
           </div>
 
           <!-- Steps -->
-          <div class="relative mt-16 grid grid-cols-5 gap-6">
+          <div class="relative mt-16 grid grid-cols-4 gap-1">
             <!-- Step 1 -->
             <div class="relative flex flex-col items-center">
               <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
                 <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
               </div>
-              <div class="timeline-step bg-[#101010]/60 p-6 rounded-2xl shadow-lg opacity-20 scale-95">
-                <h4 class="font-bold mb-2">We started learning</h4>
-                <p class="text-xs text-gray-400">We began programming in 2024 and learned fast.</p>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">We started learning</h4>
+                <p class="text-xs md:text-base text-gray-400">We began programming in 2024 and learned fast.</p>
               </div>
             </div>
 
@@ -516,9 +516,9 @@
               <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
                 <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
               </div>
-              <div class="timeline-step bg-[#101010]/60 p-6 rounded-2xl shadow-lg opacity-20 scale-95">
-                <h4 class="font-bold mb-2">First Projects</h4>
-                <p class="text-xs text-gray-400">Small projects & prototypes.</p>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">First Projects</h4>
+                <p class="text-xs md:text-base text-gray-400">Small projects & prototypes lorem.</p>
               </div>
             </div>
 
@@ -527,9 +527,9 @@
               <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
                 <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
               </div>
-              <div class="timeline-step bg-[#101010]/60 p-6 rounded-2xl shadow-lg opacity-20 scale-95">
-                <h4 class="font-bold mb-2">Growth</h4>
-                <p class="text-xs text-gray-400">Team and clients grew.</p>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">Growth</h4>
+                <p class="text-xs md:text-base text-gray-400">Team and clients grew. lorem jeah whats that</p>
               </div>
             </div>
 
@@ -538,20 +538,9 @@
               <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
                 <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
               </div>
-              <div class="timeline-step bg-[#101010]/60 p-6 rounded-2xl shadow-lg opacity-20 scale-95">
-                <h4 class="font-bold mb-2">Scaling</h4>
-                <p class="text-xs text-gray-400">Bigger apps & infra. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut impedit et natus a sint est placeat molestiae incidunt, provident, facere repudiandae veniam reprehenderit consequatur perspiciatis nemo quisquam tenetur velit. Eaque?</p>
-              </div>
-            </div>
-
-            <!-- Step 5 -->
-            <div class="relative flex flex-col items-center">
-              <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
-                <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
-              </div>
-              <div class="timeline-step bg-[#101010]/60 p-6 rounded-2xl shadow-lg opacity-20 scale-95">
-                <h4 class="font-bold mb-2">Now</h4>
-                <p class="text-xs text-gray-400">Ongoing improvements & services.</p>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">Scaling</h4>
+                <p class="text-xs md:text-base text-gray-400">Bigger apps & infra. Lorem, ipsum dolor idum tenetur velit. Eaque?</p>
               </div>
             </div>
           </div>
@@ -822,8 +811,8 @@ tl.to(line, { width: "100%", duration: 2, ease: "power1.inOut" }, 0);
 
 // Steps & Abzweigungen
 steps.forEach((step, i) => {
-  tl.to(branches[i], { scaleY: 1, duration: 0.3, ease: "power1.out" }, i * 0.4);
-  tl.to(step, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, i * 0.4);
+  tl.to(branches[i], { scaleY: 1, duration: 0.3, ease: "power1.out" }, i * 0.35 + 0.5);
+  tl.to(step, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, i * 0.35 + 0.4);
 });
 
 // Hover-Trigger
