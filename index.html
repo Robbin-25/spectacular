@@ -14,6 +14,17 @@
     .nav-hamburger.active .nav-bar:nth-child(2){opacity:0}
     .nav-hamburger.active .nav-bar:nth-child(3){transform:translateY(-10px) rotate(135deg) scaleX(1.4)}
     .active-link { background-color: #3b3b3b; }
+
+    /* HERO */
+    .glow-box {
+      background: #020204;
+      box-shadow:
+        0 -50px 200px rgba(13, 74, 228, 0.8),   /* outer drop shadow */
+        inset 0 0 45px rgba(13, 74, 228, 1);   /* inner shadow */
+    }
+    .rounded-top {
+      border-radius: 5rem 5rem 0 0;
+    }
     
     /* SERVICES */
     .service-card {
@@ -68,7 +79,7 @@
         .inverted-pyramid-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* Apps */
+    /* APPS */
          .apps {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #040404;
@@ -303,7 +314,7 @@
     }
   </style>
 </head>
-<body class="bg-[#040404] m-0 p-0 box-border">
+<body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
 
   <!-- CURSOR -->
   <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
@@ -345,7 +356,46 @@
   </nav>
 
 
-  <!-- Hero -->
+  <!-- HERO -->
+     <section class="relative flex flex-col items-center text-center overflow-hidden">
+
+    <!-- Überschrift -->
+    <div class="relative z-10 mt-48">
+      <h1 class="text-4xl md:text-7xl font-extrabold leading-snug">
+        Your Partner for Digital <br />
+        <span class="text-white">Growth & Scalable Websites</span>
+      </h1>
+
+      <!-- Buttons -->
+      <div class="flex gap-6 justify-center mt-48">
+        <!-- Linker Button -->
+        <a href="#contact" 
+           class="relative group px-6 py-3 md:px-12 md:py-4 md:text-xl rounded-2xl bg-white text-black font-semibold overflow-hidden">
+          <span class="relative z-10 inline-block magnet-text">Contact Us</span>
+        </a>
+
+        <!-- Rechter Button -->
+        <a href="#speak" 
+           class="relative group px-6 py-3 md:px-12 md:py-4 md:text-xl  rounded-2xl border border-white text-white font-semibold overflow-hidden">
+          <span class="relative z-10 inline-block magnet-text">Speak with us →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- großes abgerundetes Element -->
+    <div class="relative mt-24 w-[110vw] h-[100%] glow-box rounded-full overflow-hidden flex justify-center pb-16">
+      <!-- Video-Container -->
+      <div class="z-10 w-[65%] mt-16 md:mt-32 rounded-3xl overflow-hidden shadow-xl">
+        <video class="w-full h-auto" controls poster="https://via.placeholder.com/1200x700.png?text=Video+Placeholder">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Dein Browser unterstützt das Video-Tag nicht.
+        </video>
+      </div>
+    </div>
+
+    <div class="absolute bg-black bottom-0 w-full h-1/6"></div>
+  </section>
+
 
   <!-- SERVICES -->
   <section id="services" class="py-20">
@@ -746,6 +796,35 @@
         }
       });
     }
+
+
+    // HERO
+    document.querySelectorAll(".group").forEach(button => {
+      const text = button.querySelector(".magnet-text");
+
+      button.addEventListener("mousemove", e => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(text, {
+          x: x * 0.3,
+          y: y * 0.5,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      button.addEventListener("mouseleave", () => {
+        gsap.to(text, {
+          x: 0,
+          y: 0,
+          duration: 0.4,
+          ease: "power3.out"
+        });
+      });
+    });
+
 
     // SERVICES
     gsap.set(".service-card", { opacity: 0, y: 100 });
