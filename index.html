@@ -447,73 +447,62 @@
       transform: translateY(-50%) rotate(180deg) !important;
     }
 
-    .highlight {
-      background: conic-gradient(
-          from 0deg,
-          #BC82F3,
-          #F5B9EA,
-          #8D9FFF,
-          #AA6EEE,
-          #FF6778,
-          #FFBA71,
-          #C686FF,
-          #BC82F3
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      display: inline-block;
-    }
+      .highlight {
+            position: relative;
+            display: inline-block;
+            background: conic-gradient(
+                from 0deg,
+                #BC82F3,
+                #F5B9EA,
+                #8D9FFF,
+                #AA6EEE,
+                #FF6778,
+                #FFBA71,
+                #C686FF,
+                #BC82F3
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            }
 
-    .highlight::before {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: conic-gradient(
-          from 0deg,
-          #BC82F3,
-          #F5B9EA,
-          #8D9FFF,
-          #AA6EEE,
-          #FF6778,
-          #FFBA71,
-          #C686FF,
-          #BC82F3
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: blur(12px);
-      opacity: 0.9;
-      z-index: -1;
-    }
+            .highlight::before,
+            .highlight::after {
+            content: attr(data-text); /* ⬅️ bleibt, aber jetzt korrekt positioniert */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: inherit;
+            background: conic-gradient(
+                from 0deg,
+                #BC82F3,
+                #F5B9EA,
+                #8D9FFF,
+                #AA6EEE,
+                #FF6778,
+                #FFBA71,
+                #C686FF,
+                #BC82F3
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            pointer-events: none;
+            }
 
-    .highlight::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: conic-gradient(
-          from 0deg,
-          #BC82F3,
-          #F5B9EA,
-          #8D9FFF,
-          #AA6EEE,
-          #FF6778,
-          #FFBA71,
-          #C686FF,
-          #BC82F3
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: blur(20px);
-      opacity: 0.6;
-      z-index: -2;
-    }
-    
+            .highlight::before {
+            filter: blur(12px);
+            opacity: 0.9;
+            z-index: -1;
+            }
+
+            .highlight::after {
+            filter: blur(20px);
+            opacity: 0.6;
+            z-index: -2;
+            }
 
     /* FOOTER */
     .bg-unified {
