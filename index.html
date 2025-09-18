@@ -275,8 +275,7 @@
   }
 
     /* CONTACT */
-    /* Custom scrollbar for textarea */
-    textarea::-webkit-scrollbar {
+  textarea::-webkit-scrollbar {
       width: 6px;
     }
     textarea::-webkit-scrollbar-track {
@@ -289,6 +288,232 @@
     textarea::-webkit-scrollbar-thumb:hover {
       background-color: #666;
     }
+
+    /* Floating label animation */
+    .floating-label {
+      position: relative;
+    }
+    .floating-label input,
+    .floating-label textarea {
+      transition: all 0.3s ease;
+    }
+    .floating-label label {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    .floating-label textarea + label {
+      top: 20px;
+      transform: none;
+    }
+    .floating-label input:focus + label,
+    .floating-label input.has-content + label,
+    .floating-label textarea:focus + label,
+    .floating-label textarea:valid + label {
+      top: -8px;
+      left: 16px;
+      font-size: 0.75rem;
+      color: #1e40af;
+      background: #040404;
+      padding: 0 8px;
+    }
+
+    /* Custom focus styles */
+    .form-input:focus {
+      border-color: #1e40af;
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    /* Glassmorphism effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Button hover animation */
+    .btn-submit {
+      background: linear-gradient(45deg, #1e40af, #1d4ed8);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+    }
+
+    /* Success message animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .success-enter {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #1e40af;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Character counter */
+    .char-counter {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      text-align: right;
+      margin-top: 4px;
+    }
+    .char-counter.warning {
+      color: #f59e0b;
+    }
+    .char-counter.error {
+      color: #ef4444;
+    }
+
+    /* Custom Dropdown Styles */
+    .custom-select {
+      position: relative;
+    }
+    
+    .dropdown-options {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      animation: dropdownSlide 0.3s ease-out;
+      transform-origin: top;
+    }
+    
+    .dropdown-options.show {
+      display: block !important;
+    }
+    
+    @keyframes dropdownSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .option:hover i {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+    
+    .option.selected {
+      background: rgba(30, 64, 175, 0.2);
+      border-left: 3px solid #1e40af;
+    }
+    
+    .dropdown-icon-rotate {
+      transform: translateY(-50%) rotate(180deg) !important;
+    }
+
+    .highlight {
+      background: conic-gradient(
+          from 0deg,
+          #BC82F3,
+          #F5B9EA,
+          #8D9FFF,
+          #AA6EEE,
+          #FF6778,
+          #FFBA71,
+          #C686FF,
+          #BC82F3
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+    }
+
+    .highlight::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: conic-gradient(
+          from 0deg,
+          #BC82F3,
+          #F5B9EA,
+          #8D9FFF,
+          #AA6EEE,
+          #FF6778,
+          #FFBA71,
+          #C686FF,
+          #BC82F3
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(12px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .highlight::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: conic-gradient(
+          from 0deg,
+          #BC82F3,
+          #F5B9EA,
+          #8D9FFF,
+          #AA6EEE,
+          #FF6778,
+          #FFBA71,
+          #C686FF,
+          #BC82F3
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(20px);
+      opacity: 0.6;
+      z-index: -2;
+    }
+    
 
     /* FOOTER */
     .bg-unified {
@@ -601,55 +826,121 @@
   </section>
 
   <!-- CONTACT -->
- <section id="contact" class="bg-[#040404] text-white font-sans min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-7xl px-4 sm:px-6">
-      <div class="text-center mb-8">
-        <p class="text-gray-400 mb-1">Contact</p>
-        <h1 class="text-2xl md:text-3xl font-bold mb-6">Do you have questions about our Business <br> or anything else you want to ask?</h1>
+ <section id="contact" class="text-white font-sans min-h-screen flex items-center justify-center py-12">
+    <div class="w-full max-w-4xl px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          Do you have questions about our <span class="highlight" data-text="Business"> Business </span> or anything else you want to ask?
+        </h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        </p>
       </div>
 
       <div class="flex justify-center">
         <!-- Contact Form -->
-        <div class="w-full sm:w-[95%] md:w-[80%] lg:w-[70%] bg-[#040404] rounded-2xl p-6">
+        <div class="w-full">
           
-          <div class="bg-emerald-600 text-white p-3 rounded-lg mb-4 text-center hidden" id="success-message">
-            ✓ Message sent!
+          <!-- Success Message -->
+          <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl mb-6 text-center hidden shadow-lg" id="success-message">
+            <div class="flex items-center justify-center gap-2">
+              <i class="fas fa-check-circle text-xl"></i>
+              <span class="font-semibold">Message sent successfully!</span>
+            </div>
+            <p class="text-sm mt-1 opacity-90">We'll get back to you within 24 hours.</p>
           </div>
 
-          <form id="contact-form" class="space-y-5">
-            <div>
-              <input type="email" id="email" name="email" placeholder="Email address"
-                     class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg" required>
+          <!-- Error Message -->
+          <div class="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-xl mb-6 text-center hidden" id="error-message">
+            <div class="flex items-center justify-center gap-2">
+              <i class="fas fa-exclamation-triangle text-xl"></i>
+              <span class="font-semibold">Please fix the errors below</span>
+            </div>
+          </div>
+
+          <form id="contact-form" class="space-y-6">
+            <!-- Email Field -->
+            <div class="floating-label">
+              <input type="email" id="email" name="email" 
+                     class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer" 
+                     required>
+              <label for="email">Email Address</label>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
             </div>
 
-            <div>
-              <input type="text" id="name" name="name" placeholder="Full name"
-                     class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg" required>
+            <!-- Name Field -->
+            <div class="floating-label">
+              <input type="text" id="name" name="name" 
+                     class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer" 
+                     required>
+              <label for="name">Full Name</label>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
             </div>
 
-            <div>
-              <input type="tel" id="phone" name="phone" placeholder="Phone (optional)"
-                     class="w-full rounded-lg px-5 py-3 text-white outline-none bg-[#040404] border border-white/20 text-lg">
+            <!-- Subject Field - Custom Dropdown -->
+            <div class="floating-label relative">
+              <div class="custom-select relative">
+                <input type="text" id="subject-display" readonly
+                       class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer cursor-pointer" 
+                       placeholder=" " required>
+                <input type="hidden" id="subject" name="subject" required>
+                <label for="subject-display">Subject</label>
+                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300" id="dropdown-icon"></i>
+                </div>
+                
+                <!-- Dropdown Options -->
+                <div class="dropdown-options absolute top-full left-0 right-0 mt-2 bg-[#0a0a0a] border border-white/20 rounded-xl shadow-2xl z-50 hidden overflow-hidden">
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="general">
+                    <i class="fas fa-question-circle text-blue-400"></i>
+                    <span>General Inquiry</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="business">
+                    <i class="fas fa-handshake text-green-400"></i>
+                    <span>Business Partnership</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="support">
+                    <i class="fas fa-tools text-orange-400"></i>
+                    <span>Technical Support</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="feedback">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <span>Feedback</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3" data-value="other">
+                    <i class="fas fa-ellipsis-h text-purple-400"></i>
+                    <span>Other</span>
+                  </div>
+                </div>
+              </div>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
             </div>
 
-            <div>
-              <textarea id="message" name="message" placeholder="Your message..." rows="6"
-                        class="w-full rounded-lg px-5 py-3 text-white outline-none resize-none bg-[#040404] border border-white/20 text-lg" required></textarea>
+            <!-- Message Field -->
+            <div class="floating-label">
+              <textarea id="message" name="message" rows="6" maxlength="1000"
+                        class="form-input w-full rounded-xl px-5 py-4 text-white outline-none resize-none bg-[#040404] border border-white/20 text-lg peer" 
+                        required></textarea>
+              <label for="message">Your Message</label>
+              <div class="char-counter" id="char-counter">0 / 1000</div>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
             </div>
 
-            <div class="flex items-start text-gray-400 text-sm">
-              <input type="checkbox" id="consent" name="consent" class="w-4 h-4 mr-2 mt-1 accent-white" required>
-              <label for="consent" class="cursor-pointer">
-                I agree to the <a href="#" class="text-blue-400 underline">Privacy Policy</a>.
+            <!-- Privacy Policy Checkbox -->
+            <div class="flex items-start text-gray-400 text-sm bg-[#040404] p-4 rounded-xl border border-white/20">
+              <input type="checkbox" id="consent" name="consent" 
+                     class="w-5 h-5 mr-3 mt-0.5 accent-blue-500" required>
+              <label for="consent" class="cursor-pointer leading-relaxed">
+                I agree to the <a href="#" class="text-blue-400 hover:text-blue-300 underline transition-colors">Privacy Policy</a> 
+                and consent to having my information stored and processed.
               </label>
             </div>
 
-            <!-- Button with Font Awesome Paper Plane Icon -->
-            <button type="submit"
-                    class="w-full flex items-center justify-center gap-2 bg-white text-black font-semibold py-3 rounded-lg text-lg transition hover:bg-gray-100">
-              <span>Send message</span>
-              <!-- Font Awesome paper plane icon -->
-              <i class="fas fa-paper-plane"></i>
+            <!-- Submit Button -->
+            <button type="submit" id="submit-btn"
+                    class="btn-submit w-full flex items-center justify-center gap-3 text-white font-bold py-4 rounded-xl text-lg shadow-lg">
+              <span id="btn-text">Send Message</span>
+              <div class="spinner hidden" id="loading-spinner"></div>
+              <i class="fas fa-paper-plane" id="btn-icon"></i>
             </button>
           </form>
         </div>
@@ -917,6 +1208,251 @@ timelineCard.addEventListener("mouseleave", () => tl.reverse());
             duration: 0.8,
             ease: "back.out(1.7)"
         });
+
+      const subjectDisplay = document.getElementById('subject-display');
+    const subjectHidden = document.getElementById('subject');
+    const dropdownOptions = document.querySelector('.dropdown-options');
+    const dropdownIcon = document.getElementById('dropdown-icon');
+    const options = document.querySelectorAll('.option');
+    
+    // Toggle dropdown
+    subjectDisplay.addEventListener('click', function() {
+      dropdownOptions.classList.toggle('show');
+      dropdownIcon.classList.toggle('dropdown-icon-rotate');
+    });
+    
+    // Handle option selection
+    options.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = this.dataset.value;
+        const text = this.querySelector('span').textContent;
+        const icon = this.querySelector('i').outerHTML;
+        
+        // Update display field
+        subjectDisplay.value = text;
+        subjectHidden.value = value;
+        
+        // Mark as valid for floating label
+        subjectDisplay.setAttribute('data-selected', 'true');
+        
+        // Close dropdown
+        dropdownOptions.classList.remove('show');
+        dropdownIcon.classList.remove('dropdown-icon-rotate');
+        
+        // Visual feedback
+        options.forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        // Clear error if present
+        subjectDisplay.classList.remove('border-red-500');
+        const errorDiv = subjectDisplay.parentNode.querySelector('.error-message');
+        if (errorDiv) {
+          errorDiv.classList.add('hidden');
+        }
+      });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.custom-select')) {
+        dropdownOptions.classList.remove('show');
+        dropdownIcon.classList.remove('dropdown-icon-rotate');
+      }
+    });
+    
+    // Update floating label for custom select
+    subjectDisplay.addEventListener('focus', function() {
+      this.parentNode.querySelector('label').style.cssText = `
+        top: -8px !important;
+        left: 16px !important;
+        font-size: 0.75rem !important;
+        color: #1e40af !important;
+        background: #040404 !important;
+        padding: 0 8px !important;
+      `;
+    });
+    
+    subjectDisplay.addEventListener('blur', function() {
+      if (!this.value && !this.hasAttribute('data-selected')) {
+        this.parentNode.querySelector('label').style.cssText = '';
+      }
+    });
+
+    // Floating label functionality for all inputs
+    document.querySelectorAll('.floating-label input:not(#subject-display), .floating-label textarea').forEach(input => {
+      // Check content on input
+      input.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+          this.classList.add('has-content');
+        } else {
+          this.classList.remove('has-content');
+        }
+      });
+      
+      // Check content on blur
+      input.addEventListener('blur', function() {
+        if (this.value.trim() !== '') {
+          this.classList.add('has-content');
+        } else {
+          this.classList.remove('has-content');
+        }
+      });
+      
+      // Initial check for existing content
+      if (input.value.trim() !== '') {
+        input.classList.add('has-content');
+      }
+    });
+
+    // Character counter for message field
+    const messageField = document.getElementById('message');
+    const charCounter = document.getElementById('char-counter');
+    
+    messageField.addEventListener('input', function() {
+      const currentLength = this.value.length;
+      const maxLength = 1000;
+      charCounter.textContent = `${currentLength} / ${maxLength}`;
+      
+      if (currentLength > maxLength * 0.9) {
+        charCounter.className = 'char-counter error';
+      } else if (currentLength > maxLength * 0.8) {
+        charCounter.className = 'char-counter warning';
+      } else {
+        charCounter.className = 'char-counter';
+      }
+    });
+
+    // Form validation
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validateForm() {
+      let isValid = true;
+      const formData = new FormData(document.getElementById('contact-form'));
+      
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
+      document.getElementById('error-message').classList.add('hidden');
+
+      // Email validation
+      const email = formData.get('email');
+      if (!email || !validateEmail(email)) {
+        showError('email', 'Please enter a valid email address');
+        isValid = false;
+      }
+
+      // Name validation
+      const name = formData.get('name');
+      if (!name || name.trim().length < 2) {
+        showError('name', 'Name must be at least 2 characters long');
+        isValid = false;
+      }
+
+      // Subject validation
+      const subject = formData.get('subject');
+      if (!subject) {
+        showError('subject-display', 'Please select a subject');
+        isValid = false;
+      }
+
+      // Message validation
+      const message = formData.get('message');
+      if (!message || message.trim().length < 10) {
+        showError('message', 'Message must be at least 10 characters long');
+        isValid = false;
+      }
+
+      // Consent validation
+      const consent = formData.get('consent');
+      if (!consent) {
+        document.getElementById('error-message').classList.remove('hidden');
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    function showError(fieldName, message) {
+      const field = document.getElementById(fieldName);
+      const errorDiv = field.parentNode.querySelector('.error-message');
+      errorDiv.textContent = message;
+      errorDiv.classList.remove('hidden');
+      field.classList.add('border-red-500');
+    }
+
+    // Form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (!validateForm()) {
+        return;
+      }
+
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnIcon.classList.add('hidden');
+      loadingSpinner.classList.remove('hidden');
+
+      // Simulate API call
+      setTimeout(() => {
+        // Hide loading state
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnIcon.classList.remove('hidden');
+        loadingSpinner.classList.add('hidden');
+
+        // Show success message
+        const successMsg = document.getElementById('success-message');
+        successMsg.classList.remove('hidden');
+        successMsg.classList.add('success-enter');
+
+        // Reset form
+        this.reset();
+        
+        // Reset custom dropdown
+        subjectDisplay.value = '';
+        subjectHidden.value = '';
+        subjectDisplay.removeAttribute('data-selected');
+        options.forEach(opt => opt.classList.remove('selected'));
+        subjectDisplay.parentNode.querySelector('label').style.cssText = '';
+        
+        // Clear character counter
+        charCounter.textContent = '0 / 1000';
+        charCounter.className = 'char-counter';
+
+        // Clear any error styles and has-content class
+        document.querySelectorAll('.border-red-500').forEach(el => {
+          el.classList.remove('border-red-500');
+        });
+        document.querySelectorAll('.has-content').forEach(el => {
+          el.classList.remove('has-content');
+        });
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMsg.classList.add('hidden');
+        }, 5000);
+      }, 2000);
+    });
+
+    // Clear error styling on input
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('input', function() {
+        this.classList.remove('border-red-500');
+        const errorDiv = this.parentNode.querySelector('.error-message');
+        if (errorDiv) {
+          errorDiv.classList.add('hidden');
+        }
+      });
+    });
 </script>
 </body>
 </html>
