@@ -14,6 +14,7 @@
   <style>
     /* ==================== GLOBAL STYLES ==================== */
     
+
     /* ========== NAVBAR ========== */
     .nav-hamburger.active .nav-bar:nth-child(1) {
       transform: translateY(10px) rotate(-135deg) scaleX(1.4);
@@ -28,12 +29,14 @@
       background-color: #3b3b3b;
     }
 
+
     /* ========== HERO SECTION ========== */
     .glow-box {
       background: #020204;
       box-shadow: 0 -50px 200px rgba(13, 74, 228, 0.8),
                   inset 0 0 45px rgba(13, 74, 228, 1);
     }
+
 
     /* ========== SERVICES SECTION ========== */
     .service-card {
@@ -74,6 +77,7 @@
       z-index: 1;
     }
 
+
     /* ========== APPS SECTION ========== */
     .tool-icon {
       background: #0a0a0a;
@@ -93,6 +97,7 @@
                   inset 0 -2px 6px rgba(0, 0, 0, 0.6);
     }
 
+
     /* ========== GRID SECTION ========== */
     .building {
       position: absolute;
@@ -110,6 +115,7 @@
     .ring.r1 { width: 150px; height: 150px; }
     .ring.r2 { width: 135px; height: 135px; }
     .ring.r3 { width: 120px; height: 120px; }
+
 
     /* ========== CAROUSEL SECTION ========== */
     .card {
@@ -147,6 +153,7 @@
       bottom: -28px;
       box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6);
     }
+
 
     /* ========== CONTACT FORM ========== */
     .floating-label {
@@ -222,6 +229,7 @@
       }
     }
 
+
     /* ========== UTILITIES ========== */
     .highlight {
       position: relative;
@@ -268,6 +276,7 @@
       z-index: -2;
     }
 
+
     /* ========== FOOTER ========== */
     .bg-unified {
       position: absolute;
@@ -295,6 +304,7 @@
       background: linear-gradient(to bottom, #040404 0%, transparent 70%, transparent 92%, #08081B 100%);
     }
 
+
     /* ========== RESPONSIVE ADJUSTMENTS ========== */
     @media (max-width: 639px) {
       .ring.r1 { width: 120px; height: 120px; }
@@ -315,10 +325,12 @@
 
 <body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
 
+
   <!-- ==================== CURSOR ELEMENT ==================== -->
   <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
     Our favourite
   </div>
+
 
   <!-- ==================== NAVBAR ==================== -->
   <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-11 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
@@ -362,6 +374,7 @@
     </a>
   </nav>
 
+
   <!-- ==================== HERO SECTION ==================== -->
   <section class="relative flex flex-col items-center text-center overflow-hidden py-20">
     
@@ -395,6 +408,7 @@
     
     <div class="absolute bg-black bottom-0 w-full h-1/6"></div>
   </section>
+
 
   <!-- ==================== SERVICES SECTION ==================== -->
   <section id="services" class="py-20">
@@ -433,61 +447,66 @@
     </div>
   </section>
 
+
   <!-- ==================== APPS SECTION ==================== -->
-  <section class="min-h-screen flex items-center justify-center py-20">
-    <div class="text-center px-10 max-w-4xl w-full">
-      <div class="text-base font-medium text-gray-400 mb-5 tracking-wide">Our Tools</div>
-      <h1 class="text-5xl font-bold leading-tight mb-16 text-white">
-        All the tools and <span class="highlight" data-text="apps">apps</span> we relay on<br>
-        for work and collaboration
-      </h1>
-      
-      <div class="grid grid-cols-2 md:grid-cols-7 gap-4 md:gap-6 max-w-3xl mx-auto">
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Figma.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Goodnotes.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/GSAP.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Github.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Blender.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Notion.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Microsoft_office.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Google__G__logo.svg.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Gmail.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/chatgpt.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Tailwind.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/Vscode.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/claude-logo.svg" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer relative overflow-hidden">
-          <img src="assets/outlook.png" alt="" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-        </div>
+<section class="min-h-screen flex items-center justify-center py-20">
+  <div class="text-center px-6 sm:px-10 max-w-6xl w-full">
+    <div class="text-base font-medium text-gray-400 mb-5 tracking-wide">Our Tools</div>
+    <h1 class="text-5xl font-bold leading-tight mb-16 text-white">
+      All the tools and <span class="highlight" data-text="apps">apps</span> we rely on<br>
+      for work and collaboration
+    </h1>
+
+    <!-- Flex statt Grid -->
+    <div class="flex flex-wrap justify-center gap-12 sm:gap-8 max-w-3xl mx-auto px-0">
+
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Figma.png" alt="Figma" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
       </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Goodnotes.png" alt="Goodnotes" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/GSAP.png" alt="GSAP" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Github.png" alt="Github" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Blender.png" alt="Blender" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Notion.png" alt="Notion" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Microsoft_office.png" alt="Microsoft Office" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Google__G__logo.svg.png" alt="Google" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Gmail.png" alt="Gmail" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/chatgpt.png" alt="ChatGPT" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Tailwind.png" alt="Tailwind" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/Vscode.png" alt="VS Code" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/claude-logo.svg" alt="Claude" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+      <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <img src="assets/outlook.png" alt="Outlook" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- ==================== GRID SECTION ==================== -->
   <section id="carts" class="max-w-7xl mx-auto p-6 text-white py-20">
@@ -598,12 +617,13 @@
     </div>
   </section>
 
+
   <!-- ==================== CAROUSEL SECTION ==================== -->
-  <section id="carousel" class="relative h-screen flex flex-col items-center justify-center overflow-hidden py-20">
+  <section id="carousel" class="relative h-screen min-h-[600px] flex flex-col items-center justify-center overflow-hidden py-20">
     
-    <h2 class="absolute top-32 text-3xl md:text-4xl font-extrabold text-center">
-      Projects That Speak for Themselves
-    </h2>
+    <h1 class="absolute text-3xl top-[10%] mx-12 text-center font-bold leading-tight text-white">
+      Projects That <span class="highlight" data-text="speak">Speak</span> for Themselves
+    </h1>
 
     <!-- Carousel Track -->
     <div id="track" class="flex gap-10 items-center">
@@ -654,6 +674,7 @@
     <div id="card-text" class="absolute bottom-12 text-lg text-center max-w-xl px-4"></div>
 
   </section>
+
 
   <!-- ==================== CONTACT SECTION ==================== -->
   <section id="contact" class="text-white font-sans min-h-screen flex items-center justify-center py-20">
@@ -778,6 +799,7 @@
     </div>
   </section>
 
+
   <!-- ==================== FOOTER SECTION ==================== -->
   <footer class="relative isolate overflow-hidden pb-12">
     <!-- Background Elements -->
@@ -842,6 +864,7 @@
     // ========== INITIALIZATION ==========
     gsap.registerPlugin(ScrollTrigger);
 
+
     // ========== CURSOR ANIMATION ==========
     const cursorTag = document.getElementById("cursorTag");
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -857,6 +880,7 @@
         });
       });
     }
+
 
     // ========== NAVBAR FUNCTIONALITY ==========
     const navHamburger = document.querySelector('.nav-hamburger');
@@ -918,6 +942,7 @@
       });
     }
 
+
     // ========== HERO SECTION ANIMATIONS ==========
     document.querySelectorAll(".group").forEach(button => {
       const text = button.querySelector(".magnet-text");
@@ -945,6 +970,7 @@
       });
     });
 
+
     // ========== SERVICES SECTION ANIMATIONS ==========
     gsap.set(".service-card", { opacity: 0, y: 100 });
     gsap.to(".service-card", {
@@ -959,6 +985,7 @@
       ease: "power3.out"
     });
 
+
     // ========== APPS SECTION ANIMATIONS ==========
     gsap.to(".tool-icon", {
       scrollTrigger: {
@@ -970,10 +997,11 @@
       y: 0,
       opacity: 1,
       stagger: 0.1,
-      duration: 0.8,
-      ease: "back.out(1.7)"
+      duration: 0.2,
+      ease: "power3.out"
     });
 
+    
     // ========== GRID SECTION ANIMATIONS ==========
     // Buildings animation
     const buildings = document.querySelectorAll('#buildings-card .building');
