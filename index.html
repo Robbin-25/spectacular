@@ -31,11 +31,35 @@
 
 
     /* ========== HERO SECTION ========== */
-    .glow-box {
-      background: #020204;
-      box-shadow: 0 -50px 200px rgba(13, 74, 228, 0.8),
-                  inset 0 0 45px rgba(13, 74, 228, 1);
-    }
+   .light-rec-custom {
+            border-radius: clamp(8rem, 15vw, 50rem);
+            box-shadow: 
+                0px -250px 54px -130px rgb(4 40 132 / 25%),
+                0px -20px 54px 0px rgba(13, 74, 228, 0.54),
+                inset 0px 4px 23px 0px rgba(13, 74, 228, 1);
+        }
+        
+        .title-responsive {
+            font-size: clamp(2rem, 6vw, 4rem);
+        }
+        
+        @media (max-width: 768px) {
+            .title-responsive {
+                font-size: clamp(1.75rem, 8vw, 3rem);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title-responsive {
+                font-size: clamp(1.5rem, 9vw, 2.5rem);
+            }
+        }
+        
+        @media (min-width: 1400px) {
+            .title-responsive {
+                font-size: clamp(3rem, 4vw, 4.5rem);
+            }
+        }
 
 
     /* ========== SERVICES SECTION ========== */
@@ -376,38 +400,45 @@
 
 
   <!-- ==================== HERO SECTION ==================== -->
-  <section id="hero" class="relative flex flex-col items-center text-center overflow-hidden py-20">
-    
-    <!-- Hero Content -->
-    <div class="relative z-10 mt-48">
-      <h1 class="text-4xl md:text-7xl font-extrabold leading-snug">
-        Your Partner for Digital <br />
-        <span class="text-white">Growth & Scalable Websites</span>
-      </h1>
-
-      <!-- CTA Buttons -->
-      <div class="flex gap-6 justify-center mt-48">
-        <a href="#contact" class="relative group px-6 py-3 md:px-12 md:py-4 md:text-xl rounded-2xl bg-white text-black font-semibold overflow-hidden">
-          <span class="relative z-10 inline-block magnet-text">Contact Us</span>
-        </a>
-        <a href="#speak" class="relative group px-6 py-3 md:px-12 md:py-4 md:text-xl rounded-2xl border border-white text-white font-semibold overflow-hidden">
-          <span class="relative z-10 inline-block magnet-text">Speak with us →</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Video Container -->
-    <div class="relative mt-24 w-[110vw] h-full glow-box rounded-[5rem_5rem_0_0] overflow-hidden flex justify-center pb-16">
-      <div class="z-10 w-[65%] mt-16 md:mt-32 rounded-3xl overflow-hidden shadow-xl">
-        <video class="w-full h-auto" controls poster="https://via.placeholder.com/1200x700.png?text=Video+Placeholder">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-          Dein Browser unterstützt das Video-Tag nicht.
-        </video>
-      </div>
-    </div>
-    
-    <div class="absolute bg-black bottom-0 w-full h-1/6"></div>
-  </section>
+  <section class="m-0 p-0 box-border h-full overflow-x-hidden bg-dark font-system">
+    <main class="font-system overflow-x-hidden bg-dark relative w-full h-screen flex flex-col items-end justify-end overflow-hidden">
+        <div class="absolute z-10 top-[25%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center max-w-[90%] flex flex-col items-center justify-center md:top-[25%] md:max-w-[95%]">
+            <h1 class="text-white title-responsive font-bold text-center leading-tight mb-8 tracking-tight md:mb-10">
+                Your Partner for Digital Growth & Scalable Websites
+            </h1>
+            
+            <div class="flex gap-4 flex-row items-center justify-center">
+                <button class="bg-gradient-to-br from-blue-primary to-blue-secondary text-white rounded-2xl 
+                               font-semibold cursor-pointer transition-all duration-300 ease-out 
+                               relative overflow-hidden shadow-blue-glow 
+                               hover:transform hover:-translate-y-0.5 hover:shadow-blue-glow-hover 
+                               hover:from-blue-secondary hover:to-blue-primary active:translate-y-0
+                               w-[160px] h-12 text-sm
+                               sm:w-[200px] sm:h-[14] sm:text-base
+                               md:w-[240px] md:h-[14] md:text-lg
+                               lg:w-[280px] lg:h-[16] lg:text-xl">
+                    Our Work
+                </button>
+                <button class="bg-white bg-opacity-10 text-white border-2 border-white border-opacity-30 rounded-2xl 
+                               font-medium cursor-pointer transition-all duration-300 ease-out backdrop-blur-[10px] 
+                               hover:bg-white hover:bg-opacity-20 hover:border-white hover:border-opacity-60 
+                               hover:transform hover:-translate-y-0.5 hover:shadow-white-glow active:translate-y-0
+                               w-[160px] h-12 text-sm
+                               sm:w-[200px] sm:h-[14] sm:text-base
+                               md:w-[240px] md:h-[14] md:text-lg
+                               lg:w-[280px] lg:h-[16] lg:text-xl">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+        <div class="absolute z-20 top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[70%] md:top-[100%] lg:w-[60%] aspect-video rounded-2xl overflow-hidden shadow-2xl">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+        <div class="w-[110%] h-4/5 light-rec-custom bg-dark -ml-[5%] -mr-[5%] relative top-[30%]"></div>
+    </main>
+    </section>
 
 
   <!-- ==================== SERVICES SECTION ==================== -->
@@ -1368,6 +1399,29 @@
         }
       });
     });
+   tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'system': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    },
+                    colors: {
+                        'dark': '#040404',
+                        'blue-primary': '#0d4ae4',
+                        'blue-secondary': '#1e40af'
+                    },
+                    boxShadow: {
+                        'blue-glow': '0 4px 15px rgba(13, 74, 228, 0.3)',
+                        'blue-glow-hover': '0 8px 25px rgba(13, 74, 228, 0.4)',
+                        'white-glow': '0 8px 25px rgba(255, 255, 255, 0.1)',
+                        'light-rec': '0px -250px 54px -130px rgb(4 40 132 / 25%), 0px -20px 54px 0px rgba(13, 74, 228, 0.54), inset 0px 4px 23px 0px rgba(13, 74, 228, 1)'
+                    },
+                    borderRadius: {
+                        'dynamic': 'clamp(8rem, 15vw, 50rem)'
+                    }
+                }
+            }
+        }
 </script>
 </body>
 </html>
