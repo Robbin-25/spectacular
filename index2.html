@@ -1,1 +1,1604 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web-Plants</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* NAVBAR */
+    .nav-hamburger.active .nav-bar:nth-child(1){transform:translateY(10px) rotate(-135deg) scaleX(1.4)}
+    .nav-hamburger.active .nav-bar:nth-child(2){opacity:0}
+    .nav-hamburger.active .nav-bar:nth-child(3){transform:translateY(-10px) rotate(135deg) scaleX(1.4)}
+    .active-link { background-color: #3b3b3b; }
 
+    /* HERO */
+    .glow-box {
+      background: #020204;
+      box-shadow:
+        0 -50px 200px rgba(13, 74, 228, 0.8),   /* outer drop shadow */
+        inset 0 0 45px rgba(13, 74, 228, 1);   /* inner shadow */
+    }
+    .rounded-top {
+      border-radius: 5rem 5rem 0 0;
+    }
+    
+    /* SERVICES */
+        
+    .service-card {
+        background: #0a0a0a;
+        box-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.4),
+                0 8px 20px rgba(0, 0, 0, 0.35),
+                inset 0 2px 6px rgba(255, 255, 255, 0.05),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+    .service-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .service-card > * {
+        position: relative;
+        z-index: 1;
+    }
+    .inverted-pyramid-grid {
+        display: grid;
+        gap: 1.5rem;
+        max-width: 84rem;
+        margin: 0 auto;
+    }
+    @media (max-width: 767px) {
+        .inverted-pyramid-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .inverted-pyramid-grid { grid-template-columns: repeat(2, 1fr); justify-items: center; }
+        .service-card:nth-child(3) { grid-column: 1 / -1; max-width: 50%; }
+    }
+    @media (min-width: 1024px) {
+        .inverted-pyramid-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    
+    /* APPS */
+         .apps {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #040404;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .apps-container {
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .section-apps-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #a0a0b0;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .apps-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        .apps-title .highlight {
+            color: #6366f1;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        } 
+
+        .tool-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: #0a0a0a;
+            box-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.4),
+                0 8px 20px rgba(0, 0, 0, 0.35),
+                inset 0 2px 6px rgba(255, 255, 255, 0.05),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+            /* Initial state für die Animation */
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .tool-icon:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow:
+                0 8px 16px rgba(0, 0, 0, 0.5),
+                0 16px 40px rgba(99, 102, 241, 0.4),
+                inset 0 2px 6px rgba(255, 255, 255, 0.08),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .tool-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-icon:hover::before {
+            opacity: 1;
+        }
+
+        .icon-symbol {
+            color: #2a2a40;
+            font-size: 28px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .tool-icon img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            z-index: 1;
+        }
+
+        @media (max-width: 780px) {
+            .tools-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 16px;
+                max-width: 500px;
+            }
+            
+            .tool-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .icon-symbol {
+                font-size: 24px;
+            }
+            
+            .tool-icon img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .tools-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 12px;
+                max-width: 400px;
+            }
+            
+            .tool-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .icon-symbol {
+                font-size: 20px;
+            }
+            
+            .tool-icon img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .apps-container {
+                padding: 40px 20px;
+            }
+            
+            .apps-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+                max-width: 200px;
+                justify-items: center;
+            }
+            
+            .tool-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .icon-symbol {
+                font-size: 32px;
+            }
+            
+            .tool-icon img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+  /* GRID */
+  .building { position: absolute; bottom: 0; transform: translateX(-50%); }
+  .ring { position: absolute; border-radius: 9999px; border: 2px solid rgba(255,255,255,0.06); pointer-events: none; }
+  .ring.r1 { width: 150px; height: 150px; }
+  .ring.r2 { width: 135px; height: 135px; }
+  .ring.r3 { width: 120px; height: 120px; }
+  @media (max-width: 639px) {
+      .ring.r1 { width: 120px; height: 120px; }
+      .ring.r2 { width: 105px; height: 105px; }
+      .ring.r3 { width: 90px; height: 90px; }
+  }
+
+  /* CAROUSEL */
+    .card { 
+      flex-shrink: 0;
+      transform-origin: center;
+      opacity: 0.4;
+      transform: scale(0.8);
+      transition: transform 0.25s, opacity 0.25s;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .screenshot-wrap { 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02); 
+      transform: translateZ(0); 
+    }
+
+    .inset-top, .inset-bottom {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      height: 68px;
+      border-radius: 36px;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
+      filter: blur(0.2px);
+    }
+    .inset-top { top:-28px; box-shadow: inset 0 18px 34px rgba(0,0,0,0.6); }
+    .inset-bottom { bottom:-28px; box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6); }
+
+
+  /* CONTACT */
+  textarea::-webkit-scrollbar {
+      width: 6px;
+    }
+    textarea::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    textarea::-webkit-scrollbar-thumb {
+      background-color: #555;
+      border-radius: 6px;
+    }
+    textarea::-webkit-scrollbar-thumb:hover {
+      background-color: #666;
+    }
+
+    /* Floating label animation */
+    .floating-label {
+      position: relative;
+    }
+    .floating-label input,
+    .floating-label textarea {
+      transition: all 0.3s ease;
+    }
+    .floating-label label {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    .floating-label textarea + label {
+      top: 20px;
+      transform: none;
+    }
+    .floating-label input:focus + label,
+    .floating-label input.has-content + label,
+    .floating-label textarea:focus + label,
+    .floating-label textarea:valid + label {
+      top: -8px;
+      left: 16px;
+      font-size: 0.75rem;
+      color: #1e40af;
+      background: #040404;
+      padding: 0 8px;
+    }
+
+    /* Custom focus styles */
+    .form-input:focus {
+      border-color: #1e40af;
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    /* Glassmorphism effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Button hover animation */
+    .btn-submit {
+      background: linear-gradient(45deg, #1e40af, #1d4ed8);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+    }
+
+    /* Success message animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .success-enter {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #1e40af;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Character counter */
+    .char-counter {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      text-align: right;
+      margin-top: 4px;
+    }
+    .char-counter.warning {
+      color: #f59e0b;
+    }
+    .char-counter.error {
+      color: #ef4444;
+    }
+
+    /* Custom Dropdown Styles */
+    .custom-select {
+      position: relative;
+    }
+    
+    .dropdown-options {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      animation: dropdownSlide 0.3s ease-out;
+      transform-origin: top;
+    }
+    
+    .dropdown-options.show {
+      display: block !important;
+    }
+    
+    @keyframes dropdownSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .option:hover i {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+    
+    .option.selected {
+      background: rgba(30, 64, 175, 0.2);
+      border-left: 3px solid #1e40af;
+    }
+    
+    .dropdown-icon-rotate {
+      transform: translateY(-50%) rotate(180deg) !important;
+    }
+
+      .highlight {
+            position: relative;
+            display: inline-block;
+            background: conic-gradient(
+                from 0deg,
+                #BC82F3,
+                #F5B9EA,
+                #8D9FFF,
+                #AA6EEE,
+                #FF6778,
+                #FFBA71,
+                #C686FF,
+                #BC82F3
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            }
+
+            .highlight::before,
+            .highlight::after {
+            content: attr(data-text); /* ⬅️ bleibt, aber jetzt korrekt positioniert */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: inherit;
+            background: conic-gradient(
+                from 0deg,
+                #BC82F3,
+                #F5B9EA,
+                #8D9FFF,
+                #AA6EEE,
+                #FF6778,
+                #FFBA71,
+                #C686FF,
+                #BC82F3
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            pointer-events: none;
+            }
+
+            .highlight::before {
+            filter: blur(12px);
+            opacity: 0.9;
+            z-index: -1;
+            }
+
+            .highlight::after {
+            filter: blur(20px);
+            opacity: 0.6;
+            z-index: -2;
+            }
+
+    /* FOOTER */
+    .bg-unified {
+        position:absolute; top:0; left:0; width:100%; height:100%; z-index:-10;
+        background-image:
+          conic-gradient(from 90deg at 50% 90%, #040404 0deg, #060881 210deg, #B0B0D3 250deg, #F4F4F4 360deg),
+          conic-gradient(from 270deg at 50% 90%, #F4F4F4 0deg, #B0B0D3 110deg, #060881 140deg, #040404 360deg);
+        background-repeat:no-repeat,no-repeat;
+        background-position:left top,right top;
+        background-size:calc(50% + 1px) 100%,calc(50% + 1px) 100%;
+    }
+    .bg-overlay {
+        position:absolute; top:0; left:0; width:100%; height:100%; z-index:-5; pointer-events:none;
+        background:linear-gradient(to bottom, #040404 0%, transparent 70%, transparent 92%, #08081B 100%);
+    }
+    @media(max-width:768px){
+        .bg-unified{
+          background-image:
+            conic-gradient(from 90deg at 50% 90%, #040404 0deg, #060881 250deg, #B0B0D3 260deg, #F4F4F4 360deg),
+            conic-gradient(from 270deg at 50% 90%, #F4F4F4 0deg, #B0B0D3 100deg, #060881 110deg, #040404 360deg);
+          background-size:calc(50% + 1px) 100%,calc(50% + 1px) 100%;
+        }
+    }
+  </style>
+</head>
+<body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
+
+  <!-- CURSOR -->
+  <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
+    Our favourite
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-11 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
+    
+    <!-- Logo + Hamburger -->
+    <div class="flex w-full h-full md:w-auto items-center justify-between">
+      <img src="img/Logo.svg" alt="Web-Plants" class="h-full pr-20">
+      <button class="nav-hamburger flex md:hidden flex-col cursor-pointer gap-1.5 transition-all duration-300 items-center" aria-label="Menü öffnen/schließen">
+        <span class="nav-bar bg-white w-5 h-1 transition-all duration-300 rounded-full"></span>
+        <span class="nav-bar bg-white w-8 h-1 transition-all duration-300 rounded-full"></span>
+        <span class="nav-bar bg-white w-5 h-1 transition-all duration-300 rounded-full"></span>
+      </button>
+    </div>
+
+    <!-- Nav-Links -->
+    <div id="nav-links" class="flex flex-col md:flex-row md:space-x-1 text-gray-300 font-medium items-center md:h-full overflow-hidden max-h-0 md:max-h-none w-full md:w-auto">
+      <ul class="flex flex-col md:flex-row gap-1 mt-4 md:mt-0 items-center w-full md:w-auto">
+        <li class="w-full md:w-auto"><a href="#home" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Home</a></li>
+        <li class="w-full md:w-auto"><a href="#services" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Services</a></li>
+        <li class="w-full md:w-auto"><a href="#about" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">About</a></li>
+        <li class="w-full md:w-auto"><a href="#carts" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Carts</a></li>
+      </ul>
+
+      <!-- Mobile Button -->
+      <a href="#contact" class="mt-3 md:hidden w-full rounded-full px-4 py-2 bg-white text-black font-semibold hover:bg-gray-300 transition text-center">
+        Contact US
+      </a>
+    </div>
+
+    <!-- Desktop Button -->
+    <a href="#contact" class="hidden md:flex items-center justify-center h-full rounded-full px-4 bg-white text-black font-semibold hover:bg-gray-300 transition">
+      Contact US
+    </a>
+  </nav>
+
+
+  <!-- HERO -->
+     <section class="relative flex flex-col items-center text-center overflow-hidden">
+
+    <!-- Überschrift -->
+    <div class="relative z-10 mt-48">
+      <h1 class="text-4xl md:text-7xl font-extrabold leading-snug">
+        Your Partner for Digital <br />
+        <span class="text-white">Growth & Scalable Websites</span>
+      </h1>
+
+      <!-- Buttons -->
+      <div class="flex gap-6 justify-center mt-48">
+        <!-- Linker Button -->
+        <a href="#contact" 
+           class="relative group px-6 py-3 md:px-12 md:py-4 md:text-xl rounded-2xl bg-white text-black font-semibold overflow-hidden">
+          <span class="relative z-10 inline-block magnet-text">Contact Us</span>
+        </a>
+
+        <!-- Rechter Button -->
+        <a href="#speak" 
+           class="relative group px-6 py-3 md:px-12 md:py-4 md:text-xl  rounded-2xl border border-white text-white font-semibold overflow-hidden">
+          <span class="relative z-10 inline-block magnet-text">Speak with us →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- großes abgerundetes Element -->
+    <div class="relative mt-24 w-[110vw] h-[100%] glow-box rounded-full overflow-hidden flex justify-center pb-16">
+      <!-- Video-Container -->
+      <div class="z-10 w-[65%] mt-16 md:mt-32 rounded-3xl overflow-hidden shadow-xl">
+        <video class="w-full h-auto" controls poster="https://via.placeholder.com/1200x700.png?text=Video+Placeholder">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Dein Browser unterstützt das Video-Tag nicht.
+        </video>
+      </div>
+    </div>
+
+    <div class="absolute bg-black bottom-0 w-full h-1/6"></div>
+  </section>
+
+
+  <!-- SERVICES -->
+ <section id="services" class="py-20">
+      <div class="container mx-auto px-4">
+          <p class="text-center text-lg text-gray-400 mb-2 max-w-4xl mx-auto">Services</p>
+          <h2 class="text-center text-3xl md:text-4xl font-bold mb-12 text-white">Professional Digital Solutions to <span class="highlight" data-text="Elevate">Elevate</span><br>Your Business Presence and Performance</h2>
+          
+          <div class="inverted-pyramid-grid">
+              <div class="service-card rounded-3xl p-6 text-center">
+                  <div class="w-44 h-44 mx-auto mb-4">
+                      <img src="Web.png" alt="Web Design Icon" class="w-full h-full object-contain">
+                  </div>
+                  <h3 class="text-xl font-semibold mb-4 text-white">Web Design</h3>
+                  <p class="text-gray-400">Modern, responsive websites that captivate and convert.</p>
+              </div>
+
+              <div class="service-card rounded-3xl p-6 text-center">
+                  <div class="w-44 h-44 mx-auto mb-4">
+                      <img src="Ui.png" alt="UI/UX Design Icon" class="w-full h-full object-contain">
+                  </div>
+                  <h3 class="text-xl font-semibold mb-4 text-white">UI/UX Design</h3>
+                  <p class="text-gray-400">Intuitive interfaces that delight users and drive engagement.</p>
+              </div>
+
+              <div class="service-card rounded-3xl p-6 text-center">
+                  <div class="w-44 h-44 mx-auto mb-4">
+                      <img src="SE.png" alt="SEO Optimization Icon" class="w-full h-full object-contain">
+                  </div>
+                  <h3 class="text-xl font-semibold mb-4 text-white">SEO Optimization</h3>
+                  <p class="text-gray-400">Boost visibility and drive organic traffic to your website.</p>
+              </div>
+          </div>
+      </div>
+  </section>    
+  
+    <!-- Apps -->
+   <section class="apps">
+    <div class="apps-container">
+        <div class="section-apps-title">Our Tools</div>
+        <h1 class="apps-title">
+            All the tools and <span class="highlight" data-text="apps">apps</span> we relay on<br>
+            for work and collaboration
+        </h1>
+        
+        <div class="tools-grid">
+            <div class="tool-icon icon-vs-code">
+                <img src="assets/Figma.png" alt="">
+            </div>
+            <div class="tool-icon icon-blender">
+                <img src="assets/Goodnotes.png" alt="">
+            </div>
+            <div class="tool-icon icon-google">
+                <img src="assets/GSAP.png" alt="">
+            </div>
+            <div class="tool-icon icon-teams">
+                <img src="assets/Github.png" alt="">
+            </div>
+            <div class="tool-icon icon-github">
+                <img src="assets/Blender.png" alt="">
+            </div>
+            <div class="tool-icon icon-unity">
+               <img src="assets/Notion.png" alt="">
+            </div>
+            <div class="tool-icon icon-figma">
+               <img src="assets/Microsoft_office.png" alt="">
+            </div>
+            <div class="tool-icon icon-cloudflare">
+                <img src="assets/Google__G__logo.svg.png" alt="">
+            </div>
+            <div class="tool-icon icon-nova">
+                <img src="assets/Gmail.png" alt="">
+            </div>
+            <div class="tool-icon icon-notion">
+                <img src="assets/chatgpt.png" alt="">
+            </div>
+            <div class="tool-icon icon-outlook">
+                <img src="assets/Tailwind.png" alt="">
+            </div>
+            <div class="tool-icon icon-gmail">
+             <img src="assets/Vscode.png" alt="">
+            </div>
+            <div class="tool-icon icon-html5">
+                <img src="assets/claude-logo.svg" alt="">
+            </div>
+            <div class="tool-icon icon-oa">
+                <img src="assets/outlook.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- GRID -->
+  <section id="carts" class="max-w-7xl mx-auto p-6 text-white">
+    <div class="aspect-[1/2] md:aspect-square w-full">
+      <div class="grid grid-cols-2 grid-rows-4 md:grid-cols-3 md:grid-rows-3 gap-6 w-full h-full">
+
+        <!-- Buildings Card -->
+        <div id="buildings-card" class="col-start-1 row-start-1 row-span-2 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-0 relative shadow-2xl flex flex-col justify-between overflow-hidden">
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl text-center font-bold leading-tight">
+            Rise your<br>Business to<br>the <span class="text-sky-400">MAX</span>
+          </h3>
+          <div class="relative w-full flex items-end justify-center" style="height:52%;">
+            <div class="building building-1 z-10" style="left:40%; width:20%;">
+              <img src="img/building1.svg" class="w-full" alt="">
+            </div>
+            <div class="building building-2" style="left:50%; width:25%;">
+              <img src="img/building2.svg" class="w-full" alt="">
+            </div>
+            <div class="building building-3" style="left:60%; width:22%;">
+              <img src="img/building3.svg" class="w-full" alt="">
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile 1 -->
+        <div class="col-start-2 row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-20 relative shadow-2xl group flex flex-col items-center justify-center">
+          <div class="ring r1 opacity-30"></div>
+          <div class="ring r2 opacity-30"></div>
+          <div class="ring r3 opacity-30"></div>
+          <img src="img/marlon.png" alt="Marlon" class="w-24 h-24 sm:h-28 sm:w-28 rounded-full z-10 object-cover">
+          <div class="absolute bottom-4 md:bottom-8 text-center z-10">
+            <div class="font-semibold">Marlon Garcia</div>
+            <div class="text-xs text-gray-400 max-w-[180px] text-center">Frontend & Backend, HTML/CSS, PHP/MySQL</div>
+          </div>
+        </div>
+
+        <!-- Profile 2 -->
+        <div class="col-start-2 row-start-2 md:col-start-3 md:row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-20  relative shadow-2xl group flex flex-col items-center justify-center">
+          <div class="ring r1 opacity-30"></div>
+          <div class="ring r2 opacity-30"></div>
+          <div class="ring r3 opacity-30"></div>
+          <img src="img/Lacy.png" alt="Nick" class="w-24 h-24 sm:h-28 sm:w-28 rounded-full z-10 object-cover">
+          <div class="absolute bottom-4 md:bottom-8 text-center z-10">
+            <div class="font-semibold">Nick Fosco</div>
+            <div class="text-xs text-gray-400 max-w-[180px] text-center">Design + saubere Frontend-Architektur</div>
+          </div>
+        </div>
+
+        <!-- Web-Plants Card -->
+        <div id="webplants-card" class="col-start-1 col-span-2 row-start-3 md:col-start-2 md:col-span-2 md:row-start-2 rounded-3xl bg-gradient-to-b from-[#090909] to-[#0f0f0f] p-6 relative shadow-2xl flex items-center justify-center overflow-hidden">
+          <img src="img/Black 4.png" alt="abstract" class="absolute inset-0 w-full h-full object-contain opacity-40">
+          <h2 class="text-5xl font-extrabold z-10 tracking-wide">WEB-PLANTS</h2>
+        </div>
+
+        <!-- Timeline Card -->
+        <div id="timeline-card" class="col-start-1 col-span-2 row-start-4 md:col-span-3 md:row-start-3 min-h-min max-h-max xl:pb-20 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#131313] p-6 relative shadow-2xl overflow-hidden">
+
+          <!-- Hauptlinie -->
+          <div class="absolute left-8 right-8 top-12 h-1 bg-gray-700 rounded overflow-hidden">
+            <div id="progress-line" class="h-1 bg-sky-500 w-0"></div>
+          </div>
+
+          <!-- Steps -->
+          <div class="relative mt-16 grid grid-cols-4 gap-1">
+            <!-- Step 1 -->
+            <div class="relative flex flex-col items-center">
+              <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
+                <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
+              </div>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">We started learning</h4>
+                <p class="text-xs md:text-base text-gray-400">We began programming in 2024 and learned fast.</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative flex flex-col items-center">
+              <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
+                <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
+              </div>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">First Projects</h4>
+                <p class="text-xs md:text-base text-gray-400">Small projects & prototypes lorem.</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative flex flex-col items-center">
+              <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
+                <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
+              </div>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">Growth</h4>
+                <p class="text-xs md:text-base text-gray-400">Team and clients grew. lorem jeah whats that</p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative flex flex-col items-center">
+              <div class="absolute top-[-40px] h-6 w-1 bg-gray-700 overflow-hidden">
+                <div class="branch-progress h-full w-1 bg-sky-500 scale-y-0 origin-top"></div>
+              </div>
+              <div class="timeline-step bg-[#101010]/60 p-2 md:p-6 rounded-2xl shadow-lg opacity-20 scale-95">
+                <h4 class="text-sm md:text-2xl font-bold mb-1 md:mb-2.5">Scaling</h4>
+                <p class="text-xs md:text-base text-gray-400">Bigger apps & infra. Lorem, ipsum dolor idum tenetur velit. Eaque?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+<!-- CAROUSEL -->
+  <section id="carousel" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+
+    <h2 class="absolute top-32 text-3xl md:text-4xl font-extrabold text-center">
+      Projects That Speak for Themselves
+    </h2>
+
+    <!-- Track -->
+    <div id="track" class="flex gap-10 items-center">
+      
+      <!-- Card 1 -->
+      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden"
+           data-text="Weingut Joel – A fast, secure online store with user accounts, product management, and seamless checkout. Built for your perfect site, including custom features, responsive design, and optimized performance."
+           style="background:linear-gradient(180deg,#3b82f6,#1e40af);">
+        <div class="inset-top"></div>
+        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop" 
+               alt="project preview" class="w-[92%] h-auto object-cover">
+        </div>
+        <div class="inset-bottom"></div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden"
+           data-text="Zenith Minds – Admin panel & dashboard with role-based authentication, metrics, analytics, and reporting features. Designed for efficiency and user experience."
+           style="background:linear-gradient(180deg,#ec4899,#7c2d59);">
+        <div class="inset-top"></div>
+        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" 
+               alt="project preview" class="w-[92%] h-auto object-cover">
+        </div>
+        <div class="inset-bottom"></div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden"
+           data-text="Plants Studio – 3D animations & product showcase for immersive experiences, interactive demos, and high-quality visual presentation. Perfect for modern web display."
+           style="background:linear-gradient(180deg,#06b6d4,#0f766e);">
+        <div class="inset-top"></div>
+        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop" 
+               alt="project preview" class="w-[92%] h-auto object-cover">
+        </div>
+        <div class="inset-bottom"></div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden"
+           data-text="Landing Pro – Marketing landing page with A/B tests, fast LCP performance, SEO optimization, and conversion-focused design. Built for maximum engagement and analytics tracking."
+           style="background:linear-gradient(180deg,#7c3aed,#2a1f78);">
+        <div class="inset-top"></div>
+        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" 
+               alt="project preview" class="w-[92%] h-auto object-cover">
+        </div>
+        <div class="inset-bottom"></div>
+      </div>
+
+    </div>
+
+    <!-- Textbox -->
+    <div id="card-text" class="absolute bottom-12 text-lg text-center max-w-xl px-4"></div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+ <section id="contact" class="text-white font-sans min-h-screen flex items-center justify-center py-12">
+    <div class="w-full max-w-4xl px-4 sm:px-6">
+      <div class="text-center mb-12">
+       <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent lg:leading-snug">
+          Do you have questions about our <span class="highlight" data-text="Business"> Business </span> or anything else you want to ask?
+        </h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        </p>
+      </div>
+
+      <div class="flex justify-center">
+        <!-- Contact Form -->
+        <div class="w-full">
+          
+          <!-- Success Message -->
+          <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl mb-6 text-center hidden shadow-lg" id="success-message">
+            <div class="flex items-center justify-center gap-2">
+              <i class="fas fa-check-circle text-xl"></i>
+              <span class="font-semibold">Message sent successfully!</span>
+            </div>
+            <p class="text-sm mt-1 opacity-90">We'll get back to you within 24 hours.</p>
+          </div>
+
+          <!-- Error Message -->
+          <div class="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-xl mb-6 text-center hidden" id="error-message">
+            <div class="flex items-center justify-center gap-2">
+              <i class="fas fa-exclamation-triangle text-xl"></i>
+              <span class="font-semibold">Please fix the errors below</span>
+            </div>
+          </div>
+
+          <form id="contact-form" class="space-y-6">
+            <!-- Email Field -->
+            <div class="floating-label">
+              <input type="email" id="email" name="email" 
+                     class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer" 
+                     required>
+              <label for="email">Email Address</label>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+            </div>
+
+            <!-- Name Field -->
+            <div class="floating-label">
+              <input type="text" id="name" name="name" 
+                     class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer" 
+                     required>
+              <label for="name">Full Name</label>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+            </div>
+
+            <!-- Subject Field - Custom Dropdown -->
+            <div class="floating-label relative">
+              <div class="custom-select relative">
+                <input type="text" id="subject-display" readonly
+                       class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer cursor-pointer" 
+                       placeholder=" " required>
+                <input type="hidden" id="subject" name="subject" required>
+                <label for="subject-display">Subject</label>
+                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300" id="dropdown-icon"></i>
+                </div>
+                
+                <!-- Dropdown Options -->
+                <div class="dropdown-options absolute top-full left-0 right-0 mt-2 bg-[#0a0a0a] border border-white/20 rounded-xl shadow-2xl z-50 hidden overflow-hidden">
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="general">
+                    <i class="fas fa-question-circle text-blue-400"></i>
+                    <span>General Inquiry</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="business">
+                    <i class="fas fa-handshake text-green-400"></i>
+                    <span>Business Partnership</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="support">
+                    <i class="fas fa-tools text-orange-400"></i>
+                    <span>Technical Support</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="feedback">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <span>Feedback</span>
+                  </div>
+                  <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3" data-value="other">
+                    <i class="fas fa-ellipsis-h text-purple-400"></i>
+                    <span>Other</span>
+                  </div>
+                </div>
+              </div>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="floating-label">
+              <textarea id="message" name="message" rows="6" maxlength="1000"
+                        class="form-input w-full rounded-xl px-5 py-4 text-white outline-none resize-none bg-[#040404] border border-white/20 text-lg peer" 
+                        required></textarea>
+              <label for="message">Your Message</label>
+              <div class="char-counter" id="char-counter">0 / 1000</div>
+              <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+            </div>
+
+            <!-- Privacy Policy Checkbox -->
+            <div class="flex items-start text-gray-400 text-sm bg-[#040404] p-4 rounded-xl border border-white/20">
+              <input type="checkbox" id="consent" name="consent" 
+                     class="w-5 h-5 mr-3 mt-0.5 accent-blue-500" required>
+              <label for="consent" class="cursor-pointer leading-relaxed">
+                I agree to the <a href="#" class="text-blue-400 hover:text-blue-300 underline transition-colors">Privacy Policy</a> 
+                and consent to having my information stored and processed.
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submit-btn"
+                    class="btn-submit w-full flex items-center justify-center gap-3 text-white font-bold py-4 rounded-xl text-lg shadow-lg">
+              <span id="btn-text">Send Message</span>
+              <div class="spinner hidden" id="loading-spinner"></div>
+              <i class="fas fa-paper-plane" id="btn-icon"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative isolate overflow-hidden pb-12">
+    <!-- Background -->
+    <div aria-hidden="true" class="bg-unified"></div>
+    <div aria-hidden="true" class="bg-overlay"></div>
+
+    <!-- Mockup -->
+    <div class="flex justify-center items-center px-6 py-12">
+      <div class="w-[95%] md:w-[85%] 2xl:w-[60%] rounded-[2rem] overflow-hidden shadow-2xl">
+        <img src="img/moguo.png" alt="Website Mockup" class="w-full h-auto block">
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="w-[90%] md:w-[70%] mx-auto pb-20 px-4 md:px-[6%] lg:px-[10%] 
+                   flex flex-col md:flex-row justify-center md:justify-between 
+                   items-center md:items-start gap-8 text-sm bg-transparent">
+
+      <!-- Intro -->
+      <div class="max-w-xs text-black flex flex-col items-center md:items-start text-center md:text-left">
+        <div class="flex items-center gap-2 mb-3 justify-center md:justify-start">
+          <img src="img/Logofooter.svg" alt="" />
+          <span class="font-semibold">Web plants</span>
+        </div>
+        <p>We're Rob and Eno – full-stack developers, freelancers & problem solvers. Thanks for being our favorite customer.</p>
+      </div>
+
+      <!-- General -->
+      <nav class="flex flex-col gap-2 text-black items-center md:items-start text-center md:text-left">
+        <h3 class="font-semibold mb-2 text-black">General</h3>
+        <a href="#" class="hover:text-gray-800">Home</a>
+        <a href="#" class="hover:text-gray-800">About</a>
+        <a href="#" class="hover:text-gray-800">Projects</a>
+        <a href="#" class="hover:text-gray-800">Blog</a>
+      </nav>
+
+      <!-- Kontakt -->
+      <div class="flex flex-col gap-2 text-black items-center md:items-start text-center md:text-left">
+        <h3 class="font-semibold mb-2 text-black">Kontakt</h3>
+        <p>Adresse<br><span class="text-xs text-gray-600">Straßenname 123</span></p>
+        <p>Telefonnummer<br><span class="text-xs text-gray-600">+49 123 456789</span></p>
+        <p>E-Mail<br><span class="text-xs text-gray-600">web@gmail.com</span></p>
+      </div>
+
+      <!-- Socials -->
+      <div class="flex flex-col gap-2 text-black items-center md:items-start text-center md:text-left">
+        <h3 class="font-semibold mb-2 text-black">More</h3>
+        <a href="#" class="hover:text-gray-800">GitHub</a>
+        <a href="#" class="hover:text-gray-800">Instagram</a>
+        <a href="#" class="hover:text-gray-800">TikTok</a>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white/70 mx-auto -mb-3 text-xs w-[50%]">
+      © 2025 Web plants. All rights reserved | Privacy Policy | Terms &amp; Conditions
+    </div>
+  </footer>
+
+<script>
+    // CURSOR
+    const cursorTag = document.getElementById("cursorTag");
+
+    // Check: coarse = Finger → nicht anzeigen. fine = Maus, Trackpad, Stift → anzeigen
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+    if (isFinePointer) {
+      cursorTag.classList.remove("hidden");
+
+      document.addEventListener("pointermove", (e) => {
+        gsap.to(cursorTag, {
+          x: e.clientX + 36,  // rechts neben Cursor
+          y: e.clientY + 36,  // leicht nach oben
+          duration: 0.2,
+          ease: "power3.out"
+        });
+      });
+    }
+
+    // NAVBAR
+    gsap.registerPlugin(ScrollTrigger);
+
+    const navHamburger = document.querySelector('.nav-hamburger');
+    const navLinks     = document.getElementById('nav-links');
+    const navListItems = navLinks.querySelectorAll('li');
+    const navAnchors   = document.querySelectorAll('.nav-link');
+
+    // Navbar-Intro
+    gsap.set('#navbar', { scaleX: 0, transformOrigin: 'center' });
+    gsap.to('#navbar', { scaleX: 1, duration: 1.1, ease: 'elastic.out(1,0.6)' });
+
+    // Menü-Toggle (mobil)
+    function toggleMenu() {
+      navHamburger.classList.toggle('active');
+      const open = navHamburger.classList.contains('active');
+
+      gsap.to(navLinks, {
+        maxHeight: open ? navLinks.scrollHeight + 80 : 0,
+        duration: 0.35,
+        ease: 'power2.inOut'
+      });
+
+      if (open) {
+        gsap.fromTo(navListItems, { y: -10, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.3, stagger: 0.07, delay: 0.1, ease: 'power2.out'
+        });
+      }
+    }
+    navHamburger.addEventListener('click', toggleMenu);
+
+    // Resize Handling
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        gsap.set(navLinks, { clearProps: 'maxHeight' });
+        navHamburger.classList.remove('active');
+      } else {
+        gsap.set(navLinks, { maxHeight: 0 });
+      }
+    });
+
+    // ScrollSpy: Aktives Menü markieren
+    document.querySelectorAll("section").forEach(section => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 50%",
+        end: "bottom 50%",
+        onEnter: () => setActive(section.id),
+        onEnterBack: () => setActive(section.id)
+      });
+    });
+
+    function setActive(id) {
+      navAnchors.forEach(link => {
+        link.classList.remove("active-link");
+        if (link.getAttribute("href") === "#" + id) {
+          link.classList.add("active-link");
+        }
+      });
+    }
+
+
+    // HERO
+    document.querySelectorAll(".group").forEach(button => {
+      const text = button.querySelector(".magnet-text");
+
+      button.addEventListener("mousemove", e => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(text, {
+          x: x * 0.3,
+          y: y * 0.5,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      button.addEventListener("mouseleave", () => {
+        gsap.to(text, {
+          x: 0,
+          y: 0,
+          duration: 0.4,
+          ease: "power3.out"
+        });
+      });
+    });
+
+
+    // SERVICES
+    gsap.set(".service-card", { opacity: 0, y: 100 });
+    gsap.to(".service-card", {
+      scrollTrigger: {
+        trigger: ".inverted-pyramid-grid",
+        start: "top 80%",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.3,
+      ease: "power3.out"
+    });
+
+    // GRID
+// Buildings
+const buildings = document.querySelectorAll('#buildings-card .building');
+gsap.set(buildings, { yPercent: 40 });
+const buildTimeline = gsap.timeline({ paused: true });
+buildTimeline
+  .to(buildings[0], { yPercent: 0, duration: 0.8, ease: "power3.out" }, 0)
+  .to(buildings[1], { yPercent: 0, duration: 1, ease: "power3.out" }, 0.4)
+  .to(buildings[2], { yPercent: 0, duration: 1.2, ease: "power3.out" }, 0.2);
+document.getElementById('buildings-card').addEventListener('mouseenter', () => buildTimeline.play());
+document.getElementById('buildings-card').addEventListener('mouseleave', () => buildTimeline.reverse());
+
+// Profiles Hover
+document.querySelectorAll('.group').forEach(group => {
+  const rings = group.querySelectorAll('.ring');
+  const avatar = group.querySelector('img');
+  group.addEventListener('mouseenter', () => {
+    gsap.to(rings, { scale: 1.06, opacity: 1, duration: 0.45, stagger: 0.06 });
+    gsap.to(avatar, { scale: 1.06, duration: 0.45 });
+  });
+  group.addEventListener('mouseleave', () => {
+    gsap.to(rings, { scale: 1, opacity: 0.35, duration: 0.45, stagger: 0.06 });
+    gsap.to(avatar, { scale: 1, duration: 0.45 });
+  });
+});
+
+// WebPlants Hover
+const webCard = document.getElementById('webplants-card');
+const webBg = webCard.querySelector('img');
+gsap.set(webBg, { scale: 1.5, transformOrigin: "50% 50%" });
+webCard.addEventListener('mouseenter', () => {
+  gsap.to(webBg, { scale: 1.7, rotation: 10, duration: 0.3, ease: "power2.out" });
+  gsap.to(webBg, { scale: 1.5, rotation: 0, duration: 1, ease: "elastic.out(1,0.4)", delay: 0.3 });
+});
+webCard.addEventListener('mouseleave', () => {
+  gsap.to(webBg, { scale: 1.5, rotation: 0, duration: 0.6, ease: "elastic.out(1,0.5)" });
+});
+
+// Timeline Animation
+const steps = document.querySelectorAll("#timeline-card .timeline-step");
+const line = document.getElementById("progress-line");
+const branches = document.querySelectorAll("#timeline-card .branch-progress");
+
+const tl = gsap.timeline({ paused: true });
+
+// Hauptlinie
+tl.to(line, { width: "100%", duration: 2, ease: "power1.inOut" }, 0);
+
+// Steps & Abzweigungen
+steps.forEach((step, i) => {
+  tl.to(branches[i], { scaleY: 1, duration: 0.3, ease: "power1.out" }, i * 0.35 + 0.5);
+  tl.to(step, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, i * 0.35 + 0.4);
+});
+
+// Hover-Trigger
+const timelineCard = document.getElementById("timeline-card");
+timelineCard.addEventListener("mouseenter", () => tl.play(0));
+timelineCard.addEventListener("mouseleave", () => tl.reverse());
+
+
+/* CAROUSEL */
+  window.addEventListener("load", () => {
+    const cards = gsap.utils.toArray(".card");
+    const track = document.getElementById("track");
+    const textBox = document.getElementById("card-text");
+
+    // Erste Karte mittig setzen
+    const firstCard = cards[0];
+    const rect = firstCard.getBoundingClientRect();
+    const cardCenter = rect.left + rect.width / 2;
+    const offset = window.innerWidth / 2 - cardCenter;
+    gsap.set(track, {x: offset});
+
+    textBox.textContent = firstCard.dataset.text;
+    const totalSteps = cards.length - 1;
+
+    gsap.to({}, {
+      scrollTrigger: {
+        trigger: "#carousel",
+        start: "top top",
+        end: () => "+=" + (window.innerWidth * totalSteps * 0.3),
+        scrub: 1,
+        pin: true,
+        onUpdate: self => {
+          const idx = Math.round(self.progress * totalSteps);
+          const activeCard = cards[idx];
+
+          const rect = activeCard.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const offset = window.innerWidth / 2 - cardCenter;
+
+          gsap.to(track, {x: `+=${offset}`, duration: 1, ease: "power2.out"});
+
+          cards.forEach((c,i)=>{
+            if(i === idx){
+              gsap.to(c, {scale:1, opacity:1, duration:0.4, overwrite:true});
+            } else {
+              gsap.to(c, {scale:0.8, opacity:0.4, duration:0.4, overwrite:true});
+            }
+          });
+
+          // Text animieren
+          if (textBox.textContent !== activeCard.dataset.text) {
+            gsap.to(textBox, {
+              opacity: 0,
+              duration: 0.3,
+              onComplete: () => {
+                textBox.textContent = activeCard.dataset.text;
+                gsap.to(textBox, {opacity: 1, duration: 0.3});
+              }
+            });
+          }
+        }
+      }
+    });
+  });
+
+
+      /* APPS */
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animation für die Tool-Icons
+        gsap.to(".tool-icon", {
+            scrollTrigger: {
+                trigger: ".tools-grid",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        });
+
+
+        /* CONTACT */
+      const subjectDisplay = document.getElementById('subject-display');
+    const subjectHidden = document.getElementById('subject');
+    const dropdownOptions = document.querySelector('.dropdown-options');
+    const dropdownIcon = document.getElementById('dropdown-icon');
+    const options = document.querySelectorAll('.option');
+    
+    // Toggle dropdown
+    subjectDisplay.addEventListener('click', function() {
+      dropdownOptions.classList.toggle('show');
+      dropdownIcon.classList.toggle('dropdown-icon-rotate');
+    });
+    
+    // Handle option selection
+    options.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = this.dataset.value;
+        const text = this.querySelector('span').textContent;
+        const icon = this.querySelector('i').outerHTML;
+        
+        // Update display field
+        subjectDisplay.value = text;
+        subjectHidden.value = value;
+        
+        // Mark as valid for floating label
+        subjectDisplay.setAttribute('data-selected', 'true');
+        
+        // Close dropdown
+        dropdownOptions.classList.remove('show');
+        dropdownIcon.classList.remove('dropdown-icon-rotate');
+        
+        // Visual feedback
+        options.forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        // Clear error if present
+        subjectDisplay.classList.remove('border-red-500');
+        const errorDiv = subjectDisplay.parentNode.querySelector('.error-message');
+        if (errorDiv) {
+          errorDiv.classList.add('hidden');
+        }
+      });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.custom-select')) {
+        dropdownOptions.classList.remove('show');
+        dropdownIcon.classList.remove('dropdown-icon-rotate');
+      }
+    });
+    
+    // Update floating label for custom select
+    subjectDisplay.addEventListener('focus', function() {
+      this.parentNode.querySelector('label').style.cssText = `
+        top: -8px !important;
+        left: 16px !important;
+        font-size: 0.75rem !important;
+        color: #1e40af !important;
+        background: #040404 !important;
+        padding: 0 8px !important;
+      `;
+    });
+    
+    subjectDisplay.addEventListener('blur', function() {
+      if (!this.value && !this.hasAttribute('data-selected')) {
+        this.parentNode.querySelector('label').style.cssText = '';
+      }
+    });
+
+    // Floating label functionality for all inputs
+    document.querySelectorAll('.floating-label input:not(#subject-display), .floating-label textarea').forEach(input => {
+      // Check content on input
+      input.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+          this.classList.add('has-content');
+        } else {
+          this.classList.remove('has-content');
+        }
+      });
+      
+      // Check content on blur
+      input.addEventListener('blur', function() {
+        if (this.value.trim() !== '') {
+          this.classList.add('has-content');
+        } else {
+          this.classList.remove('has-content');
+        }
+      });
+      
+      // Initial check for existing content
+      if (input.value.trim() !== '') {
+        input.classList.add('has-content');
+      }
+    });
+
+    // Character counter for message field
+    const messageField = document.getElementById('message');
+    const charCounter = document.getElementById('char-counter');
+    
+    messageField.addEventListener('input', function() {
+      const currentLength = this.value.length;
+      const maxLength = 1000;
+      charCounter.textContent = `${currentLength} / ${maxLength}`;
+      
+      if (currentLength > maxLength * 0.9) {
+        charCounter.className = 'char-counter error';
+      } else if (currentLength > maxLength * 0.8) {
+        charCounter.className = 'char-counter warning';
+      } else {
+        charCounter.className = 'char-counter';
+      }
+    });
+
+    // Form validation
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validateForm() {
+      let isValid = true;
+      const formData = new FormData(document.getElementById('contact-form'));
+      
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
+      document.getElementById('error-message').classList.add('hidden');
+
+      // Email validation
+      const email = formData.get('email');
+      if (!email || !validateEmail(email)) {
+        showError('email', 'Please enter a valid email address');
+        isValid = false;
+      }
+
+      // Name validation
+      const name = formData.get('name');
+      if (!name || name.trim().length < 2) {
+        showError('name', 'Name must be at least 2 characters long');
+        isValid = false;
+      }
+
+      // Subject validation
+      const subject = formData.get('subject');
+      if (!subject) {
+        showError('subject-display', 'Please select a subject');
+        isValid = false;
+      }
+
+      // Message validation
+      const message = formData.get('message');
+      if (!message || message.trim().length < 10) {
+        showError('message', 'Message must be at least 10 characters long');
+        isValid = false;
+      }
+
+      // Consent validation
+      const consent = formData.get('consent');
+      if (!consent) {
+        document.getElementById('error-message').classList.remove('hidden');
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    function showError(fieldName, message) {
+      const field = document.getElementById(fieldName);
+      const errorDiv = field.parentNode.querySelector('.error-message');
+      errorDiv.textContent = message;
+      errorDiv.classList.remove('hidden');
+      field.classList.add('border-red-500');
+    }
+
+    // Form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (!validateForm()) {
+        return;
+      }
+
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnIcon.classList.add('hidden');
+      loadingSpinner.classList.remove('hidden');
+
+      // Simulate API call
+      setTimeout(() => {
+        // Hide loading state
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnIcon.classList.remove('hidden');
+        loadingSpinner.classList.add('hidden');
+
+        // Show success message
+        const successMsg = document.getElementById('success-message');
+        successMsg.classList.remove('hidden');
+        successMsg.classList.add('success-enter');
+
+        // Reset form
+        this.reset();
+        
+        // Reset custom dropdown
+        subjectDisplay.value = '';
+        subjectHidden.value = '';
+        subjectDisplay.removeAttribute('data-selected');
+        options.forEach(opt => opt.classList.remove('selected'));
+        subjectDisplay.parentNode.querySelector('label').style.cssText = '';
+        
+        // Clear character counter
+        charCounter.textContent = '0 / 1000';
+        charCounter.className = 'char-counter';
+
+        // Clear any error styles and has-content class
+        document.querySelectorAll('.border-red-500').forEach(el => {
+          el.classList.remove('border-red-500');
+        });
+        document.querySelectorAll('.has-content').forEach(el => {
+          el.classList.remove('has-content');
+        });
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMsg.classList.add('hidden');
+        }, 5000);
+      }, 2000);
+    });
+
+    // Clear error styling on input
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('input', function() {
+        this.classList.remove('border-red-500');
+        const errorDiv = this.parentNode.querySelector('.error-message');
+        if (errorDiv) {
+          errorDiv.classList.add('hidden');
+        }
+      });
+    });
+</script>
+</body>
+</html>
