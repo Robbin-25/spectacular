@@ -31,141 +31,97 @@
 
 
     /* ========== HERO SECTION ========== */
-   .light-rec-custom {
-            border-radius: clamp(8rem, 15vw, 50rem);
-            box-shadow: 
-                0px -250px 54px -130px rgb(4 40 132 / 25%),
-                0px -20px 54px 0px rgba(13, 74, 228, 0.54),
-                inset 0px 4px 23px 0px rgba(13, 74, 228, 1);
-            background: linear-gradient(180deg, rgba(13, 74, 228, 0.05) 0%, rgba(4, 4, 4, 1) 100%);
+    @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-        
-        /* Responsive Title Sizes */
-        .title-responsive {
-            font-size: clamp(1.5rem, 5vw + 0.5rem, 4rem);
-            line-height: 1.1;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Mobile First Approach */
-        @media (max-width: 480px) {
-            .title-responsive {
-                font-size: 1.75rem;
-                line-height: 1.2;
-            }
+        @keyframes sphereFloat {
+            0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+            33% { transform: translateY(-15px) rotateX(5deg) rotateY(120deg); }
+            66% { transform: translateY(-8px) rotateX(-3deg) rotateY(240deg); }
         }
-        
-        @media (min-width: 481px) and (max-width: 768px) {
-            .title-responsive {
-                font-size: 2.25rem;
-            }
+        @keyframes spherePulse {
+            0%, 100% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.3), 0 0 100px rgba(59, 130, 246, 0.1); }
+            50% { box-shadow: 0 0 70px rgba(59, 130, 246, 0.5), 0 0 140px rgba(59, 130, 246, 0.2); }
         }
-        
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .title-responsive {
-                font-size: 3rem;
-            }
+        @keyframes imageFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        
-        @media (min-width: 1025px) {
-            .title-responsive {
-                font-size: 3.5rem;
-            }
+        .animate-slideInLeft { animation: slideInLeft 1s ease-out; }
+        .animate-fadeInUp { animation: fadeInUp 1s ease-out both; }
+        .animate-fadeInUp-delay-200 { animation: fadeInUp 1s ease-out 0.2s both; }
+        .animate-fadeInUp-delay-400 { animation: fadeInUp 1s ease-out 0.4s both; }
+        .animate-fadeInUp-delay-600 { animation: fadeInUp 1s ease-out 0.6s both; }
+        .animate-fadeInUp-delay-800 { animation: fadeInUp 1s ease-out 0.8s both; }
+        .animate-sphereFloat { animation: sphereFloat 8s ease-in-out infinite; }
+        .animate-spherePulse { animation: spherePulse 4s ease-in-out infinite; }
+        .animate-imageFloat { animation: imageFloat 3s ease-in-out infinite; }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff, #e5e7eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        @media (min-width: 1400px) {
-            .title-responsive {
-                font-size: 4rem;
-            }
-        }
-        
-        /* Button Hover Effects */
-        .btn-primary {
-            background: linear-gradient(135deg, #0d4ae4 0%, #1e40af 100%);
-            position: relative;
+        .video-sphere {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
             overflow: hidden;
-            transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
-        
-        .btn-primary::before {
+        .video-sphere::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            inset: -2px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3));
+            z-index: -1;
+            filter: blur(10px);
+        }
+        .video-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.1), transparent);
         }
-        
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(13, 74, 228, 0.4);
-        }
-        
-        .btn-secondary {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
+        .image-block {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        .image-block:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
         }
-        
-        /* Content Container */
-        .content-container {
-            position: absolute;
-            bottom: calc(100% - 70% + 15%); /* 15% above light-rec */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            width: 90%;
-            max-width: 1200px;
-            text-align: center;
+        .image-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
         }
-        
-        /* Video Container */
-        .video-container {
-            position: absolute;
-            top: calc(70% + 10%); /* 10% below light-rec */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 30;
-            width: 85%;
-            max-width: 900px;
+        .image-block:hover img {
+            transform: scale(1.1);
         }
-        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .video-sphere { width: 300px; height: 300px; }
+        }
         @media (max-width: 768px) {
-            .content-container {
-                bottom: calc(100% - 65% + 10%);
-                width: 95%;
-            }
-            
-            .video-container {
-                top: calc(65% + 8%);
-                width: 90%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .content-container {
-                bottom: calc(100% - 60% + 8%);
-            }
-            
-            .video-container {
-                top: calc(60% + 5%);
-                width: 92%;
-            }
+            .video-sphere { width: 250px; height: 250px; }
         }
 
     /* ========== SERVICES SECTION ========== */
@@ -506,75 +462,113 @@
 
 
   <!-- ==================== HERO SECTION ==================== -->
- <section class="bg-dark font-system overflow-hidden">
-    <main class="relative w-full h-screen overflow-x-hidden flex flex-col">
-        
-        <!-- Content (Title + Buttons) - 15% above light-rec -->
-        <div class="content-container">
-            <h1 class="text-white title-responsive font-bold mb-6 md:mb-8 tracking-tight animate-float">
-                Your Partner for Digital Growth & Scalable Websites
-            </h1>
-            
-            <!-- Improved Button Design -->
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
-                <button class="btn-primary text-white rounded-full font-semibold cursor-pointer
-                               px-6 py-3 text-sm
-                               sm:px-8 sm:py-3.5 sm:text-base
-                               md:px-10 md:py-4 md:text-base
-                               lg:px-12 lg:py-4 lg:text-lg
-                               min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]
-                               shadow-lg">
-                    <span class="relative z-10 flex items-center justify-center gap-2">
-                        <span>Our Work</span>
-                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </span>
-                </button>
+ <section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
+    <div class="min-h-screen flex px-8 lg:px-16 xl:px-24">
+        <!-- Left Side - Content (moved more to right) -->
+        <div class="flex-1 flex items-center justify-center lg:justify-end animate-slideInLeft z-10">
+            <div class="max-w-2xl lg:mr-20">
+                <!-- Badge -->
+                <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2L13.09 8.26L20 9.27L15 14.14L16.18 21.02L10 17.77L3.82 21.02L5 14.14L0 9.27L6.91 8.26L10 2Z" clip-rule="evenodd"/>
+                    </svg>
+                    New Product Launch
+                </div>
+                <!-- Title -->
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-6 text-gradient animate-fadeInUp-delay-400">
+                    Transform Your Digital Experience
+                </h1>
+                <!-- Description -->
+                <p class="text-xl lg:text-2xl leading-[1.4] text-gray-400 mb-10 max-w-xl animate-fadeInUp-delay-600">
+                    Discover the next generation of innovation with our cutting-edge platform. Built for creators, designed for growth.
+                </p>
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp-delay-800">
+                    <button class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+                        <span class="relative z-10">Get Started</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+                    </button>
+                    <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg border border-white/20 backdrop-filter hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+                        <span class="relative z-10">Learn More</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+                    </button>
+                </div>
                 
-                <button class="btn-secondary text-white rounded-full font-medium cursor-pointer
-                               px-6 py-3 text-sm
-                               sm:px-8 sm:py-3.5 sm:text-base
-                               md:px-10 md:py-4 md:text-base
-                               lg:px-12 lg:py-4 lg:text-lg
-                               min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]">
-                    <span class="flex items-center justify-center gap-2">
-                        <span>Contact Us</span>
-                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </span>
-                </button>
+                <!-- Avatar Circles -->
+                <div class="flex items-center gap-4 mt-8 animate-fadeInUp-delay-800">
+                    <div id="avatar-circles" class="flex -space-x-4">
+                        <!-- Avatars will be populated by JavaScript -->
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <span class="font-semibold text-white">10,000+</span> creators already joined
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <!-- Light Rectangle Effect -->
-        <div class="absolute w-[110%] h-[80vh] sm:h-[85vh] md:h-[90vh] light-rec-custom 
-                    -left-[5%] -right-[5%] 
-                    top-[60%] sm:top-[65%] md:top-[70%]
-                    z-10 overflow-hidden">
-            <!-- Mask to hide bottom half -->
-            <div class="absolute bottom-0 left-0 w-full h-3/5 z-20" style="background: #000000;"></div>
-        </div>
-        
-        <!-- Video - 10% below light-rec -->
-        <div class="video-container">
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl 
-                        ring-1 ring-white ring-opacity-10">
-                <iframe 
-                    class="w-full h-full" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                    title="Demo Video" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-        
-    </main>
-</section>
 
+        <!-- Right Side - Image Blocks Layout -->
+        <div class="hidden lg:flex flex-1 relative items-center justify-start pl-10">
+            <!-- Central Video Sphere (moved higher up) -->
+            <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-fadeInUp-delay-600">
+                <div class="video-sphere animate-sphereFloat animate-spherePulse" style="width: 300px; height: 300px;">
+                    <div class="video-placeholder">
+                        <div class="text-center">
+                            <svg class="w-12 h-12 mx-auto mb-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="text-gray-400 text-sm">Video Content</p>
+                            <p class="text-gray-500 text-xs mt-1">Click to play</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Right Image Block (same size, close to sphere) -->
+            <div class="absolute top-40 right-8 image-block w-56 h-36 animate-fadeInUp-delay-400 animate-imageFloat">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technology" />
+            </div>
+
+            <!-- Middle Left Image Block (same size, close to sphere) -->
+            <div class="absolute top-1/2 left-4 transform -translate-y-1/2 image-block w-56 h-36 animate-fadeInUp-delay-600" style="animation-delay: 2s;">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analytics" />
+            </div>
+
+            <!-- Bottom Right Image Block (same size, close to sphere) -->
+            <div class="absolute bottom-20 right-8 image-block w-56 h-36 animate-fadeInUp-delay-800" style="animation-delay: 1s;">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Growth" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="lg:hidden px-8 pb-16">
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="image-block h-24 animate-fadeInUp-delay-400">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Technology" />
+            </div>
+            <div class="image-block h-24 animate-fadeInUp-delay-600">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Data Analytics" />
+            </div>
+        </div>
+        <div class="flex justify-center mb-8">
+            <div class="video-sphere animate-sphereFloat animate-spherePulse">
+                <div class="video-placeholder">
+                    <div class="text-center">
+                        <svg class="w-12 h-12 mx-auto mb-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                        </svg>
+                        <p class="text-gray-400 text-xs">Video Content</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="image-block w-40 h-24 animate-fadeInUp-delay-800">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Business Growth" />
+            </div>
+        </div>
+    </div>
+    </section>
 
   <!-- ==================== SERVICES SECTION ==================== -->
   <section id="services" class="py-20">
@@ -1534,29 +1528,96 @@
         }
       });
     });
-   tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'system': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
-                    },
-                    colors: {
-                        'dark': '#040404',
-                        'blue-primary': '#0d4ae4',
-                        'blue-secondary': '#1e40af'
-                    },
-                    boxShadow: {
-                        'blue-glow': '0 4px 15px rgba(13, 74, 228, 0.3)',
-                        'blue-glow-hover': '0 8px 25px rgba(13, 74, 228, 0.4)',
-                        'white-glow': '0 8px 25px rgba(255, 255, 255, 0.1)',
-                        'light-rec': '0px -250px 54px -130px rgb(4 40 132 / 25%), 0px -20px 54px 0px rgba(13, 74, 228, 0.54), inset 0px 4px 23px 0px rgba(13, 74, 228, 1)'
-                    },
-                    borderRadius: {
-                        'dynamic': 'clamp(8rem, 15vw, 50rem)'
-                    }
-                }
+     const avatars = [
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                profileUrl: '#'
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b14d2bc2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                profileUrl: '#'
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                profileUrl: '#'
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                profileUrl: '#'
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                profileUrl: '#'
+            }
+        ];
+
+        // Create avatar circles
+        function createAvatarCircles() {
+            const container = document.getElementById('avatar-circles');
+            if (!container) return;
+            
+            // Display first 4 avatars
+            avatars.slice(0, 4).forEach((avatar, index) => {
+                const link = document.createElement('a');
+                link.href = avatar.profileUrl;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'transition-transform hover:scale-110 hover:z-10 relative';
+                
+                const img = document.createElement('img');
+                img.src = avatar.imageUrl;
+                img.alt = `Avatar ${index + 1}`;
+                img.className = 'h-10 w-10 rounded-full border-2 border-gray-700 hover:border-blue-400 transition-colors';
+                img.width = 40;
+                img.height = 40;
+                
+                link.appendChild(img);
+                container.appendChild(link);
+            });
+            
+            // Add the +X circle for remaining people
+            const remainingCount = 9996; // 10,000 - 4 shown
+            if (remainingCount > 0) {
+                const plusCircle = document.createElement('div');
+                plusCircle.className = 'flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-800 text-center text-xs font-medium text-white hover:bg-gray-700 hover:border-blue-400 transition-colors cursor-pointer';
+                plusCircle.textContent = `+${remainingCount.toLocaleString()}`;
+                container.appendChild(plusCircle);
             }
         }
+
+        // Initialize avatar circles when page loads
+        document.addEventListener('DOMContentLoaded', createAvatarCircles);
+
+        // Enhanced interactivity for all elements
+        document.querySelectorAll('.image-block').forEach(block => {
+            block.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) translateY(-10px)';
+                this.style.boxShadow = '0 25px 50px rgba(59, 130, 246, 0.4)';
+            });
+            
+            block.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) translateY(0px)';
+                this.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.2)';
+            });
+            
+            block.addEventListener('click', function() {
+                console.log('Image block clicked - add your functionality here');
+            });
+        });
+
+        // Video sphere interactions
+        document.querySelector('.video-sphere').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        document.querySelector('.video-sphere').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+        
+        document.querySelector('.video-sphere').addEventListener('click', function() {
+            console.log('Video sphere clicked - implement video player here');
+        });
 </script>
 </body>
 </html>
