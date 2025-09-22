@@ -204,7 +204,7 @@
 
 
     /* ========== CAROUSEL SECTION ========== */
-    .card {
+    .card { 
       flex-shrink: 0;
       transform-origin: center;
       opacity: 0.4;
@@ -212,13 +212,12 @@
       transition: transform 0.25s, opacity 0.25s;
       box-shadow: 0 30px 80px rgba(0,0,0,0.6);
     }
-    
-    .screenshot-wrap {
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 
-                  inset 0 1px 0 rgba(255,255,255,0.02);
-      transform: translateZ(0);
+
+    .screenshot-wrap { 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02); 
+      transform: translateZ(0); 
     }
-    
+
     .inset-top, .inset-bottom {
       position: absolute;
       left: 8%;
@@ -229,16 +228,8 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
       filter: blur(0.2px);
     }
-    
-    .inset-top {
-      top: -28px;
-      box-shadow: inset 0 18px 34px rgba(0,0,0,0.6);
-    }
-    
-    .inset-bottom {
-      bottom: -28px;
-      box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6);
-    }
+    .inset-top { top:-28px; box-shadow: inset 0 18px 34px rgba(0,0,0,0.6); }
+    .inset-bottom { bottom:-28px; box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6); }
 
 
     /* ========== CONTACT FORM ========== */
@@ -779,49 +770,57 @@
 
 
   <!-- ==================== CAROUSEL SECTION ==================== -->
-  <section id="projects" class="relative h-screen min-h-[600px] flex flex-col items-center justify-center overflow-hidden py-20">
-    
-    <h1 class="absolute text-3xl top-[10%] mx-12 text-center font-bold leading-tight text-white">
-      Projects That <span class="highlight" data-text="speak">Speak</span> for Themselves
-    </h1>
+  <section id="carousel" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
 
-    <!-- Carousel Track -->
-    <div id="track" class="flex gap-10 items-center">
+    <h2 class="absolute top-[8%] text-2xl sm:text-4xl lg:text-5xl font-extrabold text-center leading-tight max-w-3xl px-4">
+      Projects That <span class="highlight" data-text="speak">Speak</span> for Themselves
+    </h2>
+
+    <!-- Track -->
+    <div id="track" class="flex gap-12 items-center">
       
-      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden bg-gradient-to-b from-blue-500 to-blue-700"
-           data-text="Weingut Joel – A fast, secure online store with user accounts, product management, and seamless checkout. Built for your perfect site, including custom features, responsive design, and optimized performance.">
+      <!-- Card -->
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+           data-text="Weingut Joel – A fast, secure online store with user accounts, product management, and seamless checkout. Built for your perfect site, including custom features, responsive design, and optimized performance."
+           style="background:linear-gradient(180deg,#3b82f6,#1e40af);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
           <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
         <div class="inset-bottom"></div>
       </div>
 
-      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden bg-gradient-to-b from-pink-500 to-pink-700"
-           data-text="Zenith Minds – Admin panel & dashboard with role-based authentication, metrics, analytics, and reporting features. Designed for efficiency and user experience.">
+      <!-- Card 2 -->
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+           data-text="Zenith Minds – Admin panel & dashboard with role-based authentication, metrics, analytics, and reporting features. Designed for efficiency and user experience."
+           style="background:linear-gradient(180deg,#ec4899,#7c2d59);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
           <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
         <div class="inset-bottom"></div>
       </div>
 
-      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden bg-gradient-to-b from-cyan-500 to-teal-700"
-           data-text="Plants Studio – 3D animations & product showcase for immersive experiences, interactive demos, and high-quality visual presentation. Perfect for modern web display.">
+      <!-- Card 3 -->
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+           data-text="Plants Studio – 3D animations & product showcase for immersive experiences, interactive demos, and high-quality visual presentation. Perfect for modern web display."
+           style="background:linear-gradient(180deg,#06b6d4,#0f766e);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
           <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
         <div class="inset-bottom"></div>
       </div>
 
-      <div class="card relative flex items-center justify-center w-[70vw] h-[50vh] md:w-[30vw] md:h-[40vh] rounded-2xl overflow-hidden bg-gradient-to-b from-purple-500 to-purple-700"
-           data-text="Landing Pro – Marketing landing page with A/B tests, fast LCP performance, SEO optimization, and conversion-focused design. Built for maximum engagement and analytics tracking.">
+      <!-- Card 4 -->
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+           data-text="Landing Pro – Marketing landing page with A/B tests, fast LCP performance, SEO optimization, and conversion-focused design. Built for maximum engagement and analytics tracking."
+           style="background:linear-gradient(180deg,#7c3aed,#2a1f78);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[70%] h-[60%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
           <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
@@ -830,8 +829,8 @@
 
     </div>
 
-    <!-- Carousel Text Display -->
-    <div id="card-text" class="absolute bottom-12 text-lg text-center max-w-xl px-4"></div>
+    <!-- Textbox -->
+    <div id="card-text" class="absolute bottom-[5%] text-sm sm:text-lg md:text-xl text-center max-w-2xl px-6 leading-relaxed"></div>
 
   </section>
 
@@ -1226,61 +1225,59 @@
 
 
     // ========== CAROUSEL SECTION ANIMATIONS ==========
-    window.addEventListener("load", () => {
-      const cards = gsap.utils.toArray(".card");
-      const track = document.getElementById("track");
-      const textBox = document.getElementById("card-text");
+  window.addEventListener("load", () => {
+    const cards = gsap.utils.toArray(".card");
+    const track = document.getElementById("track");
+    const textBox = document.getElementById("card-text");
 
-      // Erste Karte mittig setzen
-      const firstCard = cards[0];
-      const rect = firstCard.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
-      const offset = window.innerWidth / 2 - cardCenter;
-      gsap.set(track, {x: offset});
+    const firstCard = cards[0];
+    const rect = firstCard.getBoundingClientRect();
+    const cardCenter = rect.left + rect.width / 2;
+    const offset = window.innerWidth / 2 - cardCenter;
+    gsap.set(track, {x: offset});
 
-      textBox.textContent = firstCard.dataset.text;
-      const totalSteps = cards.length - 1;
+    textBox.textContent = firstCard.dataset.text;
+    const totalSteps = cards.length - 1;
 
-      gsap.to({}, {
-        scrollTrigger: {
-          trigger: "#projects",
-          start: "top top",
-          end: () => "+=" + (window.innerWidth * totalSteps * 0.3),
-          scrub: 1,
-          pin: true,
-          onUpdate: self => {
-            const idx = Math.round(self.progress * totalSteps);
-            const activeCard = cards[idx];
+    gsap.to({}, {
+      scrollTrigger: {
+        trigger: "#carousel",
+        start: "top top",
+        end: () => "+=" + (window.innerWidth * totalSteps * 0.3),
+        scrub: 1,
+        pin: true,
+        onUpdate: self => {
+          const idx = Math.round(self.progress * totalSteps);
+          const activeCard = cards[idx];
 
-            const rect = activeCard.getBoundingClientRect();
-            const cardCenter = rect.left + rect.width / 2;
-            const offset = window.innerWidth / 2 - cardCenter;
+          const rect = activeCard.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const offset = window.innerWidth / 2 - cardCenter;
 
-            gsap.to(track, {x: `+=${offset}`, duration: 1, ease: "power2.out"});
+          gsap.to(track, {x: `+=${offset}`, duration: 1, ease: "power2.out"});
 
-            cards.forEach((c,i)=>{
-              if(i === idx){
-                gsap.to(c, {scale:1, opacity:1, duration:0.4, overwrite:true});
-              } else {
-                gsap.to(c, {scale:0.8, opacity:0.4, duration:0.4, overwrite:true});
+          cards.forEach((c,i)=>{
+            if(i === idx){
+              gsap.to(c, {scale:1, opacity:1, duration:0.4, overwrite:true});
+            } else {
+              gsap.to(c, {scale:0.8, opacity:0.4, duration:0.4, overwrite:true});
+            }
+          });
+
+          if (textBox.textContent !== activeCard.dataset.text) {
+            gsap.to(textBox, {
+              opacity: 0,
+              duration: 0.3,
+              onComplete: () => {
+                textBox.textContent = activeCard.dataset.text;
+                gsap.to(textBox, {opacity: 1, duration: 0.3});
               }
             });
-
-            // Text animieren
-            if (textBox.textContent !== activeCard.dataset.text) {
-              gsap.to(textBox, {
-                opacity: 0,
-                duration: 0.3,
-                onComplete: () => {
-                  textBox.textContent = activeCard.dataset.text;
-                  gsap.to(textBox, {opacity: 1, duration: 0.3});
-                }
-              });
-            }
           }
         }
-      });
+      }
     });
+  });
 
 
     // ========== CONTACT SECTION ANIMATIONS ==========
