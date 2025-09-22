@@ -31,7 +31,7 @@
 
 
     /* ========== HERO SECTION ========== */
-    @keyframes slideInLeft {
+       @keyframes slideInLeft {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
         }
@@ -123,7 +123,7 @@
         @media (max-width: 768px) {
             .video-sphere { width: 250px; height: 250px; }
         }
-
+    
     /* ========== SERVICES SECTION ========== */
     .service-card {
       background: #0a0a0a;
@@ -453,7 +453,7 @@
 
 
   <!-- ==================== HERO SECTION ==================== -->
- <section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
+<section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
     <div class="min-h-screen flex px-8 lg:px-16 xl:px-24">
         <!-- Left Side - Content (moved more to right) -->
         <div class="flex-1 flex items-center justify-center lg:justify-end animate-slideInLeft z-10">
@@ -515,51 +515,56 @@
             </div>
 
             <!-- Top Right Image Block (same size, close to sphere) -->
-            <div class="absolute top-40 right-8 image-block w-56 h-36 animate-fadeInUp-delay-400 animate-imageFloat">
+            <div class="absolute top-40 right-8 image-block w-56 h-36 animate-fadeInUp-delay-600 animate-imageFloat">
                 <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technology" />
             </div>
 
-            <!-- Middle Left Image Block (same size, close to sphere) -->
-            <div class="absolute top-1/2 left-4 transform -translate-y-1/2 image-block w-56 h-36 animate-fadeInUp-delay-600" style="animation-delay: 2s;">
+            <!-- Middle Left Image Block (same size, closer to sphere) -->
+            <div class="absolute top-1/2 left-16 transform -translate-y-1/2 image-block w-56 h-36 animate-fadeInUp-delay-600">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analytics" />
             </div>
 
             <!-- Bottom Right Image Block (same size, close to sphere) -->
-            <div class="absolute bottom-20 right-8 image-block w-56 h-36 animate-fadeInUp-delay-800" style="animation-delay: 1s;">
+            <div class="absolute bottom-20 right-8 image-block w-56 h-36 animate-fadeInUp-delay-600">
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Growth" />
             </div>
         </div>
     </div>
 
     <!-- Mobile Layout -->
-    <div class="lg:hidden px-8 pb-16">
-        <div class="grid grid-cols-2 gap-4 mb-8">
-            <div class="image-block h-24 animate-fadeInUp-delay-400">
+    <div class="lg:hidden px-8 pb-16 pt-16">
+        <!-- Top right: Video sphere -->
+        <div class="flex justify-end mb-12">
+            <div class="video-sphere animate-sphereFloat animate-spherePulse">
+                <div class="video-placeholder">
+                    <div class="text-center">
+                        <svg class="w-10 h-10 mx-auto mb-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                        </svg>
+                        <p class="text-gray-400 text-xs">Video</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Middle: 2 images left and right -->
+        <div class="grid grid-cols-2 gap-4 mb-12">
+            <div class="image-block h-24 animate-fadeInUp-delay-600">
                 <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Technology" />
             </div>
             <div class="image-block h-24 animate-fadeInUp-delay-600">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Data Analytics" />
             </div>
         </div>
-        <div class="flex justify-center mb-8">
-            <div class="video-sphere animate-sphereFloat animate-spherePulse">
-                <div class="video-placeholder">
-                    <div class="text-center">
-                        <svg class="w-12 h-12 mx-auto mb-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                        </svg>
-                        <p class="text-gray-400 text-xs">Video Content</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        <!-- Bottom: Round image block (sphere style) -->
         <div class="flex justify-center">
-            <div class="image-block w-40 h-24 animate-fadeInUp-delay-800">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Business Growth" />
+            <div class="w-32 h-32 rounded-full overflow-hidden animate-fadeInUp-delay-600 animate-sphereFloat animate-spherePulse" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1)); backdrop-filter: blur(20px); border: 1px solid rgba(59, 130, 246, 0.2);">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Business Growth" class="w-full h-full object-cover transition-all duration-300 hover:scale-110" />
             </div>
         </div>
     </div>
-    </section>
+</section>
 
   <!-- ==================== SERVICES SECTION ==================== -->
   <section id="services" class="py-20">
