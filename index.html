@@ -31,7 +31,15 @@
 
 
     /* ========== HERO SECTION ========== */
-     @keyframes fadeInUp {
+     .highlight-word {
+        color: white !important;
+        -webkit-text-fill-color: white !important;
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        background-clip: initial !important;
+    }
+
+    @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
     }
@@ -47,6 +55,42 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+    }
+
+    /* Mobile-specific deeper sections */
+    @media (max-width: 768px) {
+      .mobile-deep {
+        min-height: 120vh;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+      
+      .mobile-spacing {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      
+      .mobile-title {
+        font-size: 3.5rem;
+        line-height: 1;
+        margin-bottom: 2rem;
+      }
+      
+      .mobile-subtitle {
+        font-size: 1.25rem;
+        line-height: 1.5;
+        margin-bottom: 3rem;
+      }
+      
+      .mobile-buttons {
+        margin-bottom: 3rem;
+      }
+      
+      .mobile-button {
+        padding: 1.25rem 2rem;
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+      }
     }
     /* ========== SERVICES SECTION ========== */
     .service-card {
@@ -487,52 +531,54 @@
 
 
   <!-- ==================== HERO SECTION ==================== -->
-<section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
-    <div class="min-h-screen flex items-center justify-center px-8 lg:px-16 xl:px-24">
+ <section class="bg-[#040404] text-white font-sans min-h-screen mobile-deep overflow-x-hidden">
+    <div class="min-h-screen mobile-deep flex items-center justify-center px-4 mobile-spacing lg:px-16 xl:px-24">
         <!-- Centered Content -->
-        <div class="text-center max-w-4xl">
+        <div class="text-center max-w-4xl w-full">
             <!-- Badge -->
-            <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
+            <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-3 md:py-2 rounded-full text-sm font-semibold mb-12 md:mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 2L13.09 8.26L20 9.27L15 14.14L16.18 21.02L10 17.77L3.82 21.02L5 14.14L0 9.27L6.91 8.26L10 2Z" clip-rule="evenodd"/>
                 </svg>
                 New Product Launch
             </div>
             
-            <!-- Title -->
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-6 text-gradient animate-fadeInUp-delay-400">
-                Transform Your Digital Experience
+            <!-- Title with Highlighted "Digital" -->
+            <h1 class="text-4xl mobile-title md:text-6xl lg:text-7xl font-black leading-[1.1] mb-8 md:mb-6 text-gradient animate-fadeInUp-delay-400">
+                Transform Your  <span id="highlight-word" class="relative highlight-word">Digital</span>
+Experience
             </h1>
             
             <!-- Subtitle -->
-            <p class="text-xl lg:text-2xl leading-[1.4] text-gray-400 mb-10 max-w-3xl mx-auto animate-fadeInUp-delay-600">
+            <p class="text-lg mobile-subtitle lg:text-2xl leading-[1.4] text-gray-400 mb-12 md:mb-10 max-w-3xl mx-auto animate-fadeInUp-delay-600">
                 Discover the next generation of innovation with our cutting-edge platform. Built for creators, designed for growth.
             </p>
             
             <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp-delay-800">
-                <button class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+            <div class="flex flex-col sm:flex-row gap-6 md:gap-4 justify-center mb-12 mobile-buttons animate-fadeInUp-delay-800">
+                <button class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-5 mobile-button md:px-8 md:py-4 rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-48 md:min-w-40">
                     <span class="relative z-10">Get Started</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
                 </button>
-                <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg border border-white/20 backdrop-filter hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+                <button class="bg-white/10 hover:bg-white/20 text-white px-10 py-5 mobile-button md:px-8 md:py-4 rounded-xl font-semibold text-lg border border-white/20 backdrop-filter hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-48 md:min-w-40">
                     <span class="relative z-10">Learn More</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
                 </button>
             </div>
             
             <!-- Avatar Circles -->
-            <div class="flex items-center gap-4 mt-12 justify-center animate-fadeInUp-delay-800">
+            <div class="flex flex-col sm:flex-row items-center gap-6 md:gap-4 mt-16 md:mt-12 justify-center animate-fadeInUp-delay-800">
                 <div id="avatar-circles" class="flex -space-x-4">
                     <!-- Avatars will be populated by JavaScript -->
                 </div>
-                <div class="text-sm text-gray-400">
+                <div class="text-base md:text-sm text-gray-400 text-center sm:text-left">
                     <span class="font-semibold text-white">10,000+</span> creators already joined
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
   <!-- ==================== SERVICES SECTION ==================== -->
   <section id="services" class="py-20">
@@ -1583,96 +1629,7 @@
         }
       });
     });
-     const avatars = [
-            {
-                imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                profileUrl: '#'
-            },
-            {
-                imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b14d2bc2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                profileUrl: '#'
-            },
-            {
-                imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                profileUrl: '#'
-            },
-            {
-                imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                profileUrl: '#'
-            },
-            {
-                imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                profileUrl: '#'
-            }
-        ];
-
-        // Create avatar circles
-        function createAvatarCircles() {
-            const container = document.getElementById('avatar-circles');
-            if (!container) return;
-            
-            // Display first 4 avatars
-            avatars.slice(0, 4).forEach((avatar, index) => {
-                const link = document.createElement('a');
-                link.href = avatar.profileUrl;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
-                link.className = 'transition-transform hover:scale-110 hover:z-10 relative';
-                
-                const img = document.createElement('img');
-                img.src = avatar.imageUrl;
-                img.alt = `Avatar ${index + 1}`;
-                img.className = 'h-10 w-10 rounded-full border-2 border-gray-700 hover:border-blue-400 transition-colors';
-                img.width = 40;
-                img.height = 40;
-                
-                link.appendChild(img);
-                container.appendChild(link);
-            });
-            
-            // Add the +X circle for remaining people
-            const remainingCount = 9996; // 10,000 - 4 shown
-            if (remainingCount > 0) {
-                const plusCircle = document.createElement('div');
-                plusCircle.className = 'flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-800 text-center text-xs font-medium text-white hover:bg-gray-700 hover:border-blue-400 transition-colors cursor-pointer';
-                plusCircle.textContent = `+${remainingCount.toLocaleString()}`;
-                container.appendChild(plusCircle);
-            }
-        }
-
-        // Initialize avatar circles when page loads
-        document.addEventListener('DOMContentLoaded', createAvatarCircles);
-
-        // Enhanced interactivity for all elements
-        document.querySelectorAll('.image-block').forEach(block => {
-            block.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1) translateY(-10px)';
-                this.style.boxShadow = '0 25px 50px rgba(59, 130, 246, 0.4)';
-            });
-            
-            block.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) translateY(0px)';
-                this.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.2)';
-            });
-            
-            block.addEventListener('click', function() {
-                console.log('Image block clicked - add your functionality here');
-            });
-        });
-
-        // Video sphere interactions
-        document.querySelector('.video-sphere').addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.style.transition = 'transform 0.3s ease';
-        });
         
-        document.querySelector('.video-sphere').addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-        
-        document.querySelector('.video-sphere').addEventListener('click', function() {
-            console.log('Video sphere clicked - implement video player here');
-        });
 
     // Enhanced Intersection Observer
         const observerOptions = {
@@ -1701,6 +1658,99 @@
         document.getElementById('secondaryButton').addEventListener('click', () => {
             alert('Hier würden weitere Informationen angezeigt werden!');
         });
+
+    const avatars = [
+    {
+        imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+    },
+    {
+        imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b14d2bc2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+    },
+    {
+        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+    },
+    {
+        imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+    },
+    {
+        imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+    }
+];
+
+// Create avatar circles
+function createAvatarCircles() {
+    const container = document.getElementById('avatar-circles');
+    if (!container) return;
+    
+    // Display first 4 avatars with mobile-friendly sizing
+    avatars.slice(0, 4).forEach((avatar, index) => {
+        const link = document.createElement('a');
+        link.href = avatar.profileUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'transition-transform hover:scale-110 hover:z-10 relative';
+        
+        const img = document.createElement('img');
+        img.src = avatar.imageUrl;
+        img.alt = `Avatar ${index + 1}`;
+        img.className = 'h-12 w-12 md:h-10 md:w-10 rounded-full border-2 border-gray-700 hover:border-blue-400 transition-colors';
+        img.width = window.innerWidth <= 768 ? 48 : 40;
+        img.height = window.innerWidth <= 768 ? 48 : 40;
+        
+        link.appendChild(img);
+        container.appendChild(link);
+    });
+    
+    // Add the +X circle for remaining people
+    const remainingCount = 9996;
+    if (remainingCount > 0) {
+        const plusCircle = document.createElement('div');
+        plusCircle.className = 'flex h-12 w-12 md:h-10 md:w-10 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-800 text-center text-xs font-medium text-white hover:bg-gray-700 hover:border-blue-400 transition-colors cursor-pointer';
+        plusCircle.textContent = `+${remainingCount.toLocaleString()}`;
+        container.appendChild(plusCircle);
+    }
+}
+
+// Highlight the word "Digital" with underline
+function highlightDigital() {
+    const element = document.getElementById('highlight-word');
+    if (!element || !window.RoughNotation) return;
+    
+    const annotation = window.RoughNotation.annotate(element, {
+        type: 'underline',
+        color: '#1e40af',
+        strokeWidth: 4,
+        animationDuration: 800,
+        iterations: 1,
+        padding: 8,
+        multiline: false
+    });
+    
+    // Show underline after a delay
+    setTimeout(() => {
+        annotation.show();
+    }, 1500);
+}
+
+// Initialize everything when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    createAvatarCircles();
+    highlightDigital();
+});
+
+// Handle resize for avatar sizing
+window.addEventListener('resize', function() {
+    const container = document.getElementById('avatar-circles');
+    if (container) {
+        container.innerHTML = '';
+        createAvatarCircles();
+    }
+});
 </script>
 </body>
 </html>
