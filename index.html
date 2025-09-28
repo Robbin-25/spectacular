@@ -1742,6 +1742,64 @@ document.addEventListener('DOMContentLoaded', function() {
     createAvatarCircles();
     highlightDigital();
 });
+
+      gsap.registerPlugin(ScrollTrigger);
+        
+        // Animation für Badge
+        gsap.set(".inline-flex", { opacity: 0, y: 30 });
+        gsap.to(".inline-flex", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power3.out"
+        });
+        
+        // Animation für Haupttitel
+        gsap.set("h2", { opacity: 0, y: 50 });
+        gsap.to("h2", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: 0.2,
+            ease: "power3.out"
+        });
+        
+        // Animation für Untertitel
+        gsap.set("p", { opacity: 0, y: 30 });
+        gsap.to("p", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            delay: 0.4,
+            ease: "power3.out"
+        });
+        
+        // Animation für Service Cards
+        gsap.set(".service-card", { opacity: 0, y: 100 });
+        gsap.to(".service-card", {
+            scrollTrigger: {
+                trigger: ".service-card",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: 0.6,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
 </script>
 </body>
 </html>
