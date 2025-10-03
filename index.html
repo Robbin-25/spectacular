@@ -1756,19 +1756,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // ========== Contact ANIMATIONS ==========
 
-      gsap.registerPlugin(ScrollTrigger);
-    
-gsap.from("#contact", {
-    opacity: 0,
-    y: 80,                 // leicht von unten
-    duration: 1.2,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: "#contact",
-      start: "top 80%",    // wenn 80% vom Viewport erreicht sind
-      toggleActions: "play none none none" 
-      // play nur einmal, kein reverse
-    }
+     document.addEventListener("DOMContentLoaded", () => {
+    // Timeline für smooth sequence
+    const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.8 } });
+
+    tl.from("#contact .text-center", { opacity: 0, y: 40 })
+      .from("#contact h1", { opacity: 0, y: 30 }, "-=0.5")
+      .from("#contact p", { opacity: 0, y: 20 }, "-=0.4")
+      .from("#contact form .floating-label", { 
+          opacity: 0, 
+          y: 20, 
+          stagger: 0.15 
+      }, "-=0.2")
+      .from("#contact form button", { opacity: 0, scale: 0.9 }, "-=0.3");
   });
         // ========== Service ANIMATIONS ==========
 
