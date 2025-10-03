@@ -1756,29 +1756,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // ========== Contact ANIMATIONS ==========
 document.addEventListener("DOMContentLoaded", () => {
-  if (!window.gsap) {
-    console.error("GSAP fehlt — CDN blockiert?");
-    return;
-  }
-
-  // Timeline (paused: true → später per Observer starten)
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out", duration: 0.8 } });
 
+  // Animation Steps
   tl.from("#contact .text-center", { opacity: 0, y: 40 })
     .from("#contact h1", { opacity: 0, y: 30 }, "-=0.5")
     .from("#contact p", { opacity: 0, y: 20 }, "-=0.4")
     .from("#contact form .floating-label", { opacity: 0, y: 20, stagger: 0.12 }, "-=0.2")
-    .from("#contact form button", { opacity: 0, scale: 0.95 }, "-=0.3");
+    .from("#contact form button", { opacity: 0, y: 25, scale: 0.9, duration: 0.6 }, "-=0.2"); // <--- Button
 
-  // IntersectionObserver: threshold = wieviel Anteil sichtbar sein muss (0.12 = 12%)
+  // Observer: startet, wenn 15% der Section sichtbar sind
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         tl.play();
-        obs.unobserve(entry.target); // nur einmal abspielen
+        obs.unobserve(entry.target);
       }
     });
-  }, { root: null, rootMargin: "0px", threshold: 0.12 });
+  }, { threshold: 0.15 });
 
   const section = document.querySelector("#contact");
   if (section) observer.observe(section);
