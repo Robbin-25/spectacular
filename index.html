@@ -1615,55 +1615,57 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========== Img ANIMATIONS ==========
 document.addEventListener("DOMContentLoaded", () => {
   // CTA Buttons
-  document.getElementById('ctaButton').addEventListener('click', () => {
-    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-  });
+  const ctaBtn = document.getElementById('ctaButton');
+  const secBtn = document.getElementById('secondaryButton');
 
-  document.getElementById('secondaryButton').addEventListener('click', () => {
-    alert('Hier würden weitere Informationen angezeigt werden!');
-  });
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', () => {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    });
+  }
+  if (secBtn) {
+    secBtn.addEventListener('click', () => {
+      alert('Hier würden weitere Informationen angezeigt werden!');
+    });
+  }
 
-  gsap.registerPlugin(ScrollTrigger);
+  // GSAP Plugins
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
 
-  // Responsive Animation
-  gsap.matchMedia().add({
+    let mm = gsap.matchMedia();
+
     // Large screens (PC)
-    "(min-width: 1024px)": function() {
+    mm.add("(min-width: 1024px)", () => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".img-sec-title",
           start: "top 80%",
         }
       });
-
-      // Titel und Bild gleichzeitig
       tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
         .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "<")
         .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
         .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
         .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4");
-    },
+    });
 
     // Small screens (Handy)
-    "(max-width: 1023px)": function() {
+    mm.add("(max-width: 1023px)", () => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".img-sec-title",
           start: "top 80%",
         }
       });
-
-      // Titel zuerst, Bild danach
       tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
         .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
         .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "-=0.5")
         .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
         .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4");
-    }
-  });
+    });
+  }
 });
-
-
 
     // ========== Hero ANIMATIONS ==========
     
