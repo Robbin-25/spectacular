@@ -101,116 +101,33 @@
 
     /* ========== Image plus Text SECTION ========== */
 
-     .image-overlay {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease forwards;
-            animation-play-state: paused;
-        }
-        
-        .animate-slide-left {
-            animation: slideInLeft 0.8s ease forwards;
-            animation-play-state: paused;
-        }
-        
-        .animate-slide-right {
-            animation: slideInRight 0.8s ease forwards;
-            animation-play-state: paused;
-        }
-        
-        .animate-fade-in.delay-1 { animation-delay: 0.2s; }
-        .animate-fade-in.delay-2 { animation-delay: 0.4s; }
-        .animate-fade-in.delay-3 { animation-delay: 0.6s; }
-        .animate-fade-in.delay-4 { animation-delay: 0.8s; }
-        .animate-slide-left.delay-1 { animation-delay: 0.3s; }
-        .animate-slide-right.delay-1 { animation-delay: 0.3s; }
-        
-        .animate-running {
-            animation-play-state: running;
-        }
-        
-        .btn-primary {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-        
-        .feature-item {
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateX(10px);
-            color: #f3f4f6;
-        }
-
-
+    .btn-primary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    .feature-item {
+      transition: all 0.3s ease;
+    }
+    .feature-item:hover {
+      transform: translateX(10px);
+      color: #f3f4f6;
+    }
+    
     /* ========== APPS SECTION ========== */
    .tool-icon {
             background: linear-gradient(145deg, #0f0f0f, #0a0a0a);
@@ -626,90 +543,84 @@
 
 
     <!-- ==================== Text plus Image ==================== -->
-  <section class="min-h-screen flex items-center px-6 lg:px-20 py-16 relative overflow-hidden" style="background-color: #040404;">
-        <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <!-- Content Section -->
-                <div class="text-white lg:pr-8">
-                    
-                    <!-- FIXED TITLE ohne Effekt -->
-                  <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-6 tracking-tight animate-fade-in opacity-0 text-white">
-    Innovative Lösungen für die Zukunft
-</h1>
 
-                    
-                    <p class="text-xl lg:text-2xl text-gray-300 leading-relaxed mb-10 animate-fade-in delay-1 opacity-0">
-                        Entdecken Sie revolutionäre <strong class="text-white">KI-Technologien</strong>, die Ihr Business transformieren. 
-                        Wir kombinieren modernste Innovationen mit bewährten Strategien für außergewöhnliche Ergebnisse.
-                    </p>
-                    
-                    <!-- Feature Liste -->
-                    <div class="mb-10 animate-fade-in delay-3 opacity-0">
-                        <ul class="space-y-4 text-gray-300">
-                            <li class="flex items-center feature-item">
-                                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-lg">Modernste KI-Technologien für maximale Effizienz</span>
-                            </li>
-                            <li class="flex items-center feature-item">
-                                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-lg">Persönliche Betreuung und 24/7 Support</span>
-                            </li>
-                            <li class="flex items-center feature-item">
-                                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-lg">Skalierbare Lösungen für jede Unternehmensgröße</span>
-                            </li>
-                            <li class="flex items-center feature-item">
-                                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-lg">Garantierte ROI-Steigerung innerhalb von 6 Monaten</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-4 opacity-0">
-                        <button class="btn-primary px-8 py-4 text-white font-semibold rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-600/40 relative" 
-                                id="ctaButton">
-                            <span class="relative z-10">Kostenlose Demo</span>
-                        </button>
-                        <button class="px-8 py-4 border-2 border-white/20 text-gray-300 font-semibold rounded-lg text-lg transition-all duration-300 hover:border-white hover:text-white hover:bg-white/5" 
-                                id="secondaryButton">
-                            Mehr erfahren
-                        </button>
-                    </div>
+  
+  <section class="min-h-screen flex items-center px-6 lg:px-20 py-16 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto w-full relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <!-- Content Section -->
+        <div class="text-white lg:pr-8">
+          <h1 class="img-sec-title text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-6 tracking-tight text-white opacity-0">
+            Innovative Lösungen für die Zukunft
+          </h1>
+
+          <p class="img-sec-text text-xl lg:text-2xl text-gray-300 leading-relaxed mb-10 opacity-0">
+            Entdecken Sie revolutionäre <strong class="text-white">KI-Technologien</strong>, die Ihr Business transformieren. 
+            Wir kombinieren modernste Innovationen mit bewährten Strategien für außergewöhnliche Ergebnisse.
+          </p>
+
+          <!-- Feature Liste -->
+          <div class="mb-10">
+            <ul class="space-y-4 text-gray-300">
+              <li class="flex items-center feature-item opacity-0">
+                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
+                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
-                
-                <!-- Image Section -->
-                <div class="relative group animate-slide-right delay-1 opacity-0">
-                    <div class="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/40">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90oy1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                             alt="Modern Technology" 
-                             class="w-full h-96 lg:h-[650px] object-cover transition-transform duration-500"
-                             loading="lazy">
-                        <div class="absolute inset-0 image-overlay opacity-0 transition-opacity duration-500 "></div>
-                        
-                        <!-- Floating Info Cards -->
-                    
-                    </div>
+                <span class="text-lg">Modernste KI-Technologien für maximale Effizienz</span>
+              </li>
+              <li class="flex items-center feature-item opacity-0">
+                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
+                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
-            </div>
+                <span class="text-lg">Persönliche Betreuung und 24/7 Support</span>
+              </li>
+              <li class="flex items-center feature-item opacity-0">
+                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
+                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-lg">Skalierbare Lösungen für jede Unternehmensgröße</span>
+              </li>
+              <li class="flex items-center feature-item opacity-0">
+                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
+                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-lg">Garantierte ROI-Steigerung innerhalb von 6 Monaten</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 opacity-0 img-sec-buttons">
+            <button class="btn-primary px-8 py-4 text-white font-semibold rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-600/40 relative" id="ctaButton">
+              <span class="relative z-10">Kostenlose Demo</span>
+            </button>
+            <button class="px-8 py-4 border-2 border-white/20 text-gray-300 font-semibold rounded-lg text-lg transition-all duration-300 hover:border-white hover:text-white hover:bg-white/5" id="secondaryButton">
+              Mehr erfahren
+            </button>
+          </div>
         </div>
-    </section>
+
+        <!-- Image Section -->
+        <div class="relative group opacity-0 img-sec-image">
+          <div class="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/40">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90oy1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Modern Technology" 
+                 class="w-full h-96 lg:h-[650px] object-cover transition-transform duration-500"
+                 loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== APPS SECTION ==================== -->
   <section id="tools" class="min-h-screen flex items-center justify-center py-12 sm:py-16">
@@ -1703,22 +1614,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== Img ANIMATIONS ==========
 
-           // Start animations immediately on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            // Trigger animations instantly
-            document.querySelectorAll('.animate-fade-in, .animate-slide-right').forEach(el => {
-                el.style.animationPlayState = 'running';
-            });
-        });
+         // CTA Button Interactions
+    document.getElementById('ctaButton').addEventListener('click', () => {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    });
 
-        // Enhanced Button Interactions
-        document.getElementById('ctaButton').addEventListener('click', () => {
-            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-        });
+    document.getElementById('secondaryButton').addEventListener('click', () => {
+      alert('Hier würden weitere Informationen angezeigt werden!');
+    });
 
-        document.getElementById('secondaryButton').addEventListener('click', () => {
-            alert('Hier würden weitere Informationen angezeigt werden!');
-        });
+    // GSAP Animation
+    gsap.registerPlugin(ScrollTrigger);
+
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".img-sec-title",
+        start: "top 80%", 
+      }
+    });
+
+    tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
+      .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
+      .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
+      .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4")
+      .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "-=1");
 
     // ========== Hero ANIMATIONS ==========
     
