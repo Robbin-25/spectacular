@@ -60,7 +60,7 @@
         background-clip: text;
     }
     /* ========== SERVICES SECTION ========== */
-      .service-card {
+     .service-card {
             background: #0a0a0a;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
                         0 8px 20px rgba(0, 0, 0, 0.35),
@@ -97,6 +97,7 @@
             position: relative;
             z-index: 1;
         }
+
 
     /* ========== Image plus Text SECTION ========== */
 
@@ -572,13 +573,13 @@
 </section>
 
   <!-- ==================== SERVICES SECTION ==================== -->
-    <section id="services" class="py-20">
+     <section id="services" class="py-20">
         <div class="container mx-auto px-4 text-center">
             <div class="text-center inline-flex bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
                 Unsere Services
             </div>
             
-            <h2 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4 tracking-tight text-white" style="font-family: 'Inter', sans-serif;">
+            <h2 class="text-center text-3xl md:text-3xl lg:text-4xl font-extrabold md:font-bold leading-tight mb-6 md:mb-4 tracking-tight text-white" style="font-family: 'Inter', sans-serif;">
                 Digitale Lösungen für <span class="highlight" data-text="Ihren Erfolg">Ihren Erfolg</span>
             </h2>
             
@@ -613,6 +614,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- ==================== Text plus Image ==================== -->
   <section class="min-h-screen flex items-center px-6 lg:px-20 py-16 relative overflow-hidden" style="background-color: #040404;">
@@ -1650,7 +1652,7 @@
             alert('Hier würden weitere Informationen angezeigt werden!');
         });
 
-
+    // ========== Hero ANIMATIONS ==========
     
 
    const avatars = [
@@ -1737,7 +1739,11 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightDigital();
 });
 
-      gsap.registerPlugin(ScrollTrigger);
+
+        // ========== Service ANIMATIONS ==========
+
+    
+       gsap.registerPlugin(ScrollTrigger);
         
         // Animation für Badge
         gsap.set(".inline-flex", { opacity: 0, y: 30 });
@@ -1780,37 +1786,35 @@ document.addEventListener('DOMContentLoaded', function() {
             ease: "power3.out"
         });
         
-        // Animation für Service Cards
-        gsap.set(".service-card", { opacity: 0, y: 100 });
-        gsap.to(".service-card", {
+        // Animation für Service Cards Container
+        gsap.set(".grid", { opacity: 0, y: 100 });
+        gsap.to(".grid", {
             scrollTrigger: {
-                trigger: ".service-card",
+                trigger: ".grid",
                 start: "top 80%",
             },
             y: 0,
             opacity: 1,
             duration: 0.8,
             delay: 0.6,
+            ease: "power3.out"
+        });
+        
+        // Individual Service Cards Animation
+        gsap.set(".service-card", { opacity: 0, y: 50, scale: 0.9 });
+        gsap.to(".service-card", {
+            scrollTrigger: {
+                trigger: ".service-card",
+                start: "top 85%",
+            },
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            delay: 0.8,
             stagger: 0.2,
             ease: "power3.out"
         });
-
-    
-            // Title Animation
-            gsap.to("#title", {
-                scrollTrigger: {
-                    trigger: "#tools",
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                delay: 0.2,
-                ease: "power3.out"
-            });
-
 </script>
 </body>
 </html>
