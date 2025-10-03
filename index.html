@@ -1274,66 +1274,65 @@
 
     // ========== APPS SECTION ANIMATIONS ==========
  
-      gsap.registerPlugin(ScrollTrigger);
+     gsap.registerPlugin(ScrollTrigger);
 
-    // Warte bis DOM geladen ist
-    document.addEventListener('DOMContentLoaded', function() {
-        // Prüfe ob Elemente existieren
-        const toolsSection = document.querySelector('#tools');
-        const techBadge = document.querySelector('.tech-badge');
-        const revealTexts = document.querySelectorAll('.reveal-text');
-        const subtitle = document.querySelector('.subtitle');
-        const toolIcons = document.querySelectorAll('.tool-icon');
+// Warte bis DOM geladen ist
+document.addEventListener('DOMContentLoaded', function() {
+    // Prüfe ob Elemente existieren
+    const toolsSection = document.querySelector('#tools');
+    const techBadge = document.querySelector('.tech-badge');
+    const revealTexts = document.querySelectorAll('.reveal-text');
+    const subtitle = document.querySelector('.subtitle');
+    const toolIcons = document.querySelectorAll('.tool-icon');
 
-        if (!toolsSection) {
-            console.error('Tools section not found');
-            return;
+    if (!toolsSection) {
+        console.error('Tools section not found');
+        return;
+    }
+
+    // Erstelle Timeline mit verbessertem ScrollTrigger
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#tools',
+            start: 'top 80%', // früher starten
+            end: 'top 20%',
+            toggleActions: 'play none none none',
+            markers: false,
+            once: true
         }
-
-        // Erstelle Timeline mit verbessertem ScrollTrigger
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: '#tools',
-                start: 'top 80%', // Früher starten
-                end: 'top 20%',
-                toggleActions: 'play none none none',
-                // Debug-Marker (entfernen in Production)
-                markers: false,
-                // Wichtig: einmal abspielen
-                once: true
-            }
-        });
-
-        // Animation-Sequenz
-        tl.to(techBadge, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: 'power2.out'
-        })
-        .to(revealTexts, {
-            opacity: 1,
-            stagger: 0.12,
-            duration: 0.6,
-            ease: 'power2.out'
-        }, '+=0.2')
-        .to(subtitle, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power2.out'
-        }, '+=0.3')
-        .to(toolIcons, {
-            y: 0,
-            opacity: 1,
-            stagger: 0.08,
-            duration: 0.4,
-            ease: 'power3.out'
-        }, '+=0.2');
-
-        // Refresh ScrollTrigger nach allem anderen Content
-        ScrollTrigger.refresh();
     });
+
+    // Animation-Sequenz
+    tl.to(techBadge, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+    })
+    .to(revealTexts, {
+        opacity: 1,
+        stagger: 0.1,   // schneller
+        duration: 0.5,  // kürzer
+        ease: 'power2.out'
+    }, '+=0.15')
+    .to(subtitle, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,  // statt 0.8
+        ease: 'power2.out'
+    }, '+=0.15')
+    .to(toolIcons, {
+        y: 0,
+        opacity: 1,
+        stagger: 0.05,  // statt 0.08
+        duration: 0.3,  // statt 0.4
+        ease: 'power3.out'
+    }, '+=0.15');
+
+    // Refresh ScrollTrigger nach allem anderen Content
+    ScrollTrigger.refresh();
+});
+
     
     // ========== GRID SECTION ANIMATIONS ==========
     // Buildings animation
