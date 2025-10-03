@@ -1754,6 +1754,31 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightDigital();
 });
 
+      // ========== Contact ANIMATIONS ==========
+
+
+     document.addEventListener("DOMContentLoaded", () => {
+    // Timeline erstellen
+    const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.8 } });
+
+    // Überschrift & Untertitel
+    tl.from("#contact h1", { y: 50, opacity: 0 })
+      .from("#contact p", { y: 30, opacity: 0 }, "-=0.5")
+
+      // Formularfelder nacheinander
+      .from("#contact-form .floating-label", {
+        y: 40,
+        opacity: 0,
+        stagger: 0.2
+      }, "-=0.2")
+
+      // Checkbox
+      .from("#consent", { scale: 0.8, opacity: 0 }, "-=0.3")
+
+      // Button
+      .from("#submit-btn", { y: 40, opacity: 0 }, "-=0.2");
+  });
+
 
         // ========== Service ANIMATIONS ==========
 
