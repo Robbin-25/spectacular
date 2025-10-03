@@ -998,7 +998,7 @@
 
 
   <!-- ==================== FOOTER SECTION ==================== -->
-  <footer class="relative isolate overflow-hidden pb-12">
+  <footer  id="contact" class="relative isolate overflow-hidden pb-12">
     <!-- Background Elements -->
     <div aria-hidden="true" class="bg-unified"></div>
     <div aria-hidden="true" class="bg-overlay"></div>
@@ -1756,36 +1756,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // ========== Contact ANIMATIONS ==========
 
-
-    document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Timeline für die Contact Section
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#contact",
-        start: "top 70%", // startet, wenn 70% vom Viewport erreicht
-        toggleActions: "play none none none"
-      },
-      defaults: { ease: "power2.out", duration: 0.8 }
-    });
-
-    // Überschrift + Untertitel
-    tl.from("#contact h1", { y: 50, opacity: 0 })
-      .from("#contact p", { y: 30, opacity: 0 }, "-=0.5")
-
-      // Formularfelder nacheinander
-      .from("#contact-form .floating-label", {
-        y: 40,
-        opacity: 0,
-        stagger: 0.2
-      }, "-=0.2")
-
-      // Checkbox
-      .from("#consent", { scale: 0.8, opacity: 0 }, "-=0.3")
-
-      // Button (sichtbar lassen!)
-      .from("#submit-btn", { y: 40, opacity: 0 }, "-=0.2");
+gsap.from("#contact", {
+    opacity: 0,
+    y: 80,                 // leicht von unten
+    duration: 1.2,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#contact",
+      start: "top 80%",    // wenn 80% vom Viewport erreicht sind
+      toggleActions: "play none none none" 
+      // play nur einmal, kein reverse
+    }
   });
         // ========== Service ANIMATIONS ==========
 
