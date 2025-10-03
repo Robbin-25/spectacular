@@ -212,7 +212,7 @@
 
 
     /* ========== APPS SECTION ========== */
-    .tool-icon {
+   .tool-icon {
             background: linear-gradient(145deg, #0f0f0f, #0a0a0a);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
                         0 8px 20px rgba(0, 0, 0, 0.35),
@@ -249,12 +249,21 @@
             }
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Text Reveal Animation Styles */
+        .reveal-text {
+            display: inline-block;
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
         }
 
+        .reveal-text.active {
+            opacity: 1;
+        }
+
+        .subtitle {
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
     /* ========== GRID SECTION ========== */
     .building {
@@ -703,65 +712,73 @@
     </section>
 
   <!-- ==================== APPS SECTION ==================== -->
-  <section id="tools" class="flex items-center justify-center py-16 sm:py-20">
-            <div class="text-center px-6 sm:px-10 max-w-6xl w-full">
-                <div class="badge inline-flex items-center text-blue-200 px-4 py-2.5 rounded-full text-sm font-medium mb-6 opacity-0" id="badge">
-                    <i class="fas fa-tools mr-2 text-blue-400"></i>
-                    Unsere liebsten Tools
-                </div>
-                
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-12 text-white opacity-0" id="title">
-                    Alle Tools und <span class="highlight" data-text="Apps">Apps</span> auf die wir<br class="hidden sm:block">
-                    bei der Arbeit vertrauen
-                </h1>
+  <section id="tools" class="min-h-screen flex items-center justify-center py-12 sm:py-16">
+        <div class="text-center px-6 sm:px-10 max-w-6xl w-full">
+            <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 md:mb-8 shadow-lg shadow-blue-800/30">
+                <i class="fas fa-toolbox mr-2"></i>
+                Tech Stack
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6 text-white" id="main-title">
+                <span class="reveal-text">The</span>
+                <span class="reveal-text">tools</span>
+                <span class="reveal-text">that</span>
+                <span class="reveal-text"><span class="highlight" data-text="power">power</span></span>
+                <span class="reveal-text">our</span>
+                <span class="reveal-text">creativity</span>
+            </h1>
 
-                <div class="flex flex-wrap justify-center gap-8 sm:gap-10 max-w-4xl mx-auto" id="tools-grid">
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Figma.png" alt="Figma" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Goodnotes.png" alt="Goodnotes" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/GSAP.png" alt="GSAP" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Github.png" alt="Github" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Blender.png" alt="Blender" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Notion.png" alt="Notion" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Microsoft_office.png" alt="Microsoft Office" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Google__G__logo.svg.png" alt="Google" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Gmail.png" alt="Gmail" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/chatgpt.png" alt="ChatGPT" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Tailwind.png" alt="Tailwind" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/Vscode.png" alt="VS Code" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/claude-logo.svg" alt="Claude" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <div class="tool-icon w-20 h-20 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                        <img src="assets/outlook.png" alt="Outlook" class="w-10 h-10 object-contain z-10 group-hover:scale-110 transition-transform duration-300">
-                    </div>
+            <p class="subtitle text-lg md:text-xl text-gray-400 mb-12 sm:mb-14 max-w-2xl mx-auto">
+                From design to deployment, these are the essential applications that drive our workflow and bring ideas to life
+            </p>
+
+            <!-- Tools Grid -->
+            <div class="flex flex-wrap justify-center gap-12 sm:gap-8 max-w-3xl mx-auto px-0">
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Figma.png" alt="Figma" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Goodnotes.png" alt="Goodnotes" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/GSAP.png" alt="GSAP" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Github.png" alt="Github" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Blender.png" alt="Blender" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Notion.png" alt="Notion" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Microsoft_office.png" alt="Microsoft Office" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Google__G__logo.svg.png" alt="Google" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Gmail.png" alt="Gmail" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/chatgpt.png" alt="ChatGPT" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Tailwind.png" alt="Tailwind" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/Vscode.png" alt="VS Code" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/claude-logo.svg" alt="Claude" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+                </div>
+                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                    <img src="assets/outlook.png" alt="Outlook" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
                 </div>
             </div>
-        </section>
-
+        </div>
+    </section>
 
 
   <!-- ==================== GRID SECTION ==================== -->
@@ -1251,19 +1268,50 @@
 
 
     // ========== APPS SECTION ANIMATIONS ==========
-    gsap.to(".tool-icon", {
-      scrollTrigger: {
-        trigger: ".tool-icon",
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      },
-      y: 0,
-      opacity: 1,
-      stagger: 0.1,
-      duration: 0.2,
-      ease: "power3.out"
-    });
+     gsap.registerPlugin(ScrollTrigger);
+
+        // Text Reveal Animation on Scroll (plays once)
+        const revealWords = document.querySelectorAll('.reveal-text');
+        
+        gsap.to(revealWords, {
+            scrollTrigger: {
+                trigger: '#main-title',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            opacity: 1,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: 'power2.out'
+        });
+
+        // Subtitle Animation (plays once)
+        gsap.to('.subtitle', {
+            scrollTrigger: {
+                trigger: '.subtitle',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.4,
+            ease: 'power2.out'
+        });
+
+        // Tool Icons Animation (plays once)
+        gsap.to('.tool-icon', {
+            scrollTrigger: {
+                trigger: '.tool-icon',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.2,
+            ease: 'power3.out'
+        });
 
     
     // ========== GRID SECTION ANIMATIONS ==========
