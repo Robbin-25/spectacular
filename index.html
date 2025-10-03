@@ -1614,30 +1614,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== Img ANIMATIONS ==========
 
-         // CTA Button Interactions
-    document.getElementById('ctaButton').addEventListener('click', () => {
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-    });
+      document.addEventListener("DOMContentLoaded", () => {
+  // CTA Button Interactions
+  document.getElementById('ctaButton').addEventListener('click', () => {
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  });
 
-    document.getElementById('secondaryButton').addEventListener('click', () => {
-      alert('Hier würden weitere Informationen angezeigt werden!');
-    });
+  document.getElementById('secondaryButton').addEventListener('click', () => {
+    alert('Hier würden weitere Informationen angezeigt werden!');
+  });
 
-    // GSAP Animation
-    gsap.registerPlugin(ScrollTrigger);
+  // GSAP Animation
+  gsap.registerPlugin(ScrollTrigger);
 
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".img-sec-title",
-        start: "top 80%", 
-      }
-    });
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".img-sec-title",
+      start: "top 80%", 
+    }
+  });
 
-    tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
-      .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
-      .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
-      .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4")
-      .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "-=1");
+  tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
+    .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
+    .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
+    .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4")
+    .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "-=1");
+});
+
 
     // ========== Hero ANIMATIONS ==========
     
