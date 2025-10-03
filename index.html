@@ -1269,47 +1269,58 @@
 
     // ========== APPS SECTION ANIMATIONS ==========
  
-    // Create a timeline for sequential animations
-        const tl = gsap.timeline({
+    // Badge animation
+        gsap.to('.tech-badge', {
             scrollTrigger: {
                 trigger: '#tools',
-                start: 'top 70%',
+                start: 'top 75%',
                 toggleActions: 'play none none none'
-            }
-        });
-
-        // 1. Badge appears first
-        tl.to('.tech-badge', {
+            },
             opacity: 1,
             y: 0,
             duration: 0.6,
             ease: 'power2.out'
-        })
-        
-        // 2. Title words reveal one by one
-        .to('.reveal-text', {
+        });
+
+        // Title words reveal one by one on scroll
+        gsap.to('.reveal-text', {
+            scrollTrigger: {
+                trigger: '#main-title',
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            },
             opacity: 1,
             stagger: 0.12,
             duration: 0.6,
             ease: 'power2.out'
-        }, '+=0.2')
-        
-        // 3. Subtitle fades in after title
-        .to('.subtitle', {
+        });
+
+        // Subtitle fades in
+        gsap.to('.subtitle', {
+            scrollTrigger: {
+                trigger: '.subtitle',
+                start: 'top 75%',
+                toggleActions: 'play none none none'
+            },
             opacity: 1,
             y: 0,
             duration: 0.8,
             ease: 'power2.out'
-        }, '+=0.3')
-        
-        // 4. Tool icons appear with stagger
-        .to('.tool-icon', {
+        });
+
+        // Tool icons appear with stagger
+        gsap.to('.tool-icon', {
+            scrollTrigger: {
+                trigger: '.tool-icon',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
             y: 0,
             opacity: 1,
             stagger: 0.08,
             duration: 0.4,
             ease: 'power3.out'
-        }, '+=0.2');
+        });
     
     // ========== GRID SECTION ANIMATIONS ==========
     // Buildings animation
