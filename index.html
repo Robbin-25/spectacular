@@ -1811,79 +1811,65 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // ========== Service ANIMATIONS ==========
 
+ gsap.registerPlugin(ScrollTrigger);
+
+  // Animation für Badge
+  gsap.set(".inline-flex", { opacity: 0, y: 30 });
+  gsap.to(".inline-flex", {
+    scrollTrigger: {
+      trigger: "#services",
+      start: "top 90%", // startet früher
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.6,
+    ease: "power3.out"
+  });
+
+  // Animation für Haupttitel
+  gsap.set("h2", { opacity: 0, y: 50 });
+  gsap.to("h2", {
+    scrollTrigger: {
+      trigger: "#services",
+      start: "top 90%", // startet früher
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    delay: 0.2,
+    ease: "power3.out"
+  });
+
+  // Animation für Untertitel
+  gsap.set("#services p", { opacity: 0, y: 30 });
+  gsap.to("#services p", {
+    scrollTrigger: {
+      trigger: "#services",
+      start: "top 90%",
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.6,
+    delay: 0.4,
+    ease: "power3.out"
+  });
+
+  // Animation für Service Cards
+  gsap.set(".service-card", { opacity: 0, y: 50, scale: 0.9 });
+  gsap.to(".service-card", {
+    scrollTrigger: {
+      trigger: ".grid",    // statt jede Card einzeln → Container
+      start: "top 95%",    // startet früh, sobald Grid ins Sichtfeld kommt
+    },
+    y: 0,
+    opacity: 1,
+    scale: 1,
+    duration: 0.6,
+    delay: 0.2,
+    stagger: 0.2,         // jede Card kommt nacheinander
+    ease: "power3.out"
+  });
     
-       gsap.registerPlugin(ScrollTrigger);
-        
-        // Animation für Badge
-        gsap.set(".inline-flex", { opacity: 0, y: 30 });
-        gsap.to(".inline-flex", {
-            scrollTrigger: {
-                trigger: "#services",
-                start: "top 80%",
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: "power3.out"
-        });
-        
-        // Animation für Haupttitel
-        gsap.set("h2", { opacity: 0, y: 50 });
-        gsap.to("h2", {
-            scrollTrigger: {
-                trigger: "#services",
-                start: "top 80%",
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            delay: 0.2,
-            ease: "power3.out"
-        });
-        
-        // Animation für Untertitel
-        gsap.set("p", { opacity: 0, y: 30 });
-        gsap.to("p", {
-            scrollTrigger: {
-                trigger: "#services",
-                start: "top 80%",
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            delay: 0.4,
-            ease: "power3.out"
-        });
-        
-         // Animation für Service Cards Container
-        gsap.set(".grid", { opacity: 0, y: 100 });
-        gsap.to(".grid", {
-            scrollTrigger: {
-                trigger: ".grid",
-                start: "top 40%",
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            delay: 0.4,
-            ease: "power3.out"
-        });
-        
-        // Individual Service Cards Animation
-        gsap.set(".service-card", { opacity: 0, y: 50, scale: 0.9 });
-        gsap.to(".service-card", {
-            scrollTrigger: {
-                trigger: ".service-card",
-                start: "top 45%",
-            },
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.6,
-            delay: 0.4,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
 </script>
 </body>
 </html>
