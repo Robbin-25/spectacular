@@ -1268,50 +1268,49 @@
 
 
     // ========== APPS SECTION ANIMATIONS ==========
-     gsap.registerPlugin(ScrollTrigger);
+       gsap.registerPlugin(ScrollTrigger);
 
-        // Text Reveal Animation on Scroll (plays once)
-        const revealWords = document.querySelectorAll('.reveal-text');
+        // Create a timeline for sequential animations
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#tools',
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            }
+        });
+
+        // 1. Badge appears first
+        tl.to('.tech-badge', {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out'
+        })
         
-        gsap.to(revealWords, {
-            scrollTrigger: {
-                trigger: '#main-title',
-                start: 'top 80%',
-                toggleActions: 'play none none none'
-            },
+        // 2. Title words reveal one by one
+        .to('.reveal-text', {
             opacity: 1,
-            stagger: 0.15,
-            duration: 0.8,
+            stagger: 0.12,
+            duration: 0.6,
             ease: 'power2.out'
-        });
-
-        // Subtitle Animation (plays once)
-        gsap.to('.subtitle', {
-            scrollTrigger: {
-                trigger: '.subtitle',
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
+        }, '+=0.2')
+        
+        // 3. Subtitle fades in after title
+        .to('.subtitle', {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            delay: 0.4,
             ease: 'power2.out'
-        });
-
-        // Tool Icons Animation (plays once)
-        gsap.to('.tool-icon', {
-            scrollTrigger: {
-                trigger: '.tool-icon',
-                start: 'top 80%',
-                toggleActions: 'play none none none'
-            },
+        }, '+=0.3')
+        
+        // 4. Tool icons appear with stagger
+        .to('.tool-icon', {
             y: 0,
             opacity: 1,
-            stagger: 0.1,
-            duration: 0.2,
+            stagger: 0.08,
+            duration: 0.4,
             ease: 'power3.out'
-        });
+        }, '+=0.2');
 
     
     // ========== GRID SECTION ANIMATIONS ==========
