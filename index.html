@@ -304,6 +304,16 @@
       }
     }
 
+    .contact-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.contact-section.visible .contact-content {
+  opacity: 1;
+  transform: translateY(0);
+}
 
     /* ========== UTILITIES ========== */
     .highlight {
@@ -997,7 +1007,7 @@
 
 
   <!-- ==================== FOOTER SECTION ==================== -->
-  <footer  id="contact" class="relative isolate overflow-hidden pb-12">
+  <footer class="relative isolate overflow-hidden pb-12">
     <!-- Background Elements -->
     <div aria-hidden="true" class="bg-unified"></div>
     <div aria-hidden="true" class="bg-overlay"></div>
@@ -1755,6 +1765,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // ========== Contact ANIMATIONS ==========
 
+    // Intersection Observer für Fade-in Animation
+const observerOptions = {
+  threshold: 0.2,
+  rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Beobachte die Contact Section
+const contactSection = document.querySelector('.contact-section');
+if (contactSection) {
+  observer.observe(contactSection);
+}
         // ========== Service ANIMATIONS ==========
 
  gsap.registerPlugin(ScrollTrigger);
