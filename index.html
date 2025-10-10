@@ -15,6 +15,27 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
+/* =============== spinning ============== */
+    @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spinning-text {
+            animation: spin 8s linear infinite;
+        }
+        .modal-enter {
+            animation: modalEnter 0.3s ease-out;
+        }
+        @keyframes modalEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     /* =============== cookies ============== */
 
         @keyframes slideIn {
@@ -510,7 +531,143 @@
 </head>
 
 <body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
+<!-- ==================== spinning element ==================== -->
+ <!-- Floating Button unten rechts -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <div class="relative w-40 h-40">
+            <!-- Spinning Text Container -->
+            <div class="spinning-text relative w-full h-full text-white font-semibold text-sm tracking-wide">
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-5.5ch);">G</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(10.91deg) translateY(-5.5ch);">E</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(21.82deg) translateY(-5.5ch);">T</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(32.73deg) translateY(-5.5ch);"> </span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(43.64deg) translateY(-5.5ch);">Y</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(54.55deg) translateY(-5.5ch);">O</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(65.45deg) translateY(-5.5ch);">U</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(76.36deg) translateY(-5.5ch);">R</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(87.27deg) translateY(-5.5ch);"> </span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(98.18deg) translateY(-5.5ch);">S</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(109.09deg) translateY(-5.5ch);">I</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(120deg) translateY(-5.5ch);">T</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(130.91deg) translateY(-5.5ch);">E</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(141.82deg) translateY(-5.5ch);"> </span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(152.73deg) translateY(-5.5ch);">•</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(163.64deg) translateY(-5.5ch);"> </span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(174.55deg) translateY(-5.5ch);">J</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(185.45deg) translateY(-5.5ch);">E</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(196.36deg) translateY(-5.5ch);">T</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(207.27deg) translateY(-5.5ch);">Z</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(218.18deg) translateY(-5.5ch);">T</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(229.09deg) translateY(-5.5ch);"> </span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(240deg) translateY(-5.5ch);">B</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(250.91deg) translateY(-5.5ch);">U</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(261.82deg) translateY(-5.5ch);">C</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(272.73deg) translateY(-5.5ch);">H</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(283.64deg) translateY(-5.5ch);">E</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(294.55deg) translateY(-5.5ch);">N</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(305.45deg) translateY(-5.5ch);"> </span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(316.36deg) translateY(-5.5ch);">•</span>
+                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(327.27deg) translateY(-5.5ch);"> </span>
+            </div>
+            
+            <!-- Center Button -->
+            <button 
+                onclick="openModal()"
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white transition-all duration-300 hover:scale-110 hover:text-gray-200 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+        </div>
+    </div>
 
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-[100] items-center justify-center p-4">
+        <div class="modal-enter bg-black/70 backdrop-blur-sm rounded-2xl shadow-2xl max-w-md w-full p-8 border border-gray-700">
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white">Termin buchen</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="space-y-5">
+                <!-- Name -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                    <input 
+                        type="text" 
+                        id="name"
+                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
+                        placeholder="Ihr Name">
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">E-Mail</label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
+                        placeholder="ihre@email.de">
+                </div>
+
+                <!-- Datum -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Datum
+                    </label>
+                    <input 
+                        type="date" 
+                        id="date"
+                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all">
+                </div>
+
+                <!-- Schnellauswahl Uhrzeit -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Uhrzeit
+                    </label>
+                    <div class="grid grid-cols-3 gap-2 mb-3">
+                        <button onclick="selectTime('09:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">09:00</button>
+                        <button onclick="selectTime('10:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">10:00</button>
+                        <button onclick="selectTime('11:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">11:00</button>
+                        <button onclick="selectTime('14:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">14:00</button>
+                        <button onclick="selectTime('15:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">15:00</button>
+                        <button onclick="selectTime('16:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">16:00</button>
+                    </div>
+                    <input 
+                        type="time" 
+                        id="time"
+                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all">
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    onclick="submitForm()"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 mt-6">
+                    Termin bestätigen
+                </button>
+            </div>
+        </div>
+    </div>
+  
 
   <!-- ==================== CURSOR ELEMENT ==================== -->
   <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
@@ -2191,6 +2348,60 @@ if (contactSection) {
                 console.log('Banner zurückgesetzt - wird wieder angezeigt');
             }
         });
+
+    // ========== spinning ==========
+function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+        }
+
+        function selectTime(time) {
+            document.getElementById('time').value = time;
+            
+            var buttons = document.querySelectorAll('.time-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
+                buttons[i].classList.add('bg-black/40', 'text-gray-300', 'border-gray-600');
+            }
+            
+            window.event.target.classList.remove('bg-black/40', 'text-gray-300', 'border-gray-600');
+            window.event.target.classList.add('bg-blue-600', 'text-white', 'border-blue-500');
+        }
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            if (!name || !email || !date || !time) {
+                alert('Bitte füllen Sie alle Felder aus');
+                return;
+            }
+
+            alert(`Termin gebucht für ${name} am ${date} um ${time} Uhr`);
+            
+            // Reset form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('time').value = '';
+            
+            closeModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    
 </script>
 </body>
 </html>
