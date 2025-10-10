@@ -15,8 +15,109 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* ==================== GLOBAL STYLES ==================== */
-    
+    /* =============== cookies ============== */
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-50%) translateY(150%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInMobile {
+            from {
+                transform: translateX(0) translateY(150%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            to {
+                transform: translateX(-50%) translateY(150%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideOutMobile {
+            to {
+                transform: translateX(0) translateY(150%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .cookie-banner {
+            animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        .cookie-banner.hidden {
+            animation: slideOut 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner {
+                animation: slideInMobile 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                animation-delay: 0.5s;
+            }
+
+            .cookie-banner.hidden {
+                animation: slideOutMobile 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            }
+        }
+
+        .cookie-icon-animate {
+            animation: pulse 2s infinite;
+        }
+
+        .cookie-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cookie-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cookie-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #60a5fa;
+            transition: width 0.3s ease;
+        }
+
+        .cookie-link:hover::after {
+            width: 100%;
+        }
 
     /* ========== NAVBAR ========== */
     .nav-hamburger.active .nav-bar:nth-child(1) {
@@ -459,6 +560,105 @@
     </a>
   </nav>
 
+   <!-- ==================== cookies ==================== -->
+ <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-full opacity-0 w-[90%] max-w-[900px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl z-[10000] md:bottom-6 md:left-1/2 max-md:bottom-0 max-md:left-0 max-md:translate-x-0 max-md:w-full max-md:max-w-none max-md:rounded-t-3xl max-md:rounded-b-none">
+        <div class="flex flex-wrap gap-6 items-start max-md:flex-col">
+            <!-- Icon -->
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-900 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 cookie-icon-animate">
+                <svg viewBox="0 0 24 24" class="w-7 h-7 fill-white">
+                    <path d="M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 10.5 2.5 9 3.5 8L8 12.5L12.5 8L17 12.5L21.5 8C20.5 5 16.5 2 12 2Z"/>
+                </svg>
+            </div>
+            
+            <!-- Text -->
+            <div class="flex-1 min-w-[250px]">
+                <h3 class="text-white text-lg font-semibold mb-2 tracking-tight">Wir verwenden Cookies 🍪</h3>
+                <p class="text-white/70 text-sm leading-relaxed mb-4">
+                    Um dir das beste Erlebnis zu bieten, verwenden wir Cookies und ähnliche Technologien. 
+                    Mit deiner Zustimmung können wir sie für Analytik und Marketing nutzen. 
+                    <a href="#" class="cookie-link relative text-blue-400 font-medium hover:text-blue-300 transition-colors">Mehr erfahren</a>
+                </p>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="flex gap-3 ml-auto flex-wrap max-md:w-full max-md:ml-0">
+                <button onclick="openSettings()" class="cookie-btn relative px-6 py-3 bg-white/5 text-white/90 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden max-md:flex-1">
+                    Einstellungen
+                </button>
+                <button onclick="rejectCookies()" class="cookie-btn relative px-6 py-3 bg-red-500/10 text-red-300 border border-red-500/20 rounded-xl text-sm font-semibold transition-all hover:bg-red-500/20 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden max-md:flex-1">
+                    Ablehnen
+                </button>
+                <button onclick="acceptCookies()" class="cookie-btn relative px-6 py-3 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-900/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-900/40 overflow-hidden max-md:flex-1">
+                    Alle akzeptieren
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="cookieSettings" class="fixed inset-0 bg-black/80 flex items-center justify-center p-5 z-[10001] opacity-0 invisible transition-all duration-300">
+        <div class="settings-modal bg-black/98 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-[600px] w-full max-h-[80vh] overflow-y-auto scale-90 transition-transform duration-300">
+            
+            <!-- Header -->
+            <div class="mb-6">
+                <h2 class="text-white text-2xl font-bold mb-2">Cookie-Einstellungen</h2>
+                <p class="text-white/60 text-sm">Verwalte deine Cookie-Präferenzen</p>
+            </div>
+
+            <!-- Necessary Cookies -->
+            <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-white text-base font-semibold">Notwendige Cookies</h3>
+                    <label class="relative inline-block w-12 h-[26px]">
+                        <input type="checkbox" class="opacity-0 w-0 h-0 peer" checked disabled>
+                        <span class="absolute inset-0 bg-white/10 rounded-full cursor-not-allowed opacity-50 transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
+                    </label>
+                </div>
+                <p class="text-white/60 text-[13px] leading-relaxed">
+                    Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.
+                </p>
+            </div>
+
+            <!-- Analytics Cookies -->
+            <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-white text-base font-semibold">Analyse-Cookies</h3>
+                    <label class="relative inline-block w-12 h-[26px]">
+                        <input type="checkbox" id="analytics" class="opacity-0 w-0 h-0 peer">
+                        <span class="absolute inset-0 bg-white/10 rounded-full cursor-pointer transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
+                    </label>
+                </div>
+                <p class="text-white/60 text-[13px] leading-relaxed">
+                    Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren.
+                </p>
+            </div>
+
+            <!-- Marketing Cookies -->
+            <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-white text-base font-semibold">Marketing-Cookies</h3>
+                    <label class="relative inline-block w-12 h-[26px]">
+                        <input type="checkbox" id="marketing" class="opacity-0 w-0 h-0 peer">
+                        <span class="absolute inset-0 bg-white/10 rounded-full cursor-pointer transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
+                    </label>
+                </div>
+                <p class="text-white/60 text-[13px] leading-relaxed">
+                    Diese Cookies werden verwendet, um Werbung relevanter für dich und deine Interessen zu gestalten.
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex gap-3 justify-end mt-6 pt-6 border-t border-white/10">
+                <button onclick="closeSettings()" class="px-6 py-3 bg-white/5 text-white/90 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:bg-white/10">
+                    Abbrechen
+                </button>
+                <button onclick="saveSettings()" class="px-6 py-3 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl text-sm font-semibold shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl">
+                    Einstellungen speichern
+                </button>
+            </div>
+        </div>
+    </div>
 
   <!-- ==================== HERO SECTION ==================== -->
 <section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
@@ -1844,6 +2044,76 @@ if (contactSection) {
     stagger: 0.2,         // jede Card kommt nacheinander
     ease: "power3.out"
   });
+
+       // ========== Cookies ==========
+
+
+      function acceptCookies() {
+            console.log('Alle Cookies akzeptiert');
+            hideBanner();
+        }
+
+        function rejectCookies() {
+            console.log('Cookies abgelehnt');
+            hideBanner();
+        }
+
+        function hideBanner() {
+            const banner = document.getElementById('cookieBanner');
+            banner.classList.add('hidden');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 500);
+        }
+
+        function openSettings() {
+            const settings = document.getElementById('cookieSettings');
+            settings.classList.remove('opacity-0', 'invisible');
+            setTimeout(() => {
+                settings.querySelector('.settings-modal').classList.remove('scale-90');
+                settings.querySelector('.settings-modal').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeSettings() {
+            const settings = document.getElementById('cookieSettings');
+            settings.querySelector('.settings-modal').classList.remove('scale-100');
+            settings.querySelector('.settings-modal').classList.add('scale-90');
+            setTimeout(() => {
+                settings.classList.add('opacity-0', 'invisible');
+            }, 200);
+        }
+
+        function saveSettings() {
+            const analytics = document.getElementById('analytics').checked;
+            const marketing = document.getElementById('marketing').checked;
+            
+            console.log('Einstellungen gespeichert:', {
+                necessary: true,
+                analytics: analytics,
+                marketing: marketing
+            });
+            
+            closeSettings();
+            hideBanner();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('cookieSettings').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSettings();
+            }
+        });
+
+        // Demo: Show banner again with Ctrl+C
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'c' && e.ctrlKey) {
+                e.preventDefault();
+                const banner = document.getElementById('cookieBanner');
+                banner.style.display = 'block';
+                banner.classList.remove('hidden');
+            }
+        });
     
 </script>
 </body>
