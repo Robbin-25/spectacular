@@ -532,11 +532,11 @@
 
 <body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
 <!-- ==================== spinning element ==================== -->
- <!-- Floating Button unten rechts -->
-    <div class="fixed bottom-8 right-8 z-50">
-        <div class="relative w-40 h-40">
+  <!-- Floating Button unten rechts - Responsiv -->
+    <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50">
+        <div class="relative w-24 h-24 md:w-40 md:h-40">
             <!-- Spinning Text Container -->
-            <div class="spinning-text relative w-full h-full text-white font-semibold text-sm tracking-wide">
+            <div class="spinning-text relative w-full h-full text-white font-semibold text-[10px] md:text-sm tracking-wide">
                 <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-5.5ch);">G</span>
                 <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(10.91deg) translateY(-5.5ch);">E</span>
                 <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(21.82deg) translateY(-5.5ch);">T</span>
@@ -574,7 +574,7 @@
             <button 
                 onclick="openModal()"
                 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white transition-all duration-300 hover:scale-110 hover:text-gray-200 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
@@ -583,12 +583,18 @@
     </div>
 
     <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-[100] items-center justify-center p-4">
-        <div class="modal-enter bg-black/70 backdrop-blur-sm rounded-2xl shadow-2xl max-w-md w-full p-8 border border-gray-700">
+    <div id="modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-lg z-[100] items-center justify-center p-4">
+        <div class="modal-enter bg-gradient-to-br from-slate-900/95 via-blue-950/95 to-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl shadow-blue-500/20 max-w-lg w-full p-6 md:p-10 border border-blue-500/30 relative overflow-hidden">
+            <!-- Decorative glow effect -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+            
             <!-- Header -->
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-white">Termin buchen</h2>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition-colors">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-1 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Termin buchen</h2>
+                    <p class="text-sm text-gray-400">Wählen Sie Ihren Wunschtermin</p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white hover:rotate-90 transition-all duration-300 p-2 rounded-full hover:bg-white/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -597,30 +603,30 @@
             </div>
 
             <!-- Form Fields -->
-            <div class="space-y-5">
+            <div class="space-y-6">
                 <!-- Name -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-300 mb-2 group-focus-within:text-blue-400 transition-colors">Name</label>
                     <input 
                         type="text" 
                         id="name"
-                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
-                        placeholder="Ihr Name">
+                        class="w-full px-5 py-3.5 bg-black/30 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all hover:bg-black/40"
+                        placeholder="Max Mustermann">
                 </div>
 
                 <!-- Email -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">E-Mail</label>
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-300 mb-2 group-focus-within:text-blue-400 transition-colors">E-Mail</label>
                     <input 
                         type="email" 
                         id="email"
-                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
-                        placeholder="ihre@email.de">
+                        class="w-full px-5 py-3.5 bg-black/30 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all hover:bg-black/40"
+                        placeholder="max@beispiel.de">
                 </div>
 
                 <!-- Datum -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2 group-focus-within:text-blue-400 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                             <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -632,42 +638,47 @@
                     <input 
                         type="date" 
                         id="date"
-                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all">
+                        class="w-full px-5 py-3.5 bg-black/30 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all hover:bg-black/40">
                 </div>
 
                 <!-- Schnellauswahl Uhrzeit -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                <div class="group">
+                    <label class="block text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
                         Uhrzeit
                     </label>
-                    <div class="grid grid-cols-3 gap-2 mb-3">
-                        <button onclick="selectTime('09:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">09:00</button>
-                        <button onclick="selectTime('10:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">10:00</button>
-                        <button onclick="selectTime('11:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">11:00</button>
-                        <button onclick="selectTime('14:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">14:00</button>
-                        <button onclick="selectTime('15:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">15:00</button>
-                        <button onclick="selectTime('16:00')" class="time-btn py-2 px-3 rounded-lg font-medium transition-all bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-600">16:00</button>
+                    <div class="grid grid-cols-3 gap-2.5 mb-3">
+                        <button onclick="selectTime('09:00')" class="time-btn py-2.5 px-3 rounded-xl font-semibold transition-all bg-black/30 text-gray-300 hover:bg-blue-500/20 hover:border-blue-500/50 border border-gray-700 hover:text-blue-300">09:00</button>
+                        <button onclick="selectTime('10:00')" class="time-btn py-2.5 px-3 rounded-xl font-semibold transition-all bg-black/30 text-gray-300 hover:bg-blue-500/20 hover:border-blue-500/50 border border-gray-700 hover:text-blue-300">10:00</button>
+                        <button onclick="selectTime('11:00')" class="time-btn py-2.5 px-3 rounded-xl font-semibold transition-all bg-black/30 text-gray-300 hover:bg-blue-500/20 hover:border-blue-500/50 border border-gray-700 hover:text-blue-300">11:00</button>
+                        <button onclick="selectTime('14:00')" class="time-btn py-2.5 px-3 rounded-xl font-semibold transition-all bg-black/30 text-gray-300 hover:bg-blue-500/20 hover:border-blue-500/50 border border-gray-700 hover:text-blue-300">14:00</button>
+                        <button onclick="selectTime('15:00')" class="time-btn py-2.5 px-3 rounded-xl font-semibold transition-all bg-black/30 text-gray-300 hover:bg-blue-500/20 hover:border-blue-500/50 border border-gray-700 hover:text-blue-300">15:00</button>
+                        <button onclick="selectTime('16:00')" class="time-btn py-2.5 px-3 rounded-xl font-semibold transition-all bg-black/30 text-gray-300 hover:bg-blue-500/20 hover:border-blue-500/50 border border-gray-700 hover:text-blue-300">16:00</button>
                     </div>
                     <input 
                         type="time" 
                         id="time"
-                        class="w-full px-4 py-3 bg-black/40 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all">
+                        class="w-full px-5 py-3.5 bg-black/30 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all hover:bg-black/40">
                 </div>
 
                 <!-- Submit Button -->
                 <button 
                     onclick="submitForm()"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 mt-6">
-                    Termin bestätigen
+                    class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/50 hover:scale-[1.02] active:scale-[0.98] mt-8">
+                    <span class="flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Termin bestätigen
+                    </span>
                 </button>
             </div>
         </div>
     </div>
-  
+
 
   <!-- ==================== CURSOR ELEMENT ==================== -->
   <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
@@ -2365,12 +2376,12 @@ function openModal() {
             
             var buttons = document.querySelectorAll('.time-btn');
             for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
-                buttons[i].classList.add('bg-black/40', 'text-gray-300', 'border-gray-600');
+                buttons[i].classList.remove('bg-blue-600', 'text-white', 'border-blue-500', 'shadow-lg', 'shadow-blue-500/50');
+                buttons[i].classList.add('bg-black/30', 'text-gray-300', 'border-gray-700');
             }
             
-            window.event.target.classList.remove('bg-black/40', 'text-gray-300', 'border-gray-600');
-            window.event.target.classList.add('bg-blue-600', 'text-white', 'border-blue-500');
+            window.event.target.classList.remove('bg-black/30', 'text-gray-300', 'border-gray-700');
+            window.event.target.classList.add('bg-blue-600', 'text-white', 'border-blue-500', 'shadow-lg', 'shadow-blue-500/50');
         }
 
         function submitForm() {
