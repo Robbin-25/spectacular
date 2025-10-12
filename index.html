@@ -48,27 +48,60 @@
         }
     
 /* =============== spinning ============== */
-    @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .spinning-text {
-            animation: spin 8s linear infinite;
-        }
-        .modal-enter {
+      .modal-enter {
             animation: modalEnter 0.3s ease-out;
         }
+
         @keyframes modalEnter {
             from {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: scale(0.95) translateY(10px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1) translateY(0);
             }
         }
-    
+
+        .notification-enter {
+            animation: slideInRight 0.4s ease-out;
+        }
+
+        .notification-exit {
+            animation: slideOutRight 0.3s ease-in;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .error-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
 
     /* =============== cookies ============== */
 
@@ -620,7 +653,9 @@
     </div>
 
     <!-- Modal -->
-   
+   <!-- Notification Container -->
+<div id="notification-container" class="fixed top-4 right-4 z-[200] space-y-2 w-full max-w-sm px-4"></div>
+
 <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] items-center justify-center p-4">
     <div class="modal-enter bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-blue-500/10 w-full max-w-md p-6 border border-gray-800 relative">
         <!-- Decorative glow effect -->
@@ -2410,8 +2445,7 @@ if (contactSection) {
         });
 
     // ========== spinning ==========
-
-    let selectedTime = '';
+let selectedTime = '';
 
 // Nur Zahlen erlauben
 document.getElementById('day').addEventListener('input', function(e) {
