@@ -16,6 +16,37 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
+    /* =============== Loading screen ============== */
+    @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loading-screen-fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+    
 /* =============== spinning ============== */
     @keyframes spin {
             from { transform: rotate(0deg); }
@@ -532,6 +563,14 @@
 </head>
 
 <body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
+
+<!-- ==================== Loading element ==================== -->
+  <div id="loading-screen" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+        <div id="text" class="text-2xl md:text-3xl text-white font-bold tracking-wide opacity-0 animate-fade">
+            Hallo
+        </div>
+    </div>
+  
 <!-- ==================== spinning element ==================== -->
   
     <!-- Floating Button unten rechts - Responsiv -->
@@ -2415,7 +2454,61 @@ function openModal() {
                 closeModal();
             }
         });
-    
+
+    // ========== loading screen ==========
+
+
+    const greetings = [
+            'Hello',           // Englisch
+            'Merhaba',         // Türkisch
+            '你好',            // Chinesisch
+            'Bonjour',         // Französisch
+            'Hola',            // Spanisch
+            'Ciao',            // Italienisch
+            'Olá',             // Portugiesisch
+            'Привет',          // Russisch
+            'こんにちは',       // Japanisch
+            '안녕하세요',       // Koreanisch
+            'مرحبا',           // Arabisch
+            'Namaste',         // Hindi
+            'Salut',           // Rumänisch
+            'Γεια σου'         // Griechisch
+        ];
+
+        let index = 0;
+        const textElement = document.getElementById('text');
+        const loadingScreen = document.getElementById('loading-screen');
+        const mainContent = document.getElementById('main-content');
+        let intervalId;
+
+        function changeText() {
+            textElement.textContent = greetings[index];
+            textElement.classList.remove('animate-fade');
+            setTimeout(() => {
+                textElement.classList.add('animate-fade');
+            }, 10);
+            
+            index = (index + 1) % greetings.length;
+        }
+
+        // Starte Animation
+        changeText();
+        intervalId = setInterval(changeText, 2000);
+
+        // Warte bis alles geladen ist
+        window.addEventListener('load', () => {
+            // Warte mindestens 3 Sekunden (oder länger wenn noch Wörter animieren)
+            setTimeout(() => {
+                clearInterval(intervalId);
+                loadingScreen.classList.add('loading-screen-fade-out');
+                
+                // Zeige Hauptinhalt nach Fade-Out
+                setTimeout(() => {
+                    loadingScreen.remove();
+                    mainContent.classList.remove('hidden');
+                }, 500);
+            }, 3000);
+        });
 </script>
 </body>
 </html>
