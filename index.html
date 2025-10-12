@@ -68,7 +68,20 @@
                 transform: scale(1);
             }
         }
-
+    
+ /* Custom Date/Time Input Styling */
+        input[type="text"].custom-input {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        input[type="date"],
+        input[type="time"] {
+            position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+        }
   
     /* =============== cookies ============== */
 
