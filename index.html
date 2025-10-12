@@ -2410,58 +2410,96 @@ if (contactSection) {
         });
 
     // ========== spinning ==========
+
+    let selectedTime = '';
+
+// Nur Zahlen erlauben
+document.getElementById('day').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    if (this.value.length === 2) {
+        document.getElementById('month').focus();
+    }
+});
+
+document.getElementById('month').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    if (this.value.length === 2) {
+        document.getElementById('year').focus();
+    }
+});
+
+document.getElementById('year').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+// Zeit aus Button auswählen
+function selectTime(time) {
+    selectedTime = time;
+    
+    // Alle Buttons zurücksetzen
+    document.querySelectorAll('.time-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+        btn.classList.add('bg-white/5', 'text-gray-400', 'border-gray-800');
+    });
+    
+    // Ausgewählten Button markieren
+    event.target.classList.remove('bg-white/5', 'text-gray-400', 'border-gray-800');
+    event.target.classList.add('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+}
+
+// Modal schließen
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+// Modal öffnen
 function openModal() {
-            document.getElementById('modal').classList.remove('hidden');
-            document.getElementById('modal').classList.add('flex');
-        }
+    const modal = document.getElementById('modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-            document.getElementById('modal').classList.remove('flex');
-        }
+// Formular absenden
+function submitForm() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const day = document.getElementById('day').value;
+    const month = document.getElementById('month').value;
+    const year = document.getElementById('year').value;
+    
+    if (!name || !email || !day || !month || !year || !selectedTime) {
+        alert('Bitte füllen Sie alle Felder aus.');
+        return;
+    }
+    
+    const date = `${day}.${month}.${year}`;
+    
+    alert(`Termin gebucht!\n\nName: ${name}\nE-Mail: ${email}\nDatum: ${date}\nUhrzeit: ${selectedTime}`);
+    closeModal();
+    
+    // Formular zurücksetzen
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('day').value = '';
+    document.getElementById('month').value = '';
+    document.getElementById('year').value = '';
+    selectedTime = '';
+    
+    document.querySelectorAll('.time-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+        btn.classList.add('bg-white/5', 'text-gray-400', 'border-gray-800');
+    });
+}
 
-        function selectTime(time) {
-            document.getElementById('time').value = time;
-            
-            var buttons = document.querySelectorAll('.time-btn');
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove('bg-blue-600', 'text-white', 'border-blue-500', 'shadow-lg', 'shadow-blue-500/50');
-                buttons[i].classList.add('bg-black/30', 'text-gray-300', 'border-gray-700');
-            }
-            
-            window.event.target.classList.remove('bg-black/30', 'text-gray-300', 'border-gray-700');
-            window.event.target.classList.add('bg-blue-600', 'text-white', 'border-blue-500', 'shadow-lg', 'shadow-blue-500/50');
-        }
-
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-
-            if (!name || !email || !date || !time) {
-                alert('Bitte füllen Sie alle Felder aus');
-                return;
-            }
-
-            alert(`Termin gebucht für ${name} am ${date} um ${time} Uhr`);
-            
-            // Reset form
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('date').value = '';
-            document.getElementById('time').value = '';
-            
-            closeModal();
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
+// Modal beim Klick außerhalb schließen
+document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+    
     // ========== loading screen ==========
 
 
