@@ -618,8 +618,8 @@
     </div>
 
     <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] items-center justify-center p-4">
-        <div class="modal-enter bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-blue-500/10 max-w-md w-full p-6 border border-gray-800 relative overflow-hidden">
+   <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] items-center justify-center p-4">
+        <div class="modal-enter bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-blue-500/10 max-w-md w-full p-6 border border-gray-800 relative overflow-hidden max-w-[calc(100vw-2rem)]">
             <!-- Decorative glow effect -->
             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl -z-10"></div>
             
@@ -638,7 +638,7 @@
             </div>
 
             <!-- Form Fields -->
-            <div class="space-y-4">
+            <div class="space-y-4 overflow-x-hidden">
                 <!-- Name -->
                 <div class="group">
                     <label class="block text-xs font-medium text-gray-400 mb-1.5">Name</label>
@@ -673,7 +673,7 @@
                     <input 
                         type="date" 
                         id="date"
-                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10">
+                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10 max-w-full">
                 </div>
 
                 <!-- Schnellauswahl Uhrzeit -->
@@ -696,7 +696,7 @@
                     <input 
                         type="time" 
                         id="time"
-                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10">
+                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10 max-w-full">
                 </div>
 
                 <!-- Submit Button -->
@@ -713,7 +713,6 @@
             </div>
         </div>
     </div>
-
 
 
   <!-- ==================== CURSOR ELEMENT ==================== -->
