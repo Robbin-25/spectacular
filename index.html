@@ -2080,7 +2080,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // CTA Buttons
   const ctaBtn = document.getElementById('ctaButton');
   const secBtn = document.getElementById('secondaryButton');
-
   if (ctaBtn) {
     ctaBtn.addEventListener('click', () => {
       window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -2091,41 +2090,75 @@ document.addEventListener("DOMContentLoaded", () => {
       alert('Hier würden weitere Informationen angezeigt werden!');
     });
   }
-
   // GSAP Plugins
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
-
+    
+    // Set initial states to prevent flickering
+    gsap.set([".img-sec-title", ".img-sec-text", ".img-sec-image", ".feature-item", ".img-sec-buttons"], {
+      opacity: 0
+    });
+    
     let mm = gsap.matchMedia();
-
+    
     // Large screens (PC)
     mm.add("(min-width: 1024px)", () => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".img-sec-title",
-          start: "top 80%",
+          start: "top 85%",
+          toggleActions: "play none none none"
         }
       });
-      tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
-        .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "<")
-        .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
-        .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
-        .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4");
+      tl.fromTo(".img-sec-title", 
+        {y:30, opacity:0}, 
+        {y:0, opacity:1, duration:0.8, ease:"power3.out"})
+        .fromTo(".img-sec-image", 
+          {scale:0.8, opacity:0, rotation:3}, 
+          {scale:1, opacity:1, rotation:0, duration:1.2, ease:"back.out(1.2)"}, 
+          "<0.2")
+        .fromTo(".img-sec-text", 
+          {y:30, opacity:0}, 
+          {y:0, opacity:1, duration:0.7, ease:"power2.out"}, 
+          "-=0.8")
+        .fromTo(".feature-item", 
+          {x:-30, opacity:0}, 
+          {x:0, opacity:1, duration:0.5, stagger:0.12, ease:"power2.out"}, 
+          "-=0.4")
+        .fromTo(".img-sec-buttons", 
+          {y:20, opacity:0}, 
+          {y:0, opacity:1, duration:0.6, ease:"power2.out"}, 
+          "-=0.3");
     });
-
-    // Small screens (Handy)
+    
+    // Small screens (Mobile) - Neue Reihenfolge
     mm.add("(max-width: 1023px)", () => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".img-sec-title",
-          start: "top 80%",
+          start: "top 90%",
+          toggleActions: "play none none none"
         }
       });
-      tl.fromTo(".img-sec-title", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"})
-        .fromTo(".img-sec-text", {y:40, opacity:0}, {y:0, opacity:1, duration:1, ease:"power3.out"}, "-=0.5")
-        .fromTo(".img-sec-image", {x:60, opacity:0}, {x:0, opacity:1, duration:1, ease:"power2.out"}, "-=0.5")
-        .fromTo(".feature-item", {x:-40, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.2, ease:"power2.out"}, "-=0.5")
-        .fromTo(".img-sec-buttons", {y:30, opacity:0}, {y:0, opacity:1, duration:0.8, ease:"power2.out"}, "-=0.4");
+      tl.fromTo(".img-sec-title", 
+        {y:30, opacity:0}, 
+        {y:0, opacity:1, duration:0.8, ease:"power3.out"})
+        .fromTo(".img-sec-text", 
+          {y:30, opacity:0}, 
+          {y:0, opacity:1, duration:0.7, ease:"power2.out"}, 
+          "-=0.4")
+        .fromTo(".feature-item", 
+          {x:-25, opacity:0}, 
+          {x:0, opacity:1, duration:0.5, stagger:0.1, ease:"power2.out"}, 
+          "-=0.3")
+        .fromTo(".img-sec-buttons", 
+          {y:20, opacity:0}, 
+          {y:0, opacity:1, duration:0.6, ease:"power2.out"}, 
+          "-=0.2")
+        .fromTo(".img-sec-image", 
+          {scale:0.85, opacity:0, y:20}, 
+          {scale:1, opacity:1, y:0, duration:1, ease:"back.out(1.1)"}, 
+          "-=0.4");
     });
   }
 });
