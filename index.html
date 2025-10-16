@@ -14,211 +14,208 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* =============== Loading screen ============== */
+    /* ========== LOADING SCREEN ========== */
     @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-        }
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
 
-        .animate-fade {
-            animation: fadeInOut 2s ease-in-out;
-        }
+    .animate-fade {
+      animation: fadeInOut 2s ease-in-out;
+    }
 
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
 
-        .loading-screen-fade-out {
-            animation: fadeOut 0.5s ease-out forwards;
-        }
-    
-/* =============== spinning ============== */
-      .modal-enter {
-            animation: modalEnter 0.3s ease-out;
-        }
+    .loading-screen-fade-out {
+      animation: fadeOut 0.5s ease-out forwards;
+    }
 
-        @keyframes modalEnter {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
+    /* ========== COOKIES ========== */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50%) translateY(150%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    }
 
-        .notification-enter {
-            animation: slideInRight 0.4s ease-out;
-        }
+    @keyframes slideInMobile {
+      from {
+        transform: translateX(0) translateY(150%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+    }
 
-        .notification-exit {
-            animation: slideOutRight 0.3s ease-in;
-        }
+    @keyframes slideOut {
+      to {
+        transform: translateX(-50%) translateY(150%);
+        opacity: 0;
+      }
+    }
 
-        @keyframes slideInRight {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+    @keyframes slideOutMobile {
+      to {
+        transform: translateX(0) translateY(150%);
+        opacity: 0;
+      }
+    }
 
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-        }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
 
-        .error-shake {
-            animation: shake 0.4s ease-in-out;
-        }
+    .cookie-banner {
+      animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.5s;
+    }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
+    .cookie-banner.hidden {
+      animation: slideOut 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
 
+    @media (max-width: 768px) {
+      .cookie-banner {
+        animation: slideInMobile 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation-delay: 0.5s;
+      }
 
+      .cookie-banner.hidden {
+        animation: slideOutMobile 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+    }
 
+    .cookie-icon-animate {
+      animation: pulse 2s infinite;
+    }
+
+    .cookie-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .cookie-btn:active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .cookie-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #60a5fa;
+      transition: width 0.3s ease;
+    }
+
+    .cookie-link:hover::after {
+      width: 100%;
+    }
+
+    /* ========== SPINNING ELEMENT ========== */
     .spinner {
-    animation: spin 1s linear infinite;
-}
+      animation: spin 1s linear infinite;
+    }
 
-@keyframes spin {
-    from {
+    @keyframes spin {
+      from {
         transform: rotate(0deg);
-    }
-    to {
+      }
+      to {
         transform: rotate(360deg);
+      }
     }
-}
 
-    /* =============== cookies ============== */
+    .modal-enter {
+      animation: modalEnter 0.3s ease-out;
+    }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(-50%) translateY(150%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-        }
+    @keyframes modalEnter {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
 
-        @keyframes slideInMobile {
-            from {
-                transform: translateX(0) translateY(150%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0) translateY(0);
-                opacity: 1;
-            }
-        }
+    .notification-enter {
+      animation: slideInRight 0.4s ease-out;
+    }
 
-        @keyframes slideOut {
-            to {
-                transform: translateX(-50%) translateY(150%);
-                opacity: 0;
-            }
-        }
+    .notification-exit {
+      animation: slideOutRight 0.3s ease-in;
+    }
 
-        @keyframes slideOutMobile {
-            to {
-                transform: translateX(0) translateY(150%);
-                opacity: 0;
-            }
-        }
+    @keyframes slideInRight {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
+    @keyframes slideOutRight {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
 
-        .cookie-banner {
-            animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            animation-delay: 0.5s;
-        }
+    .error-shake {
+      animation: shake 0.4s ease-in-out;
+    }
 
-        .cookie-banner.hidden {
-            animation: slideOut 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        @media (max-width: 768px) {
-            .cookie-banner {
-                animation: slideInMobile 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-                animation-delay: 0.5s;
-            }
-
-            .cookie-banner.hidden {
-                animation: slideOutMobile 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            }
-        }
-
-        .cookie-icon-animate {
-            animation: pulse 2s infinite;
-        }
-
-        .cookie-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .cookie-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .cookie-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #60a5fa;
-            transition: width 0.3s ease;
-        }
-
-        .cookie-link:hover::after {
-            width: 100%;
-        }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
 
     /* ========== NAVBAR ========== */
     .nav-hamburger.active .nav-bar:nth-child(1) {
@@ -234,19 +231,18 @@
       background-color: #3b3b3b;
     }
 
-
     /* ========== HERO SECTION ========== */
-  .highlight-word {
-        color: white !important;
-        -webkit-text-fill-color: white !important;
-        background: none !important;
-        -webkit-background-clip: initial !important;
-        background-clip: initial !important;
+    .highlight-word {
+      color: white !important;
+      -webkit-text-fill-color: white !important;
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
     }
 
     @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     .animate-fadeInUp { animation: fadeInUp 1s ease-out both; }
@@ -256,133 +252,124 @@
     .animate-fadeInUp-delay-800 { animation: fadeInUp 1s ease-out 0.8s both; }
     
     .text-gradient {
-        background: linear-gradient(135deg, #ffffff, #e5e7eb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      background: linear-gradient(135deg, #ffffff, #e5e7eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+
     /* ========== SERVICES SECTION ========== */
-     .service-card {
-            background: #0a0a0a;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
-                        0 8px 20px rgba(0, 0, 0, 0.35),
-                        inset 0 2px 6px rgba(255, 255, 255, 0.05),
-                        inset 0 -2px 6px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        }
-        
-        .service-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .service-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-
-    /* ========== Image plus Text SECTION ========== */
-
-    .btn-primary {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .service-card {
+      background: #0a0a0a;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
+                  0 8px 20px rgba(0, 0, 0, 0.35),
+                  inset 0 2px 6px rgba(255, 255, 255, 0.05),
+                  inset 0 -2px 6px rgba(0, 0, 0, 0.5);
       position: relative;
       overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .btn-primary::before {
+    
+    .service-card::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+    
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ========== IMAGE PLUS TEXT SECTION ========== */
+    .btn-primary {
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      left: -120%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
       transition: left 0.5s;
     }
+
     .btn-primary:hover::before {
-      left: 100%;
+      left: 120%;
     }
-    .feature-item {
-      transition: all 0.3s ease;
-    }
-    .feature-item:hover {
-      transform: translateX(10px);
-      color: #f3f4f6;
+
+    /* ========== APPS SECTION ========== */
+    .tool-icon {
+      background: linear-gradient(145deg, #0f0f0f, #0a0a0a);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
+                  0 8px 20px rgba(0, 0, 0, 0.35),
+                  inset 0 2px 6px rgba(255, 255, 255, 0.05),
+                  inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
-    /* ========== APPS SECTION ========== */
-   .tool-icon {
-            background: linear-gradient(145deg, #0f0f0f, #0a0a0a);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
-                        0 8px 20px rgba(0, 0, 0, 0.35),
-                        inset 0 2px 6px rgba(255, 255, 255, 0.05),
-                        inset 0 -2px 6px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transform: translateY(60px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .tool-icon:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5),
-                        0 16px 40px rgba(99, 102, 241, 0.3),
-                        inset 0 2px 6px rgba(255, 255, 255, 0.08),
-                        inset 0 -2px 6px rgba(0, 0, 0, 0.6);
-            border-color: rgba(99, 102, 241, 0.3);
-        }
+    .tool-icon:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5),
+                  0 16px 40px rgba(99, 102, 241, 0.3),
+                  inset 0 2px 6px rgba(255, 255, 255, 0.08),
+                  inset 0 -2px 6px rgba(0, 0, 0, 0.6);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
 
-        .badge {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(99, 102, 241, 0.15));
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            backdrop-filter: blur(12px);
-            animation: glow 3s ease-in-out infinite alternate;
-        }
+    .badge {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(99, 102, 241, 0.15));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      backdrop-filter: blur(12px);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
 
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
-            }
-            to {
-                box-shadow: 0 0 30px rgba(99, 102, 241, 0.2), 0 0 40px rgba(59, 130, 246, 0.1);
-            }
-        }
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+      }
+      to {
+        box-shadow: 0 0 30px rgba(99, 102, 241, 0.2), 0 0 40px rgba(59, 130, 246, 0.1);
+      }
+    }
 
-        /* Text Reveal Animation Styles */
-        .reveal-text {
-            display: inline-block;
-            opacity: 0.2;
-            transition: opacity 0.3s ease;
-        }
+    .reveal-text {
+      display: inline-block;
+      opacity: 0.2;
+      transition: opacity 0.3s ease;
+    }
 
-        .reveal-text.active {
-            opacity: 1;
-        }
+    .reveal-text.active {
+      opacity: 1;
+    }
 
-        .subtitle {
-            opacity: 0;
-            transform: translateY(20px);
-        }
+    .subtitle {
+      opacity: 0;
+      transform: translateY(20px);
+    }
 
     /* ========== GRID SECTION ========== */
     .building {
@@ -401,7 +388,6 @@
     .ring.r1 { width: 150px; height: 150px; }
     .ring.r2 { width: 135px; height: 135px; }
     .ring.r3 { width: 120px; height: 120px; }
-
 
     /* ========== CAROUSEL SECTION ========== */
     .card { 
@@ -430,7 +416,6 @@
     }
     .inset-top { top:-28px; box-shadow: inset 0 18px 34px rgba(0,0,0,0.6); }
     .inset-bottom { bottom:-28px; box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6); }
-
 
     /* ========== CONTACT FORM ========== */
     .floating-label {
@@ -507,15 +492,15 @@
     }
 
     .contact-content {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
 
-.contact-section.visible .contact-content {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .contact-section.visible .contact-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ========== UTILITIES ========== */
     .highlight {
@@ -563,7 +548,6 @@
       z-index: -2;
     }
 
-
     /* ========== FOOTER ========== */
     .bg-unified {
       position: absolute;
@@ -591,7 +575,6 @@
       background: linear-gradient(to bottom, #040404 0%, transparent 70%, transparent 92%, #08081B 100%);
     }
 
-
     /* ========== RESPONSIVE ADJUSTMENTS ========== */
     @media (max-width: 639px) {
       .ring.r1 { width: 120px; height: 120px; }
@@ -612,176 +595,273 @@
 
 <body class="bg-[#040404] text-white antialiased m-0 p-0 box-border">
 
-  
-<!-- ==================== spinning element ==================== -->
-  
-    <!-- Floating Button unten rechts - Responsiv -->
-    <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50">
-        <div class="relative w-24 h-24 md:w-40 md:h-40">
-            <!-- Spinning Text Container -->
-            <div class="spinning-text relative w-full h-full text-white font-semibold text-[10px] md:text-sm tracking-wide">
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-5.5ch);">G</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(10.91deg) translateY(-5.5ch);">E</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(21.82deg) translateY(-5.5ch);">T</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(32.73deg) translateY(-5.5ch);"> </span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(43.64deg) translateY(-5.5ch);">Y</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(54.55deg) translateY(-5.5ch);">O</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(65.45deg) translateY(-5.5ch);">U</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(76.36deg) translateY(-5.5ch);">R</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(87.27deg) translateY(-5.5ch);"> </span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(98.18deg) translateY(-5.5ch);">S</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(109.09deg) translateY(-5.5ch);">I</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(120deg) translateY(-5.5ch);">T</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(130.91deg) translateY(-5.5ch);">E</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(141.82deg) translateY(-5.5ch);"> </span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(152.73deg) translateY(-5.5ch);">•</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(163.64deg) translateY(-5.5ch);"> </span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(174.55deg) translateY(-5.5ch);">J</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(185.45deg) translateY(-5.5ch);">E</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(196.36deg) translateY(-5.5ch);">T</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(207.27deg) translateY(-5.5ch);">Z</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(218.18deg) translateY(-5.5ch);">T</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(229.09deg) translateY(-5.5ch);"> </span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(240deg) translateY(-5.5ch);">B</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(250.91deg) translateY(-5.5ch);">U</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(261.82deg) translateY(-5.5ch);">C</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(272.73deg) translateY(-5.5ch);">H</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(283.64deg) translateY(-5.5ch);">E</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(294.55deg) translateY(-5.5ch);">N</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(305.45deg) translateY(-5.5ch);"> </span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(316.36deg) translateY(-5.5ch);">•</span>
-                <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(327.27deg) translateY(-5.5ch);"> </span>
-            </div>
-            
-            <!-- Center Button -->
-            <button 
-                onclick="openModal()"
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white transition-all duration-300 hover:scale-110 hover:text-gray-200 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal -->
-   <!-- Notification Container -->
-<div id="notification-container" class="fixed top-4 right-4 z-[200] space-y-2 w-full max-w-sm px-4"></div>
-
-<div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] items-center justify-center p-4">
-    <div class="modal-enter bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-blue-500/10 w-full max-w-md p-6 border border-gray-800 relative">
-        <!-- Decorative glow effect -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl -z-10"></div>
-        
-        <!-- Header -->
-        <div class="flex items-center justify-between mb-6">
-            <div>
-                <h3 class="text-2xl font-bold text-white mb-0.5">Termin buchen</h3>
-                <p class="text-xs text-gray-500">Wählen Sie Ihren Wunschtermin</p>
-            </div>
-            <button onclick="closeModal()" class="text-gray-500 hover:text-white hover:rotate-90 transition-all duration-300 p-1.5 rounded-lg hover:bg-white/5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Form Fields -->
-        <div class="space-y-4">
-            <!-- Name -->
-            <div class="group">
-                <label class="block text-xs font-medium text-gray-400 mb-1.5">Name</label>
-                <input 
-                    type="text" 
-                    id="name"
-                    class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
-                    placeholder="Max Mustermann">
-            </div>
-
-            <!-- Email -->
-            <div class="group">
-                <label class="block text-xs font-medium text-gray-400 mb-1.5">E-Mail</label>
-                <input 
-                    type="email" 
-                    id="email"
-                    class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
-                    placeholder="max@beispiel.de">
-            </div>
-
-            <!-- Datum -->
-            <div class="group">
-                <label class="block text-xs font-medium text-gray-400 mb-1.5 flex items-center gap-1.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    Datum
-                </label>
-                <div class="grid grid-cols-3 gap-2">
-                    <input 
-                        type="text" 
-                        id="day"
-                        maxlength="2"
-                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm text-center placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
-                        placeholder="TT">
-                    <input 
-                        type="text" 
-                        id="month"
-                        maxlength="2"
-                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm text-center placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
-                        placeholder="MM">
-                    <input 
-                        type="text" 
-                        id="year"
-                        maxlength="4"
-                        class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm text-center placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
-                        placeholder="JJJJ">
-                </div>
-            </div>
-
-            <!-- Schnellauswahl Uhrzeit -->
-            <div class="group">
-                <label class="block text-xs font-medium text-gray-400 mb-2 flex items-center gap-1.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    Uhrzeit
-                </label>
-                <div class="grid grid-cols-3 gap-2 mb-2.5">
-                    <button type="button" onclick="selectTime('09:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">09:00</button>
-                    <button type="button" onclick="selectTime('10:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">10:00</button>
-                    <button type="button" onclick="selectTime('11:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">11:00</button>
-                    <button type="button" onclick="selectTime('14:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">14:00</button>
-                    <button type="button" onclick="selectTime('15:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">15:00</button>
-                    <button type="button" onclick="selectTime('16:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">16:00</button>
-                </div>
-            </div>
-
-            <!-- Submit Button -->
-            <button 
-                onclick="submitForm()"
-                class="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-900/50 hover:scale-[1.01] active:scale-[0.99] mt-6">
-                <span class="flex items-center justify-center gap-2 text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    Termin bestätigen
-                </span>
-            </button>
-        </div>
-    </div>
-</div>
-
   <!-- ==================== CURSOR ELEMENT ==================== -->
   <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
     Our favourite
   </div>
 
+  <!-- ==================== COOKIE BACKDROP ==================== -->
+  <div id="backdropBlur" class="fixed inset-0 backdrop-blur-md bg-black/20 z-[9999] transition-all duration-500"></div>
+  
+  <!-- ==================== COOKIE BANNER ==================== -->
+  <div id="cookieBanner" class="cookie-banner fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-full opacity-0 w-[90%] max-w-[900px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl z-[10000] md:bottom-6 md:left-1/2 max-md:bottom-0 max-md:left-0 max-md:translate-x-0 max-md:w-full max-md:max-w-none max-md:rounded-t-3xl max-md:rounded-b-none">
+    <div class="flex flex-wrap gap-6 items-start max-md:flex-col">
+      <!-- Icon -->
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-900 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 cookie-icon-animate">
+        <svg viewBox="0 0 24 24" class="w-7 h-7 fill-white">
+          <path d="M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 10.5 2.5 9 3.5 8L8 12.5L12.5 8L17 12.5L21.5 8C20.5 5 16.5 2 12 2Z"/>
+        </svg>
+      </div>
+      
+      <!-- Text -->
+      <div class="flex-1 min-w-[250px]">
+        <h3 class="text-white text-lg font-semibold mb-2 tracking-tight">Wir verwenden Cookies 🍪</h3>
+        <p class="text-white/70 text-sm leading-relaxed mb-4">
+          Um dir das beste Erlebnis zu bieten, verwenden wir Cookies und ähnliche Technologien. 
+          Mit deiner Zustimmung können wir sie für Analytik und Marketing nutzen. 
+          <a href="#" class="cookie-link relative text-blue-400 font-medium hover:text-blue-300 transition-colors">Mehr erfahren</a>
+        </p>
+      </div>
+      
+      <!-- Buttons -->
+      <div class="flex gap-3 ml-auto flex-wrap max-md:w-full max-md:ml-0 max-md:flex-col">
+        <button onclick="openSettings()" class="cookie-btn relative px-6 py-3 bg-white/5 text-white/90 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden max-md:w-full">
+          Einstellungen
+        </button>
+        <button onclick="rejectCookies()" class="cookie-btn relative px-6 py-3 bg-red-500/10 text-red-300 border border-red-500/20 rounded-xl text-sm font-semibold transition-all hover:bg-red-500/20 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden max-md:w-full">
+          Ablehnen
+        </button>
+        <button onclick="acceptCookies()" class="cookie-btn relative px-6 py-3 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-900/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-900/40 overflow-hidden max-md:w-full">
+          Alle akzeptieren
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== COOKIE SETTINGS MODAL ==================== -->
+  <div id="cookieSettings" class="fixed inset-0 bg-black/80 flex items-center justify-center p-5 z-[10001] opacity-0 invisible transition-all duration-300">
+    <div class="settings-modal bg-black/98 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-[600px] w-full max-h-[80vh] overflow-y-auto scale-90 transition-transform duration-300">
+      
+      <!-- Header -->
+      <div class="mb-6">
+        <h3 class="text-white text-2xl font-bold mb-2">Cookie-Einstellungen</h3>
+        <p class="text-white/60 text-sm">Verwalte deine Cookie-Präferenzen</p>
+      </div>
+
+      <!-- Necessary Cookies -->
+      <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-white text-base font-semibold">Notwendige Cookies</h3>
+          <label class="relative inline-block w-12 h-[26px]">
+            <input type="checkbox" class="opacity-0 w-0 h-0 peer" checked disabled>
+            <span class="absolute inset-0 bg-white/10 rounded-full cursor-not-allowed opacity-50 transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
+          </label>
+        </div>
+        <p class="text-white/60 text-[13px] leading-relaxed">
+          Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.
+        </p>
+      </div>
+
+      <!-- Analytics Cookies -->
+      <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-white text-base font-semibold">Analyse-Cookies</h3>
+          <label class="relative inline-block w-12 h-[26px]">
+            <input type="checkbox" id="analytics" class="opacity-0 w-0 h-0 peer">
+            <span class="absolute inset-0 bg-white/10 rounded-full cursor-pointer transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
+          </label>
+        </div>
+        <p class="text-white/60 text-[13px] leading-relaxed">
+          Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren.
+        </p>
+      </div>
+
+      <!-- Marketing Cookies -->
+      <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-white text-base font-semibold">Marketing-Cookies</h3>
+          <label class="relative inline-block w-12 h-[26px]">
+            <input type="checkbox" id="marketing" class="opacity-0 w-0 h-0 peer">
+            <span class="absolute inset-0 bg-white/10 rounded-full cursor-pointer transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
+          </label>
+        </div>
+        <p class="text-white/60 text-[13px] leading-relaxed">
+          Diese Cookies werden verwendet, um Werbung relevanter für dich und deine Interessen zu gestalten.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex gap-3 justify-end mt-6 pt-6 border-t border-white/10">
+        <button onclick="closeSettings()" class="px-6 py-3 bg-white/5 text-white/90 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:bg-white/10">
+          Abbrechen
+        </button>
+        <button onclick="saveSettings()" class="px-6 py-3 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl text-sm font-semibold shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl">
+          Einstellungen speichern
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SPINNING ELEMENT ==================== -->
+  <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50">
+    <div class="relative w-24 h-24 md:w-40 md:h-40">
+      <!-- Spinning Text Container -->
+      <div class="spinning-text relative w-full h-full text-white font-semibold text-[10px] md:text-sm tracking-wide">
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-5.5ch);">G</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(10.91deg) translateY(-5.5ch);">E</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(21.82deg) translateY(-5.5ch);">T</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(32.73deg) translateY(-5.5ch);"> </span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(43.64deg) translateY(-5.5ch);">Y</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(54.55deg) translateY(-5.5ch);">O</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(65.45deg) translateY(-5.5ch);">U</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(76.36deg) translateY(-5.5ch);">R</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(87.27deg) translateY(-5.5ch);"> </span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(98.18deg) translateY(-5.5ch);">S</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(109.09deg) translateY(-5.5ch);">I</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(120deg) translateY(-5.5ch);">T</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(130.91deg) translateY(-5.5ch);">E</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(141.82deg) translateY(-5.5ch);"> </span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(152.73deg) translateY(-5.5ch);">•</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(163.64deg) translateY(-5.5ch);"> </span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(174.55deg) translateY(-5.5ch);">J</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(185.45deg) translateY(-5.5ch);">E</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(196.36deg) translateY(-5.5ch);">T</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(207.27deg) translateY(-5.5ch);">Z</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(218.18deg) translateY(-5.5ch);">T</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(229.09deg) translateY(-5.5ch);"> </span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(240deg) translateY(-5.5ch);">B</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(250.91deg) translateY(-5.5ch);">U</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(261.82deg) translateY(-5.5ch);">C</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(272.73deg) translateY(-5.5ch);">H</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(283.64deg) translateY(-5.5ch);">E</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(294.55deg) translateY(-5.5ch);">N</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(305.45deg) translateY(-5.5ch);"> </span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(316.36deg) translateY(-5.5ch);">•</span>
+        <span class="absolute top-1/2 left-1/2 inline-block" style="transform: translate(-50%, -50%) rotate(327.27deg) translateY(-5.5ch);"> </span>
+      </div>
+      
+      <!-- Center Button -->
+      <button 
+        onclick="openModal()"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white transition-all duration-300 hover:scale-110 hover:text-gray-200 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== SPINNING MODAL ==================== -->
+  <div id="notification-container" class="fixed top-4 right-4 z-[200] space-y-2 w-full max-w-sm px-4"></div>
+
+  <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] items-center justify-center p-4">
+    <div class="modal-enter bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-blue-500/10 w-full max-w-md p-6 border border-gray-800 relative">
+      <!-- Decorative glow effect -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl -z-10"></div>
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-0.5">Termin buchen</h3>
+          <p class="text-xs text-gray-500">Wählen Sie Ihren Wunschtermin</p>
+        </div>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-white hover:rotate-90 transition-all duration-300 p-1.5 rounded-lg hover:bg-white/5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="space-y-4">
+        <!-- Name -->
+        <div class="group">
+          <label class="block text-xs font-medium text-gray-400 mb-1.5">Name</label>
+          <input 
+            type="text" 
+            id="name"
+            class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
+            placeholder="Max Mustermann">
+        </div>
+
+        <!-- Email -->
+        <div class="group">
+          <label class="block text-xs font-medium text-gray-400 mb-1.5">E-Mail</label>
+          <input 
+            type="email" 
+            id="email"
+            class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
+            placeholder="max@beispiel.de">
+        </div>
+
+        <!-- Datum -->
+        <div class="group">
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Datum
+          </label>
+          <div class="grid grid-cols-3 gap-2">
+            <input 
+              type="text" 
+              id="day"
+              maxlength="2"
+              class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm text-center placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
+              placeholder="TT">
+            <input 
+              type="text" 
+              id="month"
+              maxlength="2"
+              class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm text-center placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
+              placeholder="MM">
+            <input 
+              type="text" 
+              id="year"
+              maxlength="4"
+              class="w-full px-4 py-2.5 bg-white/5 border border-gray-800 rounded-lg text-white text-sm text-center placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all hover:bg-white/10"
+              placeholder="JJJJ">
+          </div>
+        </div>
+
+        <!-- Schnellauswahl Uhrzeit -->
+        <div class="group">
+          <label class="block text-xs font-medium text-gray-400 mb-2 flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Uhrzeit
+          </label>
+          <div class="grid grid-cols-3 gap-2 mb-2.5">
+            <button type="button" onclick="selectTime('09:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">09:00</button>
+            <button type="button" onclick="selectTime('10:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">10:00</button>
+            <button type="button" onclick="selectTime('11:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">11:00</button>
+            <button type="button" onclick="selectTime('14:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">14:00</button>
+            <button type="button" onclick="selectTime('15:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">15:00</button>
+            <button type="button" onclick="selectTime('16:00')" class="time-btn py-2 px-2.5 rounded-lg text-sm font-medium transition-all bg-white/5 text-gray-400 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 hover:text-blue-400">16:00</button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          onclick="submitForm()"
+          class="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-900/50 hover:scale-[1.01] active:scale-[0.99] mt-6">
+          <span class="flex items-center justify-center gap-2 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Termin bestätigen
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== NAVBAR ==================== -->
   <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-11 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
@@ -825,348 +905,240 @@
     </a>
   </nav>
 
-   <!-- ==================== cookies ==================== -->
- <div id="backdropBlur" class="fixed inset-0 backdrop-blur-md bg-black/20 z-[9999] transition-all duration-500"></div>
-  
-  <!-- Cookie Banner -->
-    <div id="cookieBanner" class="cookie-banner fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-full opacity-0 w-[90%] max-w-[900px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl z-[10000] md:bottom-6 md:left-1/2 max-md:bottom-0 max-md:left-0 max-md:translate-x-0 max-md:w-full max-md:max-w-none max-md:rounded-t-3xl max-md:rounded-b-none">
-        <div class="flex flex-wrap gap-6 items-start max-md:flex-col">
-            <!-- Icon -->
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-900 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 cookie-icon-animate">
-                <svg viewBox="0 0 24 24" class="w-7 h-7 fill-white">
-                    <path d="M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 10.5 2.5 9 3.5 8L8 12.5L12.5 8L17 12.5L21.5 8C20.5 5 16.5 2 12 2Z"/>
-                </svg>
-            </div>
-            
-            <!-- Text -->
-            <div class="flex-1 min-w-[250px]">
-                <h3 class="text-white text-lg font-semibold mb-2 tracking-tight">Wir verwenden Cookies 🍪</h3>
-                <p class="text-white/70 text-sm leading-relaxed mb-4">
-                    Um dir das beste Erlebnis zu bieten, verwenden wir Cookies und ähnliche Technologien. 
-                    Mit deiner Zustimmung können wir sie für Analytik und Marketing nutzen. 
-                    <a href="#" class="cookie-link relative text-blue-400 font-medium hover:text-blue-300 transition-colors">Mehr erfahren</a>
-                </p>
-            </div>
-            
-            <!-- Buttons -->
-         <div class="flex gap-3 ml-auto flex-wrap max-md:w-full max-md:ml-0 max-md:flex-col">
-                <button onclick="openSettings()" class="cookie-btn relative px-6 py-3 bg-white/5 text-white/90 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden max-md:w-full">
-                    Einstellungen
-                </button>
-                <button onclick="rejectCookies()" class="cookie-btn relative px-6 py-3 bg-red-500/10 text-red-300 border border-red-500/20 rounded-xl text-sm font-semibold transition-all hover:bg-red-500/20 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden max-md:w-full">
-                    Ablehnen
-                </button>
-                <button onclick="acceptCookies()" class="cookie-btn relative px-6 py-3 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-900/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-900/40 overflow-hidden max-md:w-full">
-                    Alle akzeptieren
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Settings Modal -->
-    <div id="cookieSettings" class="fixed inset-0 bg-black/80 flex items-center justify-center p-5 z-[10001] opacity-0 invisible transition-all duration-300">
-        <div class="settings-modal bg-black/98 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-[600px] w-full max-h-[80vh] overflow-y-auto scale-90 transition-transform duration-300">
-            
-            <!-- Header -->
-            <div class="mb-6">
-                <h3 class="text-white text-2xl font-bold mb-2">Cookie-Einstellungen</h3>
-                <p class="text-white/60 text-sm">Verwalte deine Cookie-Präferenzen</p>
-            </div>
-
-            <!-- Necessary Cookies -->
-            <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-white text-base font-semibold">Notwendige Cookies</h3>
-                    <label class="relative inline-block w-12 h-[26px]">
-                        <input type="checkbox" class="opacity-0 w-0 h-0 peer" checked disabled>
-                        <span class="absolute inset-0 bg-white/10 rounded-full cursor-not-allowed opacity-50 transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
-                    </label>
-                </div>
-                <p class="text-white/60 text-[13px] leading-relaxed">
-                    Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.
-                </p>
-            </div>
-
-            <!-- Analytics Cookies -->
-            <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-white text-base font-semibold">Analyse-Cookies</h3>
-                    <label class="relative inline-block w-12 h-[26px]">
-                        <input type="checkbox" id="analytics" class="opacity-0 w-0 h-0 peer">
-                        <span class="absolute inset-0 bg-white/10 rounded-full cursor-pointer transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
-                    </label>
-                </div>
-                <p class="text-white/60 text-[13px] leading-relaxed">
-                    Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren.
-                </p>
-            </div>
-
-            <!-- Marketing Cookies -->
-            <div class="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 mb-4 transition-all hover:bg-white/5 hover:border-blue-900/30">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-white text-base font-semibold">Marketing-Cookies</h3>
-                    <label class="relative inline-block w-12 h-[26px]">
-                        <input type="checkbox" id="marketing" class="opacity-0 w-0 h-0 peer">
-                        <span class="absolute inset-0 bg-white/10 rounded-full cursor-pointer transition-all before:absolute before:content-[''] before:h-5 before:w-5 before:left-[3px] before:bottom-[3px] before:bg-white before:rounded-full before:transition-all peer-checked:bg-gradient-to-br peer-checked:from-blue-900 peer-checked:to-blue-500 peer-checked:before:translate-x-[22px]"></span>
-                    </label>
-                </div>
-                <p class="text-white/60 text-[13px] leading-relaxed">
-                    Diese Cookies werden verwendet, um Werbung relevanter für dich und deine Interessen zu gestalten.
-                </p>
-            </div>
-
-            <!-- Footer -->
-            <div class="flex gap-3 justify-end mt-6 pt-6 border-t border-white/10">
-                <button onclick="closeSettings()" class="px-6 py-3 bg-white/5 text-white/90 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:bg-white/10">
-                    Abbrechen
-                </button>
-                <button onclick="saveSettings()" class="px-6 py-3 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl text-sm font-semibold shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl">
-                    Einstellungen speichern
-                </button>
-            </div>
-        </div>
-    </div>
-
   <!-- ==================== HERO SECTION ==================== -->
-<section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
+  <section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
     <div class="min-h-screen flex items-center justify-center px-6 lg:px-16 xl:px-24 pt-8 md:pt-0">
-        <!-- Centered Content -->
-        <div class="text-center max-w-4xl">
-            <!-- Badge -->
-            <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 md:mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 2L13.09 8.26L20 9.27L15 14.14L16.18 21.02L10 17.77L3.82 21.02L5 14.14L0 9.27L6.91 8.26L10 2Z" clip-rule="evenodd"/>
-                </svg>
-                New Product Launch
-            </div>
-            
-            <!-- Title with Highlighted "Digital" -->
-              <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-5 md:mb-6 text-gradient animate-fadeInUp-delay-400">
-                Transform Your <span id="highlight-word" class="relative highlight-word">Digital</span> Experience
-            </h1>
-            
-            <!-- Subtitle -->
-            <p class="text-lg md:text-xl lg:text-2xl leading-[1.4] text-gray-400 mb-8 md:mb-10 max-w-3xl mx-auto animate-fadeInUp-delay-600">
-                Discover the next generation of innovation with our cutting-edge platform. Built for creators, designed for growth.
-            </p>
-            
-            <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fadeInUp-delay-800">
-                <button class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3.5 md:py-4 rounded-xl font-semibold text-base md:text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
-                    <span class="relative z-10">Get Started</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
-                </button>
-                <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 md:py-4 rounded-xl font-semibold text-base md:text-lg border border-white/20 backdrop-filter hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
-                    <span class="relative z-10">Learn More</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
-                </button>
-            </div>
-            
-            <!-- Avatar Circles -->
-            <div class="flex items-center gap-3 md:gap-4 mt-10 md:mt-12 justify-center animate-fadeInUp-delay-800">
-                <div id="avatar-circles" class="flex -space-x-4">
-                    <!-- Avatars will be populated by JavaScript -->
-                </div>
-                <div class="text-xs md:text-sm text-gray-400">
-                    <span class="font-semibold text-white">10,000+</span> creators already joined
-                </div>
-            </div>
+      <!-- Centered Content -->
+      <div class="text-center max-w-4xl">
+        <!-- Badge -->
+        <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 md:mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2L13.09 8.26L20 9.27L15 14.14L16.18 21.02L10 17.77L3.82 21.02L5 14.14L0 9.27L6.91 8.26L10 2Z" clip-rule="evenodd"/>
+          </svg>
+          New Product Launch
         </div>
-    </div>
-</section>
-
-  <!-- ==================== SERVICES SECTION ==================== -->
-     <section id="services" class="py-20">
-        <div class="container mx-auto px-4 text-center">
-            <div class="text-center inline-flex bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
-                Unsere Services
-            </div>
-            
-             <h2 class="text-left md:text-center text-4xl md:text-5xl lg:text-5xl font-extrabold md:font-extrabold  lg:font-extrabold leading-tight mb-6 md:mb-4 tracking-tight text-white" style="font-family: 'Inter', sans-serif;">
-                Digitale Lösungen für <span class="highlight" data-text="Ihren Erfolg">Ihren Erfolg</span>
-            </h2>
-            
-            <p class="text-left md:text-center text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                Wir entwickeln moderne, maßgeschneiderte Lösungen, die Ihr Unternehmen voranbringen und Ihre Online-Präsenz stärken
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-                <div class="service-card rounded-3xl p-6 text-center">
-                    <div class="w-44 h-44 mx-auto mb-4">
-                        <img src="img/Web.png" alt="Web Design Icon" class="w-full h-full object-contain">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-white">Web Design</h3>
-                    <p class="text-gray-400">Modern, responsive websites that captivate and convert.</p>
-                </div>
-
-                <div class="service-card rounded-3xl p-6 text-center">
-                    <div class="w-44 h-44 mx-auto mb-4">
-                        <img src="Ui.png" alt="UI/UX Design Icon" class="w-full h-full object-contain">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-white">UI/UX Design</h3>
-                    <p class="text-gray-400">Intuitive interfaces that delight users and drive engagement.</p>
-                </div>
-
-                <div class="service-card rounded-3xl p-6 text-center md:col-span-2 lg:col-span-1">
-                    <div class="w-44 h-44 mx-auto mb-4">
-                        <img src="SE.png" alt="SEO Optimization Icon" class="w-full h-full object-contain">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-white">SEO Optimization</h3>
-                    <p class="text-gray-400">Boost visibility and drive organic traffic to your website.</p>
-                </div>
-            </div>
+        
+        <!-- Title with Highlighted "Digital" -->
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-5 md:mb-6 text-gradient animate-fadeInUp-delay-400">
+          Transform Your <span id="highlight-word" class="relative highlight-word">Digital</span> Experience
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="text-lg md:text-xl lg:text-2xl leading-[1.4] text-gray-400 mb-8 md:mb-10 max-w-3xl mx-auto animate-fadeInUp-delay-600">
+          Discover the next generation of innovation with our cutting-edge platform. Built for creators, designed for growth.
+        </p>
+        
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fadeInUp-delay-800">
+          <button class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3.5 md:py-4 rounded-xl font-semibold text-base md:text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+            <span class="relative z-10">Get Started</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+          </button>
+          <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 md:py-4 rounded-xl font-semibold text-base md:text-lg border border-white/20 backdrop-filter hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+            <span class="relative z-10">Learn More</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+          </button>
         </div>
-    </section>
-
-
-    <!-- ==================== Text plus Image ==================== -->
-
-  
-  <section id="services" class="min-h-screen flex items-center px-6 lg:px-20 py-16 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto w-full relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-        <!-- Content Section -->
-        <div class="text-white lg:pr-8">
-          <h1 class="img-sec-title text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-6 tracking-tight text-white opacity-0">
-            Innovative Lösungen für die Zukunft
-          </h1>
-
-          <p class="img-sec-text text-xl lg:text-2xl text-gray-300 leading-relaxed mb-10 opacity-0">
-            Entdecken Sie revolutionäre <strong class="text-white">KI-Technologien</strong>, die Ihr Business transformieren. 
-            Wir kombinieren modernste Innovationen mit bewährten Strategien für außergewöhnliche Ergebnisse.
-          </p>
-
-          <!-- Feature Liste -->
-          <div class="mb-10">
-            <ul class="space-y-4 text-gray-300">
-              <li class="flex items-center feature-item opacity-0">
-                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-                <span class="text-lg">Modernste KI-Technologien für maximale Effizienz</span>
-              </li>
-              <li class="flex items-center feature-item opacity-0">
-                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-                <span class="text-lg">Persönliche Betreuung und 24/7 Support</span>
-              </li>
-              <li class="flex items-center feature-item opacity-0">
-                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-                <span class="text-lg">Skalierbare Lösungen für jede Unternehmensgröße</span>
-              </li>
-              <li class="flex items-center feature-item opacity-0">
-                <div class="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mr-4">
-                  <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-                <span class="text-lg">Garantierte ROI-Steigerung innerhalb von 6 Monaten</span>
-              </li>
-            </ul>
+        
+        <!-- Avatar Circles -->
+        <div class="flex items-center gap-3 md:gap-4 mt-10 md:mt-12 justify-center animate-fadeInUp-delay-800">
+          <div id="avatar-circles" class="flex -space-x-4">
+            <!-- Avatars will be populated by JavaScript -->
           </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 opacity-0 img-sec-buttons">
-            <button class="btn-primary px-8 py-4 text-white font-semibold rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-600/40 relative" id="ctaButton">
-              <span class="relative z-10">Kostenlose Demo</span>
-            </button>
-            <button class="px-8 py-4 border-2 border-white/20 text-gray-300 font-semibold rounded-lg text-lg transition-all duration-300 hover:border-white hover:text-white hover:bg-white/5" id="secondaryButton">
-              Mehr erfahren
-            </button>
-          </div>
-        </div>
-
-        <!-- Image Section -->
-        <div class="relative group opacity-0 img-sec-image">
-          <div class="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/40">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90oy1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                 alt="Modern Technology" 
-                 class="w-full h-96 lg:h-[650px] object-cover transition-transform duration-500"
-                 loading="lazy">
+          <div class="text-xs md:text-sm text-gray-400">
+            <span class="font-semibold text-white">10,000+</span> creators already joined
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ==================== SERVICES SECTION ==================== -->
+  <section id="services" class="py-20">
+    <div class="container mx-auto px-4 text-center">
+      <div class="text-center inline-flex bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
+        Unsere Services
+      </div>
+      
+      <h2 class="text-left md:text-center text-4xl md:text-5xl lg:text-5xl font-extrabold md:font-extrabold  lg:font-extrabold leading-tight mb-6 md:mb-4 tracking-tight text-white" style="font-family: 'Inter', sans-serif;">
+        Digitale Lösungen für <span class="highlight" data-text="Ihren Erfolg">Ihren Erfolg</span>
+      </h2>
+      
+      <p class="text-left md:text-center text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+        Wir entwickeln moderne, maßgeschneiderte Lösungen, die Ihr Unternehmen voranbringen und Ihre Online-Präsenz stärken
+      </p>
+      
+      <div class="service-card-all grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div class="service-card rounded-3xl p-6 text-center">
+          <div class="w-44 h-44 mx-auto mb-4">
+            <img src="img/Web.png" alt="Web Design Icon" class="w-full h-full object-contain">
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-white">Web Design</h3>
+          <p class="text-gray-400">Modern, responsive websites that captivate and convert.</p>
+        </div>
+
+        <div class="service-card rounded-3xl p-6 text-center">
+          <div class="w-44 h-44 mx-auto mb-4">
+            <img src="Ui.png" alt="UI/UX Design Icon" class="w-full h-full object-contain">
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-white">UI/UX Design</h3>
+          <p class="text-gray-400">Intuitive interfaces that delight users and drive engagement.</p>
+        </div>
+
+        <div class="service-card rounded-3xl p-6 text-center md:col-span-2 lg:col-span-1">
+          <div class="w-44 h-44 mx-auto mb-4">
+            <img src="SE.png" alt="SEO Optimization Icon" class="w-full h-full object-contain">
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-white">SEO Optimization</h3>
+          <p class="text-gray-400">Boost visibility and drive organic traffic to your website.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== IMAGE PLUS TEXT SECTION ==================== -->
+  <section class="min-h-screen flex items-center px-6 lg:px-20 py-16">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- TEXT -->
+      <div class="order-2 lg:order-1 space-y-8">
+        <h1 class="img-sec-title text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+          Innovative Lösungen für die Zukunft
+        </h1>
+
+        <p class="img-sec-text text-lg lg:text-xl text-gray-300 max-w-xl">
+          Entdecken Sie revolutionäre <strong class="text-white">KI-Technologien</strong>, 
+          die Ihr Business transformieren. Wir kombinieren modernste Innovationen mit bewährten Strategien 
+          für außergewöhnliche Ergebnisse.
+        </p>
+
+        <ul class="space-y-4">
+          <li class="feature-item flex items-center text-gray-300">
+            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center mr-3">
+              <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            Modernste KI-Technologien für maximale Effizienz
+          </li>
+          <li class="feature-item flex items-center text-gray-300">
+            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center mr-3">
+              <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            Persönliche Betreuung und 24/7 Support
+          </li>
+          <li class="feature-item flex items-center text-gray-300">
+            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center mr-3">
+              <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            Skalierbare Lösungen für jede Unternehmensgröße
+          </li>
+          <li class="feature-item flex items-center text-gray-300">
+            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center mr-3">
+              <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            Garantierte ROI-Steigerung innerhalb von 6 Monaten
+          </li>
+        </ul>
+
+        <!-- BUTTONS -->
+        <div class="flex flex-col sm:flex-row gap-4 img-sec-buttons">
+          <button class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform">
+            Kostenlose Demo
+          </button>
+          <button class="px-8 py-4 border border-white/20 text-gray-300 rounded-lg text-lg font-semibold hover:border-white hover:text-white hover:bg-white/5 transition-all">
+            Mehr erfahren
+          </button>
+        </div>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="order-1 lg:order-2 relative rounded-3xl shadow-2xl shadow-black/40 overflow-hidden">
+        <div class="img-sec-image-wrapper w-[full] h-80 sm:h-[500px] lg:h-[650px] flex items-end">
+          <img 
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=2070&q=80" 
+            alt="Modern Technology" 
+            class="img-sec-image h-[150%] rounded-3xl object-cover"
+            loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ==================== APPS SECTION ==================== -->
   <section id="tools" class="min-h-screen flex items-center justify-center py-12 sm:py-16">
-        <div class="text-center px-6 sm:px-10 max-w-6xl w-full">
-            <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 md:mb-8 shadow-lg shadow-blue-800/30">
-                Tech Stack
-            </div>
-            
-            <h1 class="text-left md:text-center text-4xl md:text-6xl font-bold leading-tight mb-6 text-white" id="main-title">
-                <span class="reveal-text">The</span>
-                <span class="reveal-text">tools</span>
-                <span class="reveal-text">behind</span>
-                <span class="reveal-text">our</span>
-                <span class="reveal-text"><span class="highlight" data-text="creative">creative</span></span>
-                <span class="reveal-text">process</span>
-            </h1>
+    <div class="text-center px-6 sm:px-10 max-w-6xl w-full">
+      <div class="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 md:mb-8 shadow-lg shadow-blue-800/30">
+        Tech Stack
+      </div>
+      
+      <h1 class="text-left md:text-center text-4xl md:text-6xl font-bold leading-tight mb-6 text-white" id="main-title">
+        <span class="reveal-text">The</span>
+        <span class="reveal-text">tools</span>
+        <span class="reveal-text">behind</span>
+        <span class="reveal-text">our</span>
+        <span class="reveal-text"><span class="highlight" data-text="creative">creative</span></span>
+        <span class="reveal-text">process</span>
+      </h1>
 
-            <p class="subtitle text-left md:text-center text-lg md:text-xl text-gray-400 mb-12 sm:mb-14 max-w-2xl mx-auto">
-                From design to deployment, these are the essential applications that drive our workflow and bring ideas to life
-            </p>
+      <p class="subtitle text-left md:text-center text-lg md:text-xl text-gray-400 mb-12 sm:mb-14 max-w-2xl mx-auto">
+        From design to deployment, these are the essential applications that drive our workflow and bring ideas to life
+      </p>
 
-            <!-- Tools Grid -->
-            <div class="flex flex-wrap justify-center gap-12 sm:gap-8 max-w-3xl mx-auto px-0">
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="img/Figma.png" alt="Figma" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Goodnotes.png" alt="Goodnotes" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/GSAP.png" alt="GSAP" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="img/Github.png" alt="Github" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Blender.png" alt="Blender" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Notion.png" alt="Notion" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Microsoft_office.png" alt="Microsoft Office" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Google__G__logo.svg.png" alt="Google" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Gmail.png" alt="Gmail" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/chatgpt.png" alt="ChatGPT" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Tailwind.png" alt="Tailwind" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/Vscode.png" alt="VS Code" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/claude-logo.svg" alt="Claude" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-                <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                    <img src="assets/outlook.png" alt="Outlook" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
-                </div>
-            </div>
+      <!-- Tools Grid -->
+      <div class="flex flex-wrap justify-center gap-12 sm:gap-8 max-w-3xl mx-auto px-0">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="img/Figma.png" alt="Figma" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-    </section>
-
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Goodnotes.png" alt="Goodnotes" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/GSAP.png" alt="GSAP" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="img/Github.png" alt="Github" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Blender.png" alt="Blender" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Notion.png" alt="Notion" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Microsoft_office.png" alt="Microsoft Office" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Google__G__logo.svg.png" alt="Google" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Gmail.png" alt="Gmail" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/chatgpt.png" alt="ChatGPT" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Tailwind.png" alt="Tailwind" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/Vscode.png" alt="VS Code" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/claude-logo.svg" alt="Claude" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+          <img src="assets/outlook.png" alt="Outlook" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== GRID SECTION ==================== -->
   <section id="about" class="max-w-7xl mx-auto p-6 text-white py-20">
@@ -1277,7 +1249,6 @@
     </div>
   </section>
 
-
   <!-- ==================== CAROUSEL SECTION ==================== -->
   <section id="carousel" id="project" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
 
@@ -1343,21 +1314,20 @@
 
   </section>
 
-
   <!-- ==================== CONTACT SECTION ==================== -->
   <section id="contact" class="text-white font-sans min-h-screen flex items-center justify-center py-20">
     <div class="w-full max-w-4xl px-4 sm:px-6">
-     <div class="text-center mb-12">
+      <div class="text-center mb-12">
         <div class="text-center inline-flex bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
-                Unsere Services
-            </div>
-  <h1 class=" text-left md:text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent lg:leading-tight">
-    Haben Sie Fragen zu unserem <span class="highlight inline-block" data-text="Business">Business</span>?
-  </h1>
-  <p class=" text-left md:text-center text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-    Wir sind hier, um Ihnen zu helfen. Stellen Sie uns Ihre Fragen!
-  </p>
-</div>
+          Unsere Services
+        </div>
+        <h1 class=" text-left md:text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent lg:leading-tight">
+          Haben Sie Fragen zu unserem <span class="highlight inline-block" data-text="Business">Business</span>?
+        </h1>
+        <p class=" text-left md:text-center text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          Wir sind hier, um Ihnen zu helfen. Stellen Sie uns Ihre Fragen!
+        </p>
+      </div>
 
       <div class="flex justify-center">
         <div class="w-full">
@@ -1472,7 +1442,6 @@
     </div>
   </section>
 
-
   <!-- ==================== FOOTER SECTION ==================== -->
   <footer class="relative isolate overflow-hidden pb-12">
     <!-- Background Elements -->
@@ -1537,7 +1506,6 @@
     // ========== INITIALIZATION ==========
     gsap.registerPlugin(ScrollTrigger);
 
-
     // ========== CURSOR ANIMATION ==========
     const cursorTag = document.getElementById("cursorTag");
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -1554,6 +1522,224 @@
       });
     }
 
+    // ========== COOKIE FUNCTIONALITY ==========
+    const cookieConsent = {
+      data: null,
+      
+      save: function(preferences) {
+        this.data = {
+          accepted: true,
+          preferences: preferences,
+          timestamp: new Date().toISOString()
+        };
+        console.log('Cookie-Präferenzen gespeichert:', this.data);
+      },
+      
+      load: function() {
+        return this.data;
+      },
+      
+      clear: function() {
+        this.data = null;
+        console.log('Cookie-Präferenzen gelöscht');
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const consent = cookieConsent.load();
+      const banner = document.getElementById('cookieBanner');
+      const backdrop = document.getElementById('backdropBlur');
+      
+      if (consent && consent.accepted) {
+        banner.style.display = 'none';
+        backdrop.style.display = 'none';
+        console.log('Cookie-Banner wird nicht angezeigt - bereits akzeptiert');
+      } else {
+        banner.style.display = 'block';
+        backdrop.style.display = 'block';
+      }
+    });
+
+    function acceptCookies() {
+      cookieConsent.save({
+        necessary: true,
+        analytics: true,
+        marketing: true
+      });
+      console.log('Alle Cookies akzeptiert');
+      hideBanner();
+    }
+
+    function rejectCookies() {
+      cookieConsent.save({
+        necessary: true,
+        analytics: false,
+        marketing: false
+      });
+      console.log('Nur notwendige Cookies akzeptiert');
+      hideBanner();
+    }
+
+    function hideBanner() {
+      const banner = document.getElementById('cookieBanner');
+      const backdrop = document.getElementById('backdropBlur');
+      
+      banner.classList.add('hidden');
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+      
+      setTimeout(() => {
+        banner.style.display = 'none';
+        backdrop.style.display = 'none';
+      }, 500);
+    }
+
+    function openSettings() {
+      const settings = document.getElementById('cookieSettings');
+      
+      const consent = cookieConsent.load();
+      if (consent && consent.preferences) {
+        document.getElementById('analytics').checked = consent.preferences.analytics;
+        document.getElementById('marketing').checked = consent.preferences.marketing;
+      }
+      
+      settings.classList.remove('opacity-0', 'invisible');
+      setTimeout(() => {
+        settings.querySelector('.settings-modal').classList.remove('scale-90');
+        settings.querySelector('.settings-modal').classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeSettings() {
+      const settings = document.getElementById('cookieSettings');
+      settings.querySelector('.settings-modal').classList.remove('scale-100');
+      settings.querySelector('.settings-modal').classList.add('scale-90');
+      setTimeout(() => {
+        settings.classList.add('opacity-0', 'invisible');
+      }, 200);
+    }
+
+    function saveSettings() {
+      const analytics = document.getElementById('analytics').checked;
+      const marketing = document.getElementById('marketing').checked;
+      
+      cookieConsent.save({
+        necessary: true,
+        analytics: analytics,
+        marketing: marketing
+      });
+      
+      console.log('Einstellungen gespeichert:', {
+        necessary: true,
+        analytics: analytics,
+        marketing: marketing
+      });
+      
+      closeSettings();
+      hideBanner();
+    }
+
+    document.getElementById('cookieSettings').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSettings();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'c' && e.ctrlKey) {
+        e.preventDefault();
+        cookieConsent.clear();
+        const banner = document.getElementById('cookieBanner');
+        const backdrop = document.getElementById('backdropBlur');
+        
+        banner.style.display = 'block';
+        banner.classList.remove('hidden');
+        backdrop.style.display = 'block';
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        
+        console.log('Banner zurückgesetzt - wird wieder angezeigt');
+      }
+    });
+
+    // ========== SPINNING MODAL FUNCTIONALITY ==========
+    let selectedTime = '';
+
+    document.getElementById('day').addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+      if (this.value.length === 2) {
+        document.getElementById('month').focus();
+      }
+    });
+
+    document.getElementById('month').addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+      if (this.value.length === 2) {
+        document.getElementById('year').focus();
+      }
+    });
+
+    document.getElementById('year').addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    function selectTime(time) {
+      selectedTime = time;
+      
+      document.querySelectorAll('.time-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+        btn.classList.add('bg-white/5', 'text-gray-400', 'border-gray-800');
+      });
+      
+      event.target.classList.remove('bg-white/5', 'text-gray-400', 'border-gray-800');
+      event.target.classList.add('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function submitForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const day = document.getElementById('day').value;
+      const month = document.getElementById('month').value;
+      const year = document.getElementById('year').value;
+      
+      if (!name || !email || !day || !month || !year || !selectedTime) {
+        alert('Bitte füllen Sie alle Felder aus.');
+        return;
+      }
+      
+      const date = `${day}.${month}.${year}`;
+      
+      alert(`Termin gebucht!\n\nName: ${name}\nE-Mail: ${email}\nDatum: ${date}\nUhrzeit: ${selectedTime}`);
+      closeModal();
+      
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('day').value = '';
+      document.getElementById('month').value = '';
+      document.getElementById('year').value = '';
+      selectedTime = '';
+      
+      document.querySelectorAll('.time-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+        btn.classList.add('bg-white/5', 'text-gray-400', 'border-gray-800');
+      });
+    }
+
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
 
     // ========== NAVBAR FUNCTIONALITY ==========
     const navHamburger = document.querySelector('.nav-hamburger');
@@ -1561,11 +1747,9 @@
     const navListItems = navLinks.querySelectorAll('li');
     const navAnchors = document.querySelectorAll('.nav-link');
 
-    // Navbar intro animation
     gsap.set('#navbar', { scaleX: 0, transformOrigin: 'center' });
     gsap.to('#navbar', { scaleX: 1, duration: 1.1, ease: 'elastic.out(1,0.6)' });
 
-    // Mobile menu toggle
     function toggleMenu() {
       navHamburger.classList.toggle('active');
       const open = navHamburger.classList.contains('active');
@@ -1585,7 +1769,6 @@
     }
     navHamburger.addEventListener('click', toggleMenu);
 
-    // Responsive menu handling
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
         gsap.set(navLinks, { clearProps: 'maxHeight' });
@@ -1595,7 +1778,6 @@
       }
     });
 
-    // ScrollSpy for active menu
     document.querySelectorAll("section").forEach(section => {
       ScrollTrigger.create({
         trigger: section,
@@ -1614,7 +1796,6 @@
         }
       });
     }
-
 
     // ========== HERO SECTION ANIMATIONS ==========
     document.querySelectorAll(".group").forEach(button => {
@@ -1643,86 +1824,236 @@
       });
     });
 
+    const avatars = [
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b14d2bc2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        profileUrl: '#'
+      }
+    ];
+
+    function createAvatarCircles() {
+      const container = document.getElementById('avatar-circles');
+      if (!container) return;
+      
+      avatars.slice(0, 4).forEach((avatar, index) => {
+        const link = document.createElement('a');
+        link.href = avatar.profileUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'transition-transform hover:scale-110 hover:z-10 relative';
+        
+        const img = document.createElement('img');
+        img.src = avatar.imageUrl;
+        img.alt = `Avatar ${index + 1}`;
+        img.className = 'h-10 w-10 rounded-full border-2 border-gray-700 hover:border-blue-400 transition-colors';
+        img.width = 40;
+        img.height = 40;
+        
+        link.appendChild(img);
+        container.appendChild(link);
+      });
+      
+      const remainingCount = 9996;
+      if (remainingCount > 0) {
+        const plusCircle = document.createElement('div');
+        plusCircle.className = 'flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-800 text-center text-xs font-medium text-white hover:bg-gray-700 hover:border-blue-400 transition-colors cursor-pointer';
+        plusCircle.textContent = `+${remainingCount.toLocaleString()}`;
+        container.appendChild(plusCircle);
+      }
+    }
+
+    function highlightDigital() {
+      const element = document.getElementById('highlight-word');
+      if (!element || !window.RoughNotation) return;
+      
+      const annotation = window.RoughNotation.annotate(element, {
+        type: 'underline',
+        color: '#1e40af',
+        strokeWidth: 4,
+        animationDuration: 800,
+        iterations: 1,
+        padding: 8,
+        multiline: false
+      });
+      
+      setTimeout(() => {
+        annotation.show();
+      }, 1500);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      createAvatarCircles();
+      highlightDigital();
+    });
 
     // ========== SERVICES SECTION ANIMATIONS ==========
-    gsap.set(".service-card", { opacity: 0, y: 100 });
-    gsap.to(".service-card", {
+    gsap.set(".inline-flex", { opacity: 0, y: 30 });
+    gsap.to(".inline-flex", {
       scrollTrigger: {
-        trigger: ".service-card",
-        start: "top 80%",
+        trigger: "#services",
+        start: "top 90%",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: "power3.out"
+    });
+
+    gsap.set("h2", { opacity: 0, y: 50 });
+    gsap.to("h2", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 90%",
       },
       y: 0,
       opacity: 1,
       duration: 0.8,
-      stagger: 0.3,
+      delay: 0.2,
       ease: "power3.out"
     });
 
-
-    // ========== APPS SECTION ANIMATIONS ==========
- 
-     gsap.registerPlugin(ScrollTrigger);
-
-// Warte bis DOM geladen ist
-document.addEventListener('DOMContentLoaded', function() {
-    // Prüfe ob Elemente existieren
-    const toolsSection = document.querySelector('#tools');
-    const techBadge = document.querySelector('.tech-badge');
-    const revealTexts = document.querySelectorAll('.reveal-text');
-    const subtitle = document.querySelector('.subtitle');
-    const toolIcons = document.querySelectorAll('.tool-icon');
-
-    if (!toolsSection) {
-        console.error('Tools section not found');
-        return;
-    }
-
-    // Erstelle Timeline mit verbessertem ScrollTrigger
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '#tools',
-            start: 'top 80%', // früher starten
-            end: 'top 20%',
-            toggleActions: 'play none none none',
-            markers: false,
-            once: true
-        }
+    gsap.set("#services p", { opacity: 0, y: 30 });
+    gsap.to("#services p", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 90%",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      delay: 0.4,
+      ease: "power3.out"
     });
 
-    // Animation-Sequenz
-    tl.to(techBadge, {
+    gsap.set(".service-card", { opacity: 0, y: 50, scale: 0.9 });
+    gsap.to(".service-card", {
+      scrollTrigger: {
+        trigger: ".service-card-all",
+        start: "top 95%",
+      },
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      delay: 0.2,
+      stagger: 0.2,
+      ease: "power3.out"
+    });
+
+    // ========== IMAGE PLUS TEXT SECTION ANIMATIONS ==========
+    gsap.from(".img-sec-title", {
+      y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
+      scrollTrigger: { trigger: ".img-sec-title", start: "top 85%" }
+    });
+
+    gsap.from(".img-sec-text", {
+      y: 25, opacity: 0, duration: 0.7, delay: 0.1, ease: "power2.out",
+      scrollTrigger: { trigger: ".img-sec-text", start: "top 85%" }
+    });
+
+    // Feature-Liste
+    gsap.from(".feature-item", {
+      x: -40, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
+      scrollTrigger: { trigger: ".feature-item", start: "top 85%" }
+    });
+
+    // Buttons
+    gsap.from(".img-sec-buttons", {
+      y: 25, opacity: 0, duration: 0.6, ease: "power2.out",
+      scrollTrigger: { trigger: ".img-sec-buttons", start: "top 85%" }
+    });
+
+    // Bild + Parallax + leichte Drehung
+    gsap.fromTo(".img-sec-image",
+      { scale: 0.9, opacity: 0, rotate: 3, y: 50 },
+      { 
+        scale: 1, opacity: 1, rotate: 0, y: 0, duration: 1.3, ease: "power3.out",
+        scrollTrigger: { trigger: ".img-sec-image-wrapper", start: "top 85%" }
+      }
+    );
+
+    // Parallax-Bewegung beim Scrollen
+    gsap.to(".img-sec-image", {
+      yPercent: 50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".img-sec-image-wrapper",
+        start: "50% bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // ========== APPS SECTION ANIMATIONS ==========
+    document.addEventListener('DOMContentLoaded', function() {
+      const toolsSection = document.querySelector('#tools');
+      const techBadge = document.querySelector('.tech-badge');
+      const revealTexts = document.querySelectorAll('.reveal-text');
+      const subtitle = document.querySelector('.subtitle');
+      const toolIcons = document.querySelectorAll('.tool-icon');
+
+      if (!toolsSection) {
+        console.error('Tools section not found');
+        return;
+      }
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#tools',
+          start: 'top 80%',
+          end: 'top 20%',
+          toggleActions: 'play none none none',
+          markers: false,
+          once: true
+        }
+      });
+
+      tl.to(techBadge, {
         opacity: 1,
         y: 0,
         duration: 0.6,
         ease: 'power2.out'
-    })
-    .to(revealTexts, {
+      })
+      .to(revealTexts, {
         opacity: 1,
-        stagger: 0.1,   // schneller
-        duration: 0.5,  // kürzer
+        stagger: 0.1,
+        duration: 0.5,
         ease: 'power2.out'
-    }, '+=0.15')
-    .to(subtitle, {
+      }, '+=0.15')
+      .to(subtitle, {
         opacity: 1,
         y: 0,
-        duration: 0.5,  // statt 0.8
+        duration: 0.5,
         ease: 'power2.out'
-    }, '+=0.15')
-    .to(toolIcons, {
+      }, '+=0.15')
+      .to(toolIcons, {
         y: 0,
         opacity: 1,
-        stagger: 0.05,  // statt 0.08
-        duration: 0.3,  // statt 0.4
+        stagger: 0.05,
+        duration: 0.3,
         ease: 'power3.out'
-    }, '+=0.15');
+      }, '+=0.15');
 
-    // Refresh ScrollTrigger nach allem anderen Content
-    ScrollTrigger.refresh();
-});
+      ScrollTrigger.refresh();
+    });
 
-    
     // ========== GRID SECTION ANIMATIONS ==========
-    // Buildings animation
     const buildings = document.querySelectorAll('#buildings-card .building');
     gsap.set(buildings, { yPercent: 40 });
     const buildTimeline = gsap.timeline({ paused: true });
@@ -1734,7 +2065,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('buildings-card').addEventListener('mouseenter', () => buildTimeline.play());
     document.getElementById('buildings-card').addEventListener('mouseleave', () => buildTimeline.reverse());
 
-    // Profile cards hover animation
     document.querySelectorAll('.group').forEach(group => {
       const rings = group.querySelectorAll('.ring');
       const avatar = group.querySelector('img');
@@ -1750,7 +2080,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    // WebPlants card hover animation
     const webCard = document.getElementById('webplants-card');
     const webBg = webCard.querySelector('img');
     gsap.set(webBg, { scale: 1.5, transformOrigin: "50% 50%" });
@@ -1764,118 +2093,106 @@ document.addEventListener('DOMContentLoaded', function() {
       gsap.to(webBg, { scale: 1.5, rotation: 0, duration: 0.6, ease: "elastic.out(1,0.5)" });
     });
 
-    // Timeline animation
     const steps = document.querySelectorAll("#timeline-card .timeline-step");
     const line = document.getElementById("progress-line");
     const branches = document.querySelectorAll("#timeline-card .branch-progress");
 
-    const tl = gsap.timeline({ paused: true });
-    tl.to(line, { width: "100%", duration: 2, ease: "power1.inOut" }, 0);
+    const tlTimeline = gsap.timeline({ paused: true });
+    tlTimeline.to(line, { width: "100%", duration: 2, ease: "power1.inOut" }, 0);
 
-    // Steps & Abzweigungen
     steps.forEach((step, i) => {
-      tl.to(branches[i], { scaleY: 1, duration: 0.3, ease: "power1.out" }, i * 0.35 + 0.5);
-      tl.to(step, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, i * 0.35 + 0.4);
+      tlTimeline.to(branches[i], { scaleY: 1, duration: 0.3, ease: "power1.out" }, i * 0.35 + 0.5);
+      tlTimeline.to(step, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, i * 0.35 + 0.4);
     });
 
-    // Hover-Trigger
     const timelineCard = document.getElementById("timeline-card");
-    timelineCard.addEventListener("mouseenter", () => tl.play(0));
-    timelineCard.addEventListener("mouseleave", () => tl.reverse());
-
+    timelineCard.addEventListener("mouseenter", () => tlTimeline.play(0));
+    timelineCard.addEventListener("mouseleave", () => tlTimeline.reverse());
 
     // ========== CAROUSEL SECTION ANIMATIONS ==========
-  window.addEventListener("load", () => {
-    const cards = gsap.utils.toArray(".card");
-    const track = document.getElementById("track");
-    const textBox = document.getElementById("card-text");
+    window.addEventListener("load", () => {
+      const cards = gsap.utils.toArray(".card");
+      const track = document.getElementById("track");
+      const textBox = document.getElementById("card-text");
 
-    const firstCard = cards[0];
-    const rect = firstCard.getBoundingClientRect();
-    const cardCenter = rect.left + rect.width / 2;
-    const offset = window.innerWidth / 2 - cardCenter;
-    gsap.set(track, {x: offset});
+      const firstCard = cards[0];
+      const rect = firstCard.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const offset = window.innerWidth / 2 - cardCenter;
+      gsap.set(track, {x: offset});
 
-    textBox.textContent = firstCard.dataset.text;
-    const totalSteps = cards.length - 1;
+      textBox.textContent = firstCard.dataset.text;
+      const totalSteps = cards.length - 1;
 
-    gsap.to({}, {
-      scrollTrigger: {
-        trigger: "#carousel",
-        start: "top top",
-        end: () => "+=" + (window.innerWidth * totalSteps * 0.3),
-        scrub: 1,
-        pin: true,
-        onUpdate: self => {
-          const idx = Math.round(self.progress * totalSteps);
-          const activeCard = cards[idx];
+      gsap.to({}, {
+        scrollTrigger: {
+          trigger: "#carousel",
+          start: "top top",
+          end: () => "+=" + (window.innerWidth * totalSteps * 0.3),
+          scrub: 1,
+          pin: true,
+          onUpdate: self => {
+            const idx = Math.round(self.progress * totalSteps);
+            const activeCard = cards[idx];
 
-          const rect = activeCard.getBoundingClientRect();
-          const cardCenter = rect.left + rect.width / 2;
-          const offset = window.innerWidth / 2 - cardCenter;
+            const rect = activeCard.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const offset = window.innerWidth / 2 - cardCenter;
 
-          gsap.to(track, {x: `+=${offset}`, duration: 1, ease: "power2.out"});
+            gsap.to(track, {x: `+=${offset}`, duration: 1, ease: "power2.out"});
 
-          cards.forEach((c,i)=>{
-            if(i === idx){
-              gsap.to(c, {scale:1, opacity:1, duration:0.4, overwrite:true});
-            } else {
-              gsap.to(c, {scale:0.8, opacity:0.4, duration:0.4, overwrite:true});
-            }
-          });
-
-          if (textBox.textContent !== activeCard.dataset.text) {
-            gsap.to(textBox, {
-              opacity: 0,
-              duration: 0.3,
-              onComplete: () => {
-                textBox.textContent = activeCard.dataset.text;
-                gsap.to(textBox, {opacity: 1, duration: 0.3});
+            cards.forEach((c,i)=>{
+              if(i === idx){
+                gsap.to(c, {scale:1, opacity:1, duration:0.4, overwrite:true});
+              } else {
+                gsap.to(c, {scale:0.8, opacity:0.4, duration:0.4, overwrite:true});
               }
             });
+
+            if (textBox.textContent !== activeCard.dataset.text) {
+              gsap.to(textBox, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                  textBox.textContent = activeCard.dataset.text;
+                  gsap.to(textBox, {opacity: 1, duration: 0.3});
+                }
+              });
+            }
           }
         }
-      }
+      });
     });
-  });
-
 
     // ========== CONTACT SECTION ANIMATIONS ==========
-      const subjectDisplay = document.getElementById('subject-display');
+    const subjectDisplay = document.getElementById('subject-display');
     const subjectHidden = document.getElementById('subject');
     const dropdownOptions = document.querySelector('.dropdown-options');
     const dropdownIcon = document.getElementById('dropdown-icon');
     const options = document.querySelectorAll('.option');
     
-    // Toggle dropdown
     subjectDisplay.addEventListener('click', function() {
       dropdownOptions.classList.toggle('show');
       dropdownIcon.classList.toggle('dropdown-icon-rotate');
     });
     
-    // Handle option selection
     options.forEach(option => {
       option.addEventListener('click', function() {
         const value = this.dataset.value;
         const text = this.querySelector('span').textContent;
         const icon = this.querySelector('i').outerHTML;
         
-        // Update display field
         subjectDisplay.value = text;
         subjectHidden.value = value;
         
-        // Mark as valid for floating label
         subjectDisplay.setAttribute('data-selected', 'true');
         
-        // Close dropdown
         dropdownOptions.classList.remove('show');
         dropdownIcon.classList.remove('dropdown-icon-rotate');
         
-        // Visual feedback
         options.forEach(opt => opt.classList.remove('selected'));
         this.classList.add('selected');
         
-        // Clear error if present
         subjectDisplay.classList.remove('border-red-500');
         const errorDiv = subjectDisplay.parentNode.querySelector('.error-message');
         if (errorDiv) {
@@ -1884,7 +2201,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
     
-    // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.custom-select')) {
         dropdownOptions.classList.remove('show');
@@ -1892,7 +2208,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Update floating label for custom select
     subjectDisplay.addEventListener('focus', function() {
       this.parentNode.querySelector('label').style.cssText = `
         top: -8px !important;
@@ -1910,9 +2225,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Floating label functionality for all inputs
     document.querySelectorAll('.floating-label input:not(#subject-display), .floating-label textarea').forEach(input => {
-      // Check content on input
       input.addEventListener('input', function() {
         if (this.value.trim() !== '') {
           this.classList.add('has-content');
@@ -1921,7 +2234,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // Check content on blur
       input.addEventListener('blur', function() {
         if (this.value.trim() !== '') {
           this.classList.add('has-content');
@@ -1930,13 +2242,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // Initial check for existing content
       if (input.value.trim() !== '') {
         input.classList.add('has-content');
       }
     });
 
-    // Character counter for message field
     const messageField = document.getElementById('message');
     const charCounter = document.getElementById('char-counter');
     
@@ -1954,7 +2264,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Form validation
     function validateEmail(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
@@ -1964,39 +2273,33 @@ document.addEventListener('DOMContentLoaded', function() {
       let isValid = true;
       const formData = new FormData(document.getElementById('contact-form'));
       
-      // Clear previous errors
       document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
       document.getElementById('error-message').classList.add('hidden');
 
-      // Email validation
       const email = formData.get('email');
       if (!email || !validateEmail(email)) {
         showError('email', 'Please enter a valid email address');
         isValid = false;
       }
 
-      // Name validation
       const name = formData.get('name');
       if (!name || name.trim().length < 2) {
         showError('name', 'Name must be at least 2 characters long');
         isValid = false;
       }
 
-      // Subject validation
       const subject = formData.get('subject');
       if (!subject) {
         showError('subject-display', 'Please select a subject');
         isValid = false;
       }
 
-      // Message validation
       const message = formData.get('message');
       if (!message || message.trim().length < 10) {
         showError('message', 'Message must be at least 10 characters long');
         isValid = false;
       }
 
-      // Consent validation
       const consent = formData.get('consent');
       if (!consent) {
         document.getElementById('error-message').classList.remove('hidden');
@@ -2014,7 +2317,6 @@ document.addEventListener('DOMContentLoaded', function() {
       field.classList.add('border-red-500');
     }
 
-    // Form submission
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
       
@@ -2027,40 +2329,32 @@ document.addEventListener('DOMContentLoaded', function() {
       const btnIcon = document.getElementById('btn-icon');
       const loadingSpinner = document.getElementById('loading-spinner');
       
-      // Show loading state
       submitBtn.disabled = true;
       btnText.textContent = 'Sending...';
       btnIcon.classList.add('hidden');
       loadingSpinner.classList.remove('hidden');
 
-      // Simulate API call
       setTimeout(() => {
-        // Hide loading state
         submitBtn.disabled = false;
         btnText.textContent = 'Send Message';
         btnIcon.classList.remove('hidden');
         loadingSpinner.classList.add('hidden');
 
-        // Show success message
         const successMsg = document.getElementById('success-message');
         successMsg.classList.remove('hidden');
         successMsg.classList.add('success-enter');
 
-        // Reset form
         this.reset();
         
-        // Reset custom dropdown
         subjectDisplay.value = '';
         subjectHidden.value = '';
         subjectDisplay.removeAttribute('data-selected');
         options.forEach(opt => opt.classList.remove('selected'));
         subjectDisplay.parentNode.querySelector('label').style.cssText = '';
         
-        // Clear character counter
         charCounter.textContent = '0 / 1000';
         charCounter.className = 'char-counter';
 
-        // Clear any error styles and has-content class
         document.querySelectorAll('.border-red-500').forEach(el => {
           el.classList.remove('border-red-500');
         });
@@ -2068,14 +2362,12 @@ document.addEventListener('DOMContentLoaded', function() {
           el.classList.remove('has-content');
         });
 
-        // Hide success message after 5 seconds
         setTimeout(() => {
           successMsg.classList.add('hidden');
         }, 5000);
       }, 2000);
     });
 
-    // Clear error styling on input
     document.querySelectorAll('.form-input').forEach(input => {
       input.addEventListener('input', function() {
         this.classList.remove('border-red-500');
@@ -2086,554 +2378,23 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px'
+    };
 
-
-    // ========== Img ANIMATIONS ==========
-document.addEventListener("DOMContentLoaded", () => {
-  // CTA Buttons
-  const ctaBtn = document.getElementById('ctaButton');
-  const secBtn = document.getElementById('secondaryButton');
-  if (ctaBtn) {
-    ctaBtn.addEventListener('click', () => {
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-    });
-  }
-  if (secBtn) {
-    secBtn.addEventListener('click', () => {
-      alert('Hier würden weitere Informationen angezeigt werden!');
-    });
-  }
-  // GSAP Plugins
-  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Set initial states to prevent flickering
-    gsap.set([".img-sec-title", ".img-sec-text", ".img-sec-image", ".feature-item", ".img-sec-buttons"], {
-      opacity: 0
-    });
-    
-    let mm = gsap.matchMedia();
-    
-    // Large screens (PC)
-    mm.add("(min-width: 1024px)", () => {
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".img-sec-title",
-          start: "top 85%",
-          toggleActions: "play none none none"
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
       });
-      tl.fromTo(".img-sec-title", 
-        {y:30, opacity:0}, 
-        {y:0, opacity:1, duration:0.8, ease:"power3.out"})
-        .fromTo(".img-sec-image", 
-          {scale:0.8, opacity:0, rotation:3}, 
-          {scale:1, opacity:1, rotation:0, duration:1.2, ease:"back.out(1.2)"}, 
-          "<0.2")
-        .fromTo(".img-sec-text", 
-          {y:30, opacity:0}, 
-          {y:0, opacity:1, duration:0.7, ease:"power2.out"}, 
-          "-=0.8")
-        .fromTo(".feature-item", 
-          {x:-30, opacity:0}, 
-          {x:0, opacity:1, duration:0.5, stagger:0.12, ease:"power2.out"}, 
-          "-=0.4")
-        .fromTo(".img-sec-buttons", 
-          {y:20, opacity:0}, 
-          {y:0, opacity:1, duration:0.6, ease:"power2.out"}, 
-          "-=0.3");
-    });
-    
-    // Small screens (Mobile) - Neue Reihenfolge
-    mm.add("(max-width: 1023px)", () => {
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".img-sec-title",
-          start: "top 90%",
-          toggleActions: "play none none none"
-        }
-      });
-      tl.fromTo(".img-sec-title", 
-        {y:30, opacity:0}, 
-        {y:0, opacity:1, duration:0.8, ease:"power3.out"})
-        .fromTo(".img-sec-text", 
-          {y:30, opacity:0}, 
-          {y:0, opacity:1, duration:0.7, ease:"power2.out"}, 
-          "-=0.4")
-        .fromTo(".feature-item", 
-          {x:-25, opacity:0}, 
-          {x:0, opacity:1, duration:0.5, stagger:0.1, ease:"power2.out"}, 
-          "-=0.3")
-        .fromTo(".img-sec-buttons", 
-          {y:20, opacity:0}, 
-          {y:0, opacity:1, duration:0.6, ease:"power2.out"}, 
-          "-=0.2")
-        .fromTo(".img-sec-image", 
-          {scale:0.85, opacity:0, y:20}, 
-          {scale:1, opacity:1, y:0, duration:1, ease:"back.out(1.1)"}, 
-          "-=0.4");
-    });
-  }
-});
+    }, observerOptions);
 
-    // ========== Hero ANIMATIONS ==========
-    
-
-   const avatars = [
-    {
-        imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        profileUrl: '#'
-    },
-    {
-        imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b14d2bc2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        profileUrl: '#'
-    },
-    {
-        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        profileUrl: '#'
-    },
-    {
-        imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        profileUrl: '#'
-    },
-    {
-        imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        profileUrl: '#'
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+      observer.observe(contactSection);
     }
-];
-
-// Create avatar circles
-function createAvatarCircles() {
-    const container = document.getElementById('avatar-circles');
-    if (!container) return;
-    
-    // Display first 4 avatars
-    avatars.slice(0, 4).forEach((avatar, index) => {
-        const link = document.createElement('a');
-        link.href = avatar.profileUrl;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.className = 'transition-transform hover:scale-110 hover:z-10 relative';
-        
-        const img = document.createElement('img');
-        img.src = avatar.imageUrl;
-        img.alt = `Avatar ${index + 1}`;
-        img.className = 'h-10 w-10 rounded-full border-2 border-gray-700 hover:border-blue-400 transition-colors';
-        img.width = 40;
-        img.height = 40;
-        
-        link.appendChild(img);
-        container.appendChild(link);
-    });
-    
-    // Add the +X circle for remaining people
-    const remainingCount = 9996; // 10,000 - 4 shown
-    if (remainingCount > 0) {
-        const plusCircle = document.createElement('div');
-        plusCircle.className = 'flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-800 text-center text-xs font-medium text-white hover:bg-gray-700 hover:border-blue-400 transition-colors cursor-pointer';
-        plusCircle.textContent = `+${remainingCount.toLocaleString()}`;
-        container.appendChild(plusCircle);
-    }
-}
-
-// Highlight the word "Digital" with underline
-function highlightDigital() {
-    const element = document.getElementById('highlight-word');
-    if (!element || !window.RoughNotation) return;
-    
-    const annotation = window.RoughNotation.annotate(element, {
-        type: 'underline',
-        color: '#1e40af',
-        strokeWidth: 4,
-        animationDuration: 800,
-        iterations: 1,
-        padding: 8,
-        multiline: false
-    });
-    
-    // Show underline after a delay
-    setTimeout(() => {
-        annotation.show();
-    }, 1500);
-}
-
-// Initialize everything when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    createAvatarCircles();
-    highlightDigital();
-});
-
-      // ========== Contact ANIMATIONS ==========
-
-    // Intersection Observer für Fade-in Animation
-const observerOptions = {
-  threshold: 0.2,
-  rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, observerOptions);
-
-// Beobachte die Contact Section
-const contactSection = document.querySelector('.contact-section');
-if (contactSection) {
-  observer.observe(contactSection);
-}
-        // ========== Service ANIMATIONS ==========
-
- gsap.registerPlugin(ScrollTrigger);
-
-  // Animation für Badge
-  gsap.set(".inline-flex", { opacity: 0, y: 30 });
-  gsap.to(".inline-flex", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 90%", // startet früher
-    },
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: "power3.out"
-  });
-
-  // Animation für Haupttitel
-  gsap.set("h2", { opacity: 0, y: 50 });
-  gsap.to("h2", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 90%", // startet früher
-    },
-    y: 0,
-    opacity: 1,
-    duration: 0.8,
-    delay: 0.2,
-    ease: "power3.out"
-  });
-
-  // Animation für Untertitel
-  gsap.set("#services p", { opacity: 0, y: 30 });
-  gsap.to("#services p", {
-    scrollTrigger: {
-      trigger: "#services",
-      start: "top 90%",
-    },
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    delay: 0.4,
-    ease: "power3.out"
-  });
-
-  // Animation für Service Cards
-  gsap.set(".service-card", { opacity: 0, y: 50, scale: 0.9 });
-  gsap.to(".service-card", {
-    scrollTrigger: {
-      trigger: ".grid",    // statt jede Card einzeln → Container
-      start: "top 95%",    // startet früh, sobald Grid ins Sichtfeld kommt
-    },
-    y: 0,
-    opacity: 1,
-    scale: 1,
-    duration: 0.6,
-    delay: 0.2,
-    stagger: 0.2,         // jede Card kommt nacheinander
-    ease: "power3.out"
-  });
-
-       // ========== Cookies ==========
-// Cookie-Verwaltung (In-Memory für Claude.ai)
-        const cookieConsent = {
-            data: null,
-            
-            save: function(preferences) {
-                this.data = {
-                    accepted: true,
-                    preferences: preferences,
-                    timestamp: new Date().toISOString()
-                };
-                console.log('Cookie-Präferenzen gespeichert:', this.data);
-            },
-            
-            load: function() {
-                return this.data;
-            },
-            
-            clear: function() {
-                this.data = null;
-                console.log('Cookie-Präferenzen gelöscht');
-            }
-        };
-
-        // Beim Laden prüfen, ob bereits eine Entscheidung getroffen wurde
-        window.addEventListener('DOMContentLoaded', function() {
-            const consent = cookieConsent.load();
-            const banner = document.getElementById('cookieBanner');
-            const backdrop = document.getElementById('backdropBlur');
-            
-            if (consent && consent.accepted) {
-                // Banner nicht anzeigen, wenn bereits akzeptiert
-                banner.style.display = 'none';
-                backdrop.style.display = 'none';
-                console.log('Cookie-Banner wird nicht angezeigt - bereits akzeptiert');
-            } else {
-                // Banner anzeigen
-                banner.style.display = 'block';
-                backdrop.style.display = 'block';
-            }
-        });
-
-        function acceptCookies() {
-            cookieConsent.save({
-                necessary: true,
-                analytics: true,
-                marketing: true
-            });
-            console.log('Alle Cookies akzeptiert');
-            hideBanner();
-        }
-
-        function rejectCookies() {
-            cookieConsent.save({
-                necessary: true,
-                analytics: false,
-                marketing: false
-            });
-            console.log('Nur notwendige Cookies akzeptiert');
-            hideBanner();
-        }
-
-        function hideBanner() {
-            const banner = document.getElementById('cookieBanner');
-            const backdrop = document.getElementById('backdropBlur');
-            
-            banner.classList.add('hidden');
-            backdrop.classList.add('opacity-0', 'pointer-events-none');
-            
-            setTimeout(() => {
-                banner.style.display = 'none';
-                backdrop.style.display = 'none';
-            }, 500);
-        }
-
-        function openSettings() {
-            const settings = document.getElementById('cookieSettings');
-            
-            // Lade gespeicherte Einstellungen, falls vorhanden
-            const consent = cookieConsent.load();
-            if (consent && consent.preferences) {
-                document.getElementById('analytics').checked = consent.preferences.analytics;
-                document.getElementById('marketing').checked = consent.preferences.marketing;
-            }
-            
-            settings.classList.remove('opacity-0', 'invisible');
-            setTimeout(() => {
-                settings.querySelector('.settings-modal').classList.remove('scale-90');
-                settings.querySelector('.settings-modal').classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeSettings() {
-            const settings = document.getElementById('cookieSettings');
-            settings.querySelector('.settings-modal').classList.remove('scale-100');
-            settings.querySelector('.settings-modal').classList.add('scale-90');
-            setTimeout(() => {
-                settings.classList.add('opacity-0', 'invisible');
-            }, 200);
-        }
-
-        function saveSettings() {
-            const analytics = document.getElementById('analytics').checked;
-            const marketing = document.getElementById('marketing').checked;
-            
-            cookieConsent.save({
-                necessary: true,
-                analytics: analytics,
-                marketing: marketing
-            });
-            
-            console.log('Einstellungen gespeichert:', {
-                necessary: true,
-                analytics: analytics,
-                marketing: marketing
-            });
-            
-            closeSettings();
-            hideBanner();
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('cookieSettings').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeSettings();
-            }
-        });
-
-        // Demo: Reset und zeige Banner wieder mit Ctrl+C
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'c' && e.ctrlKey) {
-                e.preventDefault();
-                cookieConsent.clear();
-                const banner = document.getElementById('cookieBanner');
-                const backdrop = document.getElementById('backdropBlur');
-                
-                banner.style.display = 'block';
-                banner.classList.remove('hidden');
-                backdrop.style.display = 'block';
-                backdrop.classList.remove('opacity-0', 'pointer-events-none');
-                
-                console.log('Banner zurückgesetzt - wird wieder angezeigt');
-            }
-        });
-
-    // ========== spinning ==========
-let selectedTime = '';
-
-// Nur Zahlen erlauben
-document.getElementById('day').addEventListener('input', function(e) {
-    this.value = this.value.replace(/[^0-9]/g, '');
-    if (this.value.length === 2) {
-        document.getElementById('month').focus();
-    }
-});
-
-document.getElementById('month').addEventListener('input', function(e) {
-    this.value = this.value.replace(/[^0-9]/g, '');
-    if (this.value.length === 2) {
-        document.getElementById('year').focus();
-    }
-});
-
-document.getElementById('year').addEventListener('input', function(e) {
-    this.value = this.value.replace(/[^0-9]/g, '');
-});
-
-// Zeit aus Button auswählen
-function selectTime(time) {
-    selectedTime = time;
-    
-    // Alle Buttons zurücksetzen
-    document.querySelectorAll('.time-btn').forEach(btn => {
-        btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
-        btn.classList.add('bg-white/5', 'text-gray-400', 'border-gray-800');
-    });
-    
-    // Ausgewählten Button markieren
-    event.target.classList.remove('bg-white/5', 'text-gray-400', 'border-gray-800');
-    event.target.classList.add('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
-}
-
-// Modal schließen
-function closeModal() {
-    const modal = document.getElementById('modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-
-// Modal öffnen
-function openModal() {
-    const modal = document.getElementById('modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-
-// Formular absenden
-function submitForm() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const day = document.getElementById('day').value;
-    const month = document.getElementById('month').value;
-    const year = document.getElementById('year').value;
-    
-    if (!name || !email || !day || !month || !year || !selectedTime) {
-        alert('Bitte füllen Sie alle Felder aus.');
-        return;
-    }
-    
-    const date = `${day}.${month}.${year}`;
-    
-    alert(`Termin gebucht!\n\nName: ${name}\nE-Mail: ${email}\nDatum: ${date}\nUhrzeit: ${selectedTime}`);
-    closeModal();
-    
-    // Formular zurücksetzen
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('day').value = '';
-    document.getElementById('month').value = '';
-    document.getElementById('year').value = '';
-    selectedTime = '';
-    
-    document.querySelectorAll('.time-btn').forEach(btn => {
-        btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
-        btn.classList.add('bg-white/5', 'text-gray-400', 'border-gray-800');
-    });
-}
-
-// Modal beim Klick außerhalb schließen
-document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
-    }
-});
-    
-    // ========== loading screen ==========
-
-
-    const greetings = [
-            'Hello',           // Englisch
-            'Merhaba',         // Türkisch
-            '你好',            // Chinesisch
-            'Bonjour',         // Französisch
-            'Hola',            // Spanisch
-            'Ciao',            // Italienisch
-            'Olá',             // Portugiesisch
-            'Привет',          // Russisch
-            'こんにちは',       // Japanisch
-            '안녕하세요',       // Koreanisch
-            'مرحبا',           // Arabisch
-            'Namaste',         // Hindi
-            'Salut',           // Rumänisch
-            'Γεια σου'         // Griechisch
-        ];
-
-        let index = 0;
-        const textElement = document.getElementById('text');
-        const loadingScreen = document.getElementById('loading-screen');
-        const mainContent = document.getElementById('main-content');
-        let intervalId;
-
-        function changeText() {
-            textElement.textContent = greetings[index];
-            textElement.classList.remove('animate-fade');
-            setTimeout(() => {
-                textElement.classList.add('animate-fade');
-            }, 10);
-            
-            index = (index + 1) % greetings.length;
-        }
-
-        // Starte Animation
-        changeText();
-        intervalId = setInterval(changeText, 2000);
-
-        // Warte bis alles geladen ist
-        window.addEventListener('load', () => {
-            // Warte mindestens 3 Sekunden (oder länger wenn noch Wörter animieren)
-            setTimeout(() => {
-                clearInterval(intervalId);
-                loadingScreen.classList.add('loading-screen-fade-out');
-                
-                // Zeige Hauptinhalt nach Fade-Out
-                setTimeout(() => {
-                    loadingScreen.remove();
-                    mainContent.classList.remove('hidden');
-                }, 500);
-            }, 3000);
-        });
-</script>
+  </script>
 </body>
 </html>
