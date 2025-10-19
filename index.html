@@ -14,83 +14,81 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* ========== LOADING SCREEN ========== */
+    /* ========== KEYFRAME ANIMATIONS ========== */
     @keyframes fadeInOut {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-    }
-
-    .animate-fade {
-      animation: fadeInOut 2s ease-in-out;
+      0%, 100% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1); }
     }
 
     @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
+      to { opacity: 0; visibility: hidden; }
     }
 
-    .loading-screen-fade-out {
-      animation: fadeOut 0.5s ease-out forwards;
-    }
-
-    /* ========== COOKIES ========== */
     @keyframes slideIn {
-      from {
-        transform: translateX(-50%) translateY(150%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateX(-50%) translateY(150%); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
     }
 
     @keyframes slideInMobile {
-      from {
-        transform: translateX(0) translateY(150%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0) translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateX(0) translateY(150%); opacity: 0; }
+      to { transform: translateX(0) translateY(0); opacity: 1; }
     }
 
     @keyframes slideOut {
-      to {
-        transform: translateX(-50%) translateY(150%);
-        opacity: 0;
-      }
+      to { transform: translateX(-50%) translateY(150%); opacity: 0; }
     }
 
     @keyframes slideOutMobile {
-      to {
-        transform: translateX(0) translateY(150%);
-        opacity: 0;
-      }
+      to { transform: translateX(0) translateY(150%); opacity: 0; }
     }
 
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes modalEnter {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(400px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(400px); opacity: 0; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); }
+      to { box-shadow: 0 0 30px rgba(99, 102, 241, 0.2), 0 0 40px rgba(59, 130, 246, 0.1); }
+    }
+
+    @keyframes dropdownSlide {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ========== COOKIE BANNER ========== */
     .cookie-banner {
       animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       animation-delay: 0.5s;
@@ -105,15 +103,12 @@
         animation: slideInMobile 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         animation-delay: 0.5s;
       }
-
       .cookie-banner.hidden {
         animation: slideOutMobile 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
     }
 
-    .cookie-icon-animate {
-      animation: pulse 2s infinite;
-    }
+    .cookie-icon-animate { animation: pulse 2s infinite; }
 
     .cookie-btn::before {
       content: '';
@@ -144,91 +139,15 @@
       transition: width 0.3s ease;
     }
 
-    .cookie-link:hover::after {
-      width: 100%;
-    }
-
-    /* ========== SPINNING ELEMENT ========== */
-    .spinner {
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .modal-enter {
-      animation: modalEnter 0.3s ease-out;
-    }
-
-    @keyframes modalEnter {
-      from {
-        opacity: 0;
-        transform: scale(0.95) translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    .notification-enter {
-      animation: slideInRight 0.4s ease-out;
-    }
-
-    .notification-exit {
-      animation: slideOutRight 0.3s ease-in;
-    }
-
-    @keyframes slideInRight {
-      from {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideOutRight {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-    }
-
-    .error-shake {
-      animation: shake 0.4s ease-in-out;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
+    .cookie-link:hover::after { width: 100%; }
 
     /* ========== NAVBAR ========== */
     .nav-hamburger.active .nav-bar:nth-child(1) {
       transform: translateY(10px) rotate(-135deg) scaleX(1.4);
     }
-    .nav-hamburger.active .nav-bar:nth-child(2) {
-      opacity: 0;
-    }
+    .nav-hamburger.active .nav-bar:nth-child(2) { opacity: 0; }
     .nav-hamburger.active .nav-bar:nth-child(3) {
       transform: translateY(-10px) rotate(135deg) scaleX(1.4);
-    }
-    .active-link {
-      background-color: #3b3b3b;
     }
 
     /* ========== HERO SECTION ========== */
@@ -240,36 +159,13 @@
       background-clip: initial !important;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
     .animate-fadeInUp { animation: fadeInUp 1s ease-out both; }
     .animate-fadeInUp-delay-200 { animation: fadeInUp 1s ease-out 0.2s both; }
     .animate-fadeInUp-delay-400 { animation: fadeInUp 1s ease-out 0.4s both; }
     .animate-fadeInUp-delay-600 { animation: fadeInUp 1s ease-out 0.6s both; }
     .animate-fadeInUp-delay-800 { animation: fadeInUp 1s ease-out 0.8s both; }
-    
-    .text-gradient {
-      background: linear-gradient(135deg, #ffffff, #e5e7eb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
 
-    /* ========== SERVICES SECTION ========== */
-    .service-card {
-      background: #0a0a0a;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
-                  0 8px 20px rgba(0, 0, 0, 0.35),
-                  inset 0 2px 6px rgba(255, 255, 255, 0.05),
-                  inset 0 -2px 6px rgba(0, 0, 0, 0.5);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    
+    /* ========== SERVICE CARDS ========== */
     .service-card::before {
       content: '';
       position: absolute;
@@ -279,7 +175,7 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     }
-    
+
     .service-card::after {
       content: '';
       position: absolute;
@@ -291,46 +187,16 @@
       pointer-events: none;
       z-index: 0;
     }
-    
-    .service-card > * {
-      position: relative;
-      z-index: 1;
-    }
 
-    /* ========== IMAGE PLUS TEXT SECTION ========== */
-    .btn-primary {
-      position: relative;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-    }
+    .service-card > * { position: relative; z-index: 1; }
 
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      left: -120%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn-primary:hover::before {
-      left: 120%;
-    }
-
-    /* ========== APPS SECTION ========== */
+    /* ========== TOOL ICONS ========== */
     .tool-icon {
-      background: linear-gradient(145deg, #0f0f0f, #0a0a0a);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
-                  0 8px 20px rgba(0, 0, 0, 0.35),
-                  inset 0 2px 6px rgba(255, 255, 255, 0.05),
-                  inset 0 -2px 6px rgba(0, 0, 0, 0.5);
       opacity: 0;
       transform: translateY(60px);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .tool-icon:hover {
       transform: translateY(-6px) scale(1.05);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5),
@@ -340,68 +206,27 @@
       border-color: rgba(99, 102, 241, 0.3);
     }
 
+    /* ========== BADGE ========== */
     .badge {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(99, 102, 241, 0.15));
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      backdrop-filter: blur(12px);
       animation: glow 3s ease-in-out infinite alternate;
     }
 
-    @keyframes glow {
-      from {
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
-      }
-      to {
-        box-shadow: 0 0 30px rgba(99, 102, 241, 0.2), 0 0 40px rgba(59, 130, 246, 0.1);
-      }
-    }
-
+    /* ========== REVEAL TEXT ========== */
     .reveal-text {
       display: inline-block;
       opacity: 0.2;
       transition: opacity 0.3s ease;
     }
 
-    .reveal-text.active {
-      opacity: 1;
-    }
+    .reveal-text.active { opacity: 1; }
 
-    .subtitle {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    /* ========== GRID SECTION ========== */
-    .building {
-      position: absolute;
-      bottom: 0;
-      transform: translateX(-50%);
-    }
-    
-    .ring {
-      position: absolute;
-      border-radius: 9999px;
-      border: 2px solid rgba(255,255,255,0.06);
-      pointer-events: none;
-    }
-    
-    .ring.r1 { width: 150px; height: 150px; }
-    .ring.r2 { width: 135px; height: 135px; }
-    .ring.r3 { width: 120px; height: 120px; }
-
-    /* ========== CAROUSEL SECTION ========== */
-    .card { 
+    /* ========== CAROUSEL ========== */
+    .card {
       flex-shrink: 0;
       transform-origin: center;
       opacity: 0.4;
       transform: scale(0.8);
       transition: transform 0.25s, opacity 0.25s;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    }
-
-    .screenshot-wrap { 
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02); 
-      transform: translateZ(0); 
     }
 
     .inset-top, .inset-bottom {
@@ -414,14 +239,18 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
       filter: blur(0.2px);
     }
-    .inset-top { top:-28px; box-shadow: inset 0 18px 34px rgba(0,0,0,0.6); }
-    .inset-bottom { bottom:-28px; box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6); }
+
+    .inset-top { 
+      top: -28px; 
+      box-shadow: inset 0 18px 34px rgba(0,0,0,0.6); 
+    }
+
+    .inset-bottom { 
+      bottom: -28px; 
+      box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6); 
+    }
 
     /* ========== CONTACT FORM ========== */
-    .floating-label {
-      position: relative;
-    }
-    
     .floating-label label {
       position: absolute;
       left: 20px;
@@ -432,12 +261,12 @@
       transition: all 0.3s ease;
       font-size: 1rem;
     }
-    
+
     .floating-label textarea + label {
       top: 20px;
       transform: none;
     }
-    
+
     .floating-label input:focus + label,
     .floating-label input.has-content + label,
     .floating-label textarea:focus + label,
@@ -449,74 +278,30 @@
       background: #040404;
       padding: 0 8px;
     }
-    
+
     .form-input:focus {
       border-color: #1e40af;
       box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
     }
-    
-    .btn-submit {
-      background: linear-gradient(45deg, #1e40af, #1d4ed8);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
-    }
-    
+
     .dropdown-options {
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
       animation: dropdownSlide 0.3s ease-out;
       transform-origin: top;
     }
-    
-    .dropdown-options.show {
-      display: block !important;
-    }
-    
-    @keyframes dropdownSlide {
-      from {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
 
-    .contact-content {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
+    .dropdown-options.show { display: block !important; }
 
-    .contact-section.visible .contact-content {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ========== UTILITIES ========== */
+    /* ========== HIGHLIGHT TEXT ========== */
     .highlight {
       position: relative;
       display: inline-block;
-      background: conic-gradient(
-        from 0deg,
-        #BC82F3, #F5B9EA, #8D9FFF, #AA6EEE,
-        #FF6778, #FFBA71, #C686FF, #BC82F3
-      );
+      background: conic-gradient(from 0deg, #BC82F3, #F5B9EA, #8D9FFF, #AA6EEE, #FF6778, #FFBA71, #C686FF, #BC82F3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-weight: bold;
     }
-    
+
     .highlight::before,
     .highlight::after {
       content: attr(data-text);
@@ -525,30 +310,26 @@
       left: 0;
       width: 100%;
       text-align: inherit;
-      background: conic-gradient(
-        from 0deg,
-        #BC82F3, #F5B9EA, #8D9FFF, #AA6EEE,
-        #FF6778, #FFBA71, #C686FF, #BC82F3
-      );
+      background: conic-gradient(from 0deg, #BC82F3, #F5B9EA, #8D9FFF, #AA6EEE, #FF6778, #FFBA71, #C686FF, #BC82F3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       pointer-events: none;
     }
-    
+
     .highlight::before {
       filter: blur(12px);
       opacity: 0.9;
       z-index: -1;
     }
-    
+
     .highlight::after {
       filter: blur(20px);
       opacity: 0.6;
       z-index: -2;
     }
 
-    /* ========== FOOTER ========== */
+    /* ========== FOOTER BACKGROUNDS ========== */
     .bg-unified {
       position: absolute;
       top: 0;
@@ -563,7 +344,7 @@
       background-position: left top, right top;
       background-size: calc(50% + 1px) 100%, calc(50% + 1px) 100%;
     }
-    
+
     .bg-overlay {
       position: absolute;
       top: 0;
@@ -576,18 +357,11 @@
     }
 
     /* ========== RESPONSIVE ADJUSTMENTS ========== */
-    @media (max-width: 639px) {
-      .ring.r1 { width: 120px; height: 120px; }
-      .ring.r2 { width: 105px; height: 105px; }
-      .ring.r3 { width: 90px; height: 90px; }
-    }
-    
     @media (max-width: 768px) {
       .bg-unified {
         background-image:
           conic-gradient(from 90deg at 50% 90%, #040404 0deg, #060881 250deg, #B0B0D3 260deg, #F4F4F4 360deg),
           conic-gradient(from 270deg at 50% 90%, #F4F4F4 0deg, #B0B0D3 100deg, #060881 110deg, #040404 360deg);
-        background-size: calc(50% + 1px) 100%, calc(50% + 1px) 100%;
       }
     }
   </style>
@@ -640,7 +414,7 @@
 
   <!-- ==================== COOKIE SETTINGS MODAL ==================== -->
   <div id="cookieSettings" class="fixed inset-0 bg-black/80 flex items-center justify-center p-5 z-[10001] opacity-0 invisible transition-all duration-300">
-    <div class="settings-modal bg-black/98 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-[600px] w-full max-h-[80vh] overflow-y-auto scale-90 transition-transform duration-300">
+    <div class="bg-black/98 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-[600px] w-full max-h-[80vh] overflow-y-auto scale-90 transition-transform duration-300">
       
       <!-- Header -->
       <div class="mb-6">
@@ -919,7 +693,7 @@
         </div>
         
         <!-- Title with Highlighted "Digital" -->
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-5 md:mb-6 text-gradient animate-fadeInUp-delay-400">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-5 md:mb-6 bg-gradient-to-br from-white to-gray-300 bg-clip-text text-transparent animate-fadeInUp-delay-400">
           Transform Your <span id="highlight-word" class="relative highlight-word">Digital</span> Experience
         </h1>
         
@@ -960,7 +734,7 @@
         Unsere Services
       </div>
       
-      <h2 class="text-left md:text-center text-4xl md:text-5xl lg:text-5xl font-extrabold md:font-extrabold  lg:font-extrabold leading-tight mb-6 md:mb-4 tracking-tight text-white" style="font-family: 'Inter', sans-serif;">
+      <h2 class="text-left md:text-center text-4xl md:text-5xl lg:text-5xl font-extrabold leading-tight mb-6 md:mb-4 tracking-tight text-white" style="font-family: 'Inter', sans-serif;">
         Digitale Lösungen für <span class="highlight" data-text="Ihren Erfolg">Ihren Erfolg</span>
       </h2>
       
@@ -969,7 +743,7 @@
       </p>
       
       <div class="service-card-all grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        <div class="service-card rounded-3xl p-6 text-center">
+        <div class="service-card relative bg-[#0a0a0a] rounded-3xl p-6 text-center shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-[400ms]">
           <div class="w-44 h-44 mx-auto mb-4">
             <img src="img/Web.png" alt="Web Design Icon" class="w-full h-full object-contain">
           </div>
@@ -977,7 +751,7 @@
           <p class="text-gray-400">Modern, responsive websites that captivate and convert.</p>
         </div>
 
-        <div class="service-card rounded-3xl p-6 text-center">
+        <div class="service-card relative bg-[#0a0a0a] rounded-3xl p-6 text-center shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-[400ms]">
           <div class="w-44 h-44 mx-auto mb-4">
             <img src="Ui.png" alt="UI/UX Design Icon" class="w-full h-full object-contain">
           </div>
@@ -985,7 +759,7 @@
           <p class="text-gray-400">Intuitive interfaces that delight users and drive engagement.</p>
         </div>
 
-        <div class="service-card rounded-3xl p-6 text-center md:col-span-2 lg:col-span-1">
+        <div class="service-card relative bg-[#0a0a0a] rounded-3xl p-6 text-center md:col-span-2 lg:col-span-1 shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-[400ms]">
           <div class="w-44 h-44 mx-auto mb-4">
             <img src="SE.png" alt="SEO Optimization Icon" class="w-full h-full object-contain">
           </div>
@@ -1049,18 +823,20 @@
 
         <!-- BUTTONS -->
         <div class="flex flex-col sm:flex-row gap-4 img-sec-buttons">
-          <button class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform">
-            Kostenlose Demo
+          <button class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3.5 md:py-4 rounded-xl font-semibold text-base md:text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+            <span class="relative z-10">Kostenlose Demo</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
           </button>
-          <button class="px-8 py-4 border border-white/20 text-gray-300 rounded-lg text-lg font-semibold hover:border-white hover:text-white hover:bg-white/5 transition-all">
-            Mehr erfahren
+          <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 md:py-4 rounded-xl font-semibold text-base md:text-lg border border-white/20 backdrop-filter hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group min-w-40">
+            <span class="relative z-10">Learn More</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
           </button>
         </div>
       </div>
 
       <!-- IMAGE -->
       <div class="order-1 lg:order-2 relative rounded-3xl shadow-2xl shadow-black/40 overflow-hidden">
-        <div class="img-sec-image-wrapper w-[full] h-80 sm:h-[500px] lg:h-[650px] flex items-end">
+        <div class="img-sec-image-wrapper w-full h-80 sm:h-[500px] lg:h-[650px] flex items-end">
           <img 
             src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=2070&q=80" 
             alt="Modern Technology" 
@@ -1088,52 +864,52 @@
         <span class="reveal-text">process</span>
       </h1>
 
-      <p class="subtitle text-left md:text-center text-lg md:text-xl text-gray-400 mb-12 sm:mb-14 max-w-2xl mx-auto">
+      <p class="subtitle text-left md:text-center text-lg md:text-xl text-gray-400 mb-12 sm:mb-14 max-w-2xl mx-auto opacity-0 translate-y-5">
         From design to deployment, these are the essential applications that drive our workflow and bring ideas to life
       </p>
 
       <!-- Tools Grid -->
       <div class="flex flex-wrap justify-center gap-12 sm:gap-8 max-w-3xl mx-auto px-0">
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="img/Figma.png" alt="Figma" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Goodnotes.png" alt="Goodnotes" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/GSAP.png" alt="GSAP" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="img/Github.png" alt="Github" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Blender.png" alt="Blender" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Notion.png" alt="Notion" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Microsoft_office.png" alt="Microsoft Office" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Google__G__logo.svg.png" alt="Google" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Gmail.png" alt="Gmail" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/chatgpt.png" alt="ChatGPT" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Tailwind.png" alt="Tailwind" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/Vscode.png" alt="VS Code" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/claude-logo.svg" alt="Claude" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
-        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden">
+        <div class="tool-icon w-20 h-20 md:w-[72px] md:h-[72px] rounded-2xl flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] border border-white/[0.08]">
           <img src="assets/outlook.png" alt="Outlook" class="w-10 h-10 md:w-9 md:h-9 object-contain z-10">
         </div>
       </div>
@@ -1151,13 +927,13 @@
             Rise your<br>Business to<br>the <span class="text-sky-400">MAX</span>
           </h3>
           <div class="relative w-full flex items-end justify-center" style="height:52%;">
-            <div class="building building-1 z-10" style="left:40%; width:20%;">
+            <div class="building absolute bottom-0 z-10" style="left:40%; width:20%; transform: translateX(-50%);">
               <img src="img/building1.svg" class="w-full" alt="">
             </div>
-            <div class="building building-2" style="left:50%; width:25%;">
+            <div class="building absolute bottom-0" style="left:50%; width:25%; transform: translateX(-50%);">
               <img src="img/building2.svg" class="w-full" alt="">
             </div>
-            <div class="building building-3" style="left:60%; width:22%;">
+            <div class="building absolute bottom-0" style="left:60%; width:22%; transform: translateX(-50%);">
               <img src="img/building3.svg" class="w-full" alt="">
             </div>
           </div>
@@ -1165,9 +941,9 @@
 
         <!-- Profile 1 -->
         <div class="col-start-2 row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-20 relative shadow-2xl group flex flex-col items-center justify-center">
-          <div class="ring r1 opacity-30"></div>
-          <div class="ring r2 opacity-30"></div>
-          <div class="ring r3 opacity-30"></div>
+          <div class="ring absolute rounded-full border-2 border-white/[0.06] pointer-events-none opacity-30" style="width: 150px; height: 150px;"></div>
+          <div class="ring absolute rounded-full border-2 border-white/[0.06] pointer-events-none opacity-30" style="width: 135px; height: 135px;"></div>
+          <div class="ring absolute rounded-full border-2 border-white/[0.06] pointer-events-none opacity-30" style="width: 120px; height: 120px;"></div>
           <img src="img/marlon.png" alt="Marlon" class="w-24 h-24 sm:h-28 sm:w-28 rounded-full z-10 object-cover">
           <div class="absolute bottom-4 md:bottom-8 text-center z-10">
             <div class="font-semibold">Ma</div>
@@ -1177,9 +953,9 @@
 
         <!-- Profile 2 -->
         <div class="col-start-2 row-start-2 md:col-start-3 md:row-start-1 rounded-3xl bg-gradient-to-b from-[#0b0b0b] to-[#151515] p-6 pb-20 relative shadow-2xl group flex flex-col items-center justify-center">
-          <div class="ring r1 opacity-30"></div>
-          <div class="ring r2 opacity-30"></div>
-          <div class="ring r3 opacity-30"></div>
+          <div class="ring absolute rounded-full border-2 border-white/[0.06] pointer-events-none opacity-30" style="width: 150px; height: 150px;"></div>
+          <div class="ring absolute rounded-full border-2 border-white/[0.06] pointer-events-none opacity-30" style="width: 135px; height: 135px;"></div>
+          <div class="ring absolute rounded-full border-2 border-white/[0.06] pointer-events-none opacity-30" style="width: 120px; height: 120px;"></div>
           <img src="img/Lacy.png" alt="Nick" class="w-24 h-24 sm:h-28 sm:w-28 rounded-full z-10 object-cover">
           <div class="absolute bottom-4 md:bottom-8 text-center z-10">
             <div class="font-semibold">Nick o</div>
@@ -1250,7 +1026,7 @@
   </section>
 
   <!-- ==================== CAROUSEL SECTION ==================== -->
-  <section id="carousel" id="project" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+  <section id="carousel" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
 
     <h2 class="absolute top-[8%] text-2xl sm:text-4xl lg:text-5xl font-extrabold text-center leading-tight max-w-3xl px-4">
       Projects That <span class="highlight" data-text="speak">Speak</span> for Themselves
@@ -1260,11 +1036,11 @@
     <div id="track" class="flex gap-12 items-center">
       
       <!-- Card -->
-      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
            data-text="Weingut Joel – A fast, secure online store with user accounts, product management, and seamless checkout. Built for your perfect site, including custom features, responsive design, and optimized performance."
            style="background:linear-gradient(180deg,#3b82f6,#1e40af);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.02)] transform-gpu">
           <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
@@ -1272,11 +1048,11 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
            data-text="Zenith Minds – Admin panel & dashboard with role-based authentication, metrics, analytics, and reporting features. Designed for efficiency and user experience."
            style="background:linear-gradient(180deg,#ec4899,#7c2d59);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.02)] transform-gpu">
           <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
@@ -1284,11 +1060,11 @@
       </div>
 
       <!-- Card 3 -->
-      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
            data-text="Plants Studio – 3D animations & product showcase for immersive experiences, interactive demos, and high-quality visual presentation. Perfect for modern web display."
            style="background:linear-gradient(180deg,#06b6d4,#0f766e);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.02)] transform-gpu">
           <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
@@ -1296,11 +1072,11 @@
       </div>
 
       <!-- Card 4 -->
-      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden"
+      <div class="card relative flex items-center justify-center aspect-[16/9] max-w-[80vw] h-[45vh] md:h-[50vh] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
            data-text="Landing Pro – Marketing landing page with A/B tests, fast LCP performance, SEO optimization, and conversion-focused design. Built for maximum engagement and analytics tracking."
            style="background:linear-gradient(180deg,#7c3aed,#2a1f78);">
         <div class="inset-top"></div>
-        <div class="screenshot-wrap w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="w-[72%] h-[65%] bg-black/60 rounded-md flex items-center justify-center overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.02)] transform-gpu">
           <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" 
                alt="project preview" class="w-[92%] h-auto object-cover">
         </div>
@@ -1321,10 +1097,10 @@
         <div class="text-center inline-flex bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
           Unsere Services
         </div>
-        <h1 class=" text-left md:text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent lg:leading-tight">
+        <h1 class="text-left md:text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent lg:leading-tight">
           Haben Sie Fragen zu unserem <span class="highlight inline-block" data-text="Business">Business</span>?
         </h1>
-        <p class=" text-left md:text-center text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+        <p class="text-left md:text-center text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
           Wir sind hier, um Ihnen zu helfen. Stellen Sie uns Ihre Fragen!
         </p>
       </div>
@@ -1353,7 +1129,7 @@
           <form id="contact-form" class="space-y-6">
             
             <!-- Email Field -->
-            <div class="floating-label">
+            <div class="floating-label relative">
               <input type="email" id="email" name="email" 
                      class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer" 
                      required>
@@ -1362,7 +1138,7 @@
             </div>
 
             <!-- Name Field -->
-            <div class="floating-label">
+            <div class="floating-label relative">
               <input type="text" id="name" name="name" 
                      class="form-input w-full rounded-xl px-5 py-4 text-white outline-none bg-[#040404] border border-white/20 text-lg peer" 
                      required>
@@ -1383,7 +1159,7 @@
                 </div>
                 
                 <!-- Dropdown Options -->
-                <div class="dropdown-options absolute top-full left-0 right-0 mt-2 bg-[#0a0a0a] border border-white/20 rounded-xl shadow-2xl z-50 hidden overflow-hidden">
+                <div class="dropdown-options absolute top-full left-0 right-0 mt-2 bg-[#0a0a0a]/95 backdrop-blur-[10px] border border-white/20 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] z-50 hidden overflow-hidden">
                   <div class="option p-4 hover:bg-white/10 cursor-pointer transition-all duration-200 flex items-center gap-3 border-b border-white/10" data-value="general">
                     <i class="fas fa-question-circle text-blue-400"></i>
                     <span>General Inquiry</span>
@@ -1410,7 +1186,7 @@
             </div>
 
             <!-- Message Field -->
-            <div class="floating-label">
+            <div class="floating-label relative">
               <textarea id="message" name="message" rows="6" maxlength="1000"
                         class="form-input w-full rounded-xl px-5 py-4 text-white outline-none resize-none bg-[#040404] border border-white/20 text-lg peer" 
                         required></textarea>
@@ -1431,7 +1207,7 @@
 
             <!-- Submit Button -->
             <button type="submit" id="submit-btn"
-                    class="btn-submit w-full flex items-center justify-center gap-3 text-white font-bold py-4 rounded-xl text-lg shadow-lg">
+                    class="w-full flex items-center justify-center gap-3 text-white font-bold py-4 rounded-xl text-lg shadow-lg bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
               <span id="btn-text">Send Message</span>
               <div class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" id="loading-spinner"></div>
               <i class="fas fa-paper-plane" id="btn-icon"></i>
@@ -1604,15 +1380,15 @@
       
       settings.classList.remove('opacity-0', 'invisible');
       setTimeout(() => {
-        settings.querySelector('.settings-modal').classList.remove('scale-90');
-        settings.querySelector('.settings-modal').classList.add('scale-100');
+        settings.querySelector('.bg-black\\/98').classList.remove('scale-90');
+        settings.querySelector('.bg-black\\/98').classList.add('scale-100');
       }, 10);
     }
 
     function closeSettings() {
       const settings = document.getElementById('cookieSettings');
-      settings.querySelector('.settings-modal').classList.remove('scale-100');
-      settings.querySelector('.settings-modal').classList.add('scale-90');
+      settings.querySelector('.bg-black\\/98').classList.remove('scale-100');
+      settings.querySelector('.bg-black\\/98').classList.add('scale-90');
       setTimeout(() => {
         settings.classList.add('opacity-0', 'invisible');
       }, 200);
@@ -1790,9 +1566,9 @@
 
     function setActive(id) {
       navAnchors.forEach(link => {
-        link.classList.remove("active-link");
+        link.classList.remove("bg-[#3b3b3b]");
         if (link.getAttribute("href") === "#" + id) {
-          link.classList.add("active-link");
+          link.classList.add("bg-[#3b3b3b]");
         }
       });
     }
@@ -1967,19 +1743,16 @@
       scrollTrigger: { trigger: ".img-sec-text", start: "top 85%" }
     });
 
-    // Feature-Liste
     gsap.from(".feature-item", {
       x: -40, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
       scrollTrigger: { trigger: ".feature-item", start: "top 85%" }
     });
 
-    // Buttons
     gsap.from(".img-sec-buttons", {
       y: 25, opacity: 0, duration: 0.6, ease: "power2.out",
       scrollTrigger: { trigger: ".img-sec-buttons", start: "top 85%" }
     });
 
-    // Bild + Parallax + leichte Drehung
     gsap.fromTo(".img-sec-image",
       { scale: 0.9, opacity: 0, rotate: 3, y: 50 },
       { 
@@ -1988,7 +1761,6 @@
       }
     );
 
-    // Parallax-Bewegung beim Scrollen
     gsap.to(".img-sec-image", {
       yPercent: 50,
       ease: "none",
@@ -2173,7 +1945,7 @@
     
     subjectDisplay.addEventListener('click', function() {
       dropdownOptions.classList.toggle('show');
-      dropdownIcon.classList.toggle('dropdown-icon-rotate');
+      dropdownIcon.classList.toggle('rotate-180');
     });
     
     options.forEach(option => {
@@ -2188,7 +1960,7 @@
         subjectDisplay.setAttribute('data-selected', 'true');
         
         dropdownOptions.classList.remove('show');
-        dropdownIcon.classList.remove('dropdown-icon-rotate');
+        dropdownIcon.classList.remove('rotate-180');
         
         options.forEach(opt => opt.classList.remove('selected'));
         this.classList.add('selected');
@@ -2204,7 +1976,7 @@
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.custom-select')) {
         dropdownOptions.classList.remove('show');
-        dropdownIcon.classList.remove('dropdown-icon-rotate');
+        dropdownIcon.classList.remove('rotate-180');
       }
     });
     
@@ -2256,11 +2028,11 @@
       charCounter.textContent = `${currentLength} / ${maxLength}`;
       
       if (currentLength > maxLength * 0.9) {
-        charCounter.className = 'char-counter error';
+        charCounter.classList.add('text-red-400');
       } else if (currentLength > maxLength * 0.8) {
-        charCounter.className = 'char-counter warning';
+        charCounter.classList.add('text-yellow-400');
       } else {
-        charCounter.className = 'char-counter';
+        charCounter.classList.remove('text-red-400', 'text-yellow-400');
       }
     });
 
@@ -2342,7 +2114,6 @@
 
         const successMsg = document.getElementById('success-message');
         successMsg.classList.remove('hidden');
-        successMsg.classList.add('success-enter');
 
         this.reset();
         
@@ -2353,7 +2124,7 @@
         subjectDisplay.parentNode.querySelector('label').style.cssText = '';
         
         charCounter.textContent = '0 / 1000';
-        charCounter.className = 'char-counter';
+        charCounter.classList.remove('text-red-400', 'text-yellow-400');
 
         document.querySelectorAll('.border-red-500').forEach(el => {
           el.classList.remove('border-red-500');
@@ -2378,23 +2149,13 @@
       });
     });
 
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    const contactSection = document.querySelector('.contact-section');
-    if (contactSection) {
-      observer.observe(contactSection);
-    }
+    // ========== SPINNING TEXT ANIMATION ==========
+    gsap.to(".spinning-text", {
+      rotation: 360,
+      duration: 10,
+      ease: "none",
+      repeat: -1
+    });
   </script>
 </body>
 </html>
