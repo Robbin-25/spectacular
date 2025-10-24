@@ -88,6 +88,7 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+
     /* ========== COOKIE BANNER ========== */
     .cookie-banner {
       animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -141,6 +142,7 @@
 
     .cookie-link:hover::after { width: 100%; }
 
+
     /* ========== NAVBAR ========== */
     .nav-hamburger.active .nav-bar:nth-child(1) {
       transform: translateY(10px) rotate(-135deg) scaleX(1.4);
@@ -149,6 +151,7 @@
     .nav-hamburger.active .nav-bar:nth-child(3) {
       transform: translateY(-10px) rotate(135deg) scaleX(1.4);
     }
+
 
     /* ========== HERO SECTION ========== */
     .highlight-word {
@@ -164,6 +167,7 @@
     .animate-fadeInUp-delay-400 { animation: fadeInUp 1s ease-out 0.4s both; }
     .animate-fadeInUp-delay-600 { animation: fadeInUp 1s ease-out 0.6s both; }
     .animate-fadeInUp-delay-800 { animation: fadeInUp 1s ease-out 0.8s both; }
+
 
     /* ========== SERVICE CARDS ========== */
     .service-card::before {
@@ -190,6 +194,7 @@
 
     .service-card > * { position: relative; z-index: 1; }
 
+
     /* ========== APPS ICONS ========== */
     .tool-icon {
       opacity: 0;
@@ -213,6 +218,7 @@
     }
 
     .reveal-text.active { opacity: 1; }
+
 
     /* ========== CAROUSEL ========== */
     .card {
@@ -243,6 +249,7 @@
       bottom: -28px; 
       box-shadow: inset 0 -18px 34px rgba(0,0,0,0.6); 
     }
+
 
     /* ========== CONTACT FORM ========== */
     .floating-label label {
@@ -285,6 +292,7 @@
 
     .dropdown-options.show { display: block !important; }
 
+
     /* ========== HIGHLIGHT TEXT ========== */
     .highlight {
       position: relative;
@@ -322,6 +330,7 @@
       opacity: 0.6;
       z-index: -2;
     }
+
 
     /* ========== FOOTER BACKGROUNDS ========== */
     .bg-unified {
@@ -366,6 +375,7 @@
   <div id="cursorTag" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full text-white font-medium text-sm bg-gradient-to-r from-blue-600 to-blue-700 shadow-[0_0_15px_rgba(0,80,255,0.7),0_0_35px_rgba(0,120,255,0.5)] pointer-events-none z-[9999] hidden">
     Our favourite
   </div>
+
 
   <!-- ==================== COOKIES ==================== -->
   <div id="backdropBlur" class="fixed inset-0 backdrop-blur-md bg-black/20 z-[9999] transition-all duration-500"></div>
@@ -468,6 +478,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- ==================== SPINNING ELEMENT ==================== -->
   <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50">
@@ -630,6 +641,7 @@
     </div>
   </div>
 
+
   <!-- ==================== NAVBAR ==================== -->
   <nav id="navbar" class="z-50 fixed top-6 left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center justify-between bg-[#1D1D1D] border border-gray-700 md:h-11 rounded-3xl shadow-lg p-2 md:p-1 overflow-hidden w-11/12 md:w-2/5 md:min-w-[660px]">
     
@@ -671,6 +683,7 @@
       Contact US
     </a>
   </nav>
+
 
   <!-- ==================== HERO SECTION ==================== -->
   <section class="bg-[#040404] text-white font-sans min-h-screen overflow-x-hidden">
@@ -720,6 +733,7 @@
     </div>
   </section>
 
+
   <!-- ==================== SERVICES SECTION ==================== -->
   <section id="services" class="py-20">
     <div class="container mx-auto px-4 text-center">
@@ -762,6 +776,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- ==================== IMAGE PLUS TEXT SECTION ==================== -->
   <section class="min-h-screen flex items-center px-6 lg:px-20 py-16">
@@ -841,6 +856,7 @@
     </div>
   </section>
 
+
   <!-- ==================== APPS SECTION ==================== -->
   <section id="tools" class="min-h-screen flex items-center justify-center py-12 sm:py-16">
     <div class="text-center px-6 sm:px-10 max-w-6xl w-full">
@@ -908,6 +924,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- ==================== GRID SECTION ==================== -->
   <section id="about" class="max-w-7xl mx-auto p-6 text-white py-20">
@@ -1018,6 +1035,7 @@
     </div>
   </section>
 
+
   <!-- ==================== CAROUSEL SECTION ==================== -->
   <section id="carousel" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
 
@@ -1082,6 +1100,7 @@
     <div id="card-text" class="absolute bottom-[5%] text-sm sm:text-lg md:text-xl text-center max-w-2xl px-6 leading-relaxed"></div>
 
   </section>
+
 
   <!-- ==================== CONTACT SECTION ==================== -->
   <section id="contact" class="text-white font-sans min-h-screen flex items-center justify-center py-20">
@@ -1211,6 +1230,7 @@
     </div>
   </section>
 
+
   <!-- ==================== FOOTER SECTION ==================== -->
   <footer class="relative isolate overflow-hidden pb-12">
     <!-- Background Elements -->
@@ -1275,6 +1295,7 @@
     // ========== INITIALIZATION ==========
     gsap.registerPlugin(ScrollTrigger);
 
+
     // ========== CURSOR ANIMATION ==========
     const cursorTag = document.getElementById("cursorTag");
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -1290,6 +1311,7 @@
         });
       });
     }
+
 
     // ========== COOKIE FUNCTIONALITY ==========
     const cookieConsent = {
@@ -1429,6 +1451,7 @@
       }
     });
 
+
     // ========== SPINNING ELEMENT ==========
     gsap.to(".spinning-text", {
       rotation: 360,
@@ -1518,6 +1541,7 @@
       }
     });
 
+
     // ========== NAVBAR FUNCTIONALITY ==========
     const navHamburger = document.querySelector('.nav-hamburger');
     const navLinks = document.getElementById('nav-links');
@@ -1573,6 +1597,7 @@
         }
       });
     }
+
 
     // ========== HERO SECTION ANIMATIONS ==========
     document.querySelectorAll(".group").forEach(button => {
@@ -1679,6 +1704,7 @@
       highlightDigital();
     });
 
+
     // ========== SERVICES SECTION ANIMATIONS ==========
     gsap.set(".inline-flex", { opacity: 0, y: 30 });
     gsap.to(".inline-flex", {
@@ -1733,6 +1759,7 @@
       ease: "power3.out"
     });
 
+
     // ========== IMAGE PLUS TEXT SECTION ANIMATIONS ==========
     gsap.from(".img-sec-title", {
       y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
@@ -1772,6 +1799,7 @@
         scrub: true
       }
     });
+
 
     // ========== APPS SECTION ANIMATIONS ==========
     document.addEventListener('DOMContentLoaded', function() {
@@ -1825,6 +1853,7 @@
 
       ScrollTrigger.refresh();
     });
+
 
     // ========== GRID SECTION ANIMATIONS ==========
     const buildings = document.querySelectorAll('#buildings-card .building');
@@ -1882,6 +1911,7 @@
     timelineCard.addEventListener("mouseenter", () => tlTimeline.play(0));
     timelineCard.addEventListener("mouseleave", () => tlTimeline.reverse());
 
+
     // ========== CAROUSEL SECTION ANIMATIONS ==========
     window.addEventListener("load", () => {
       const cards = gsap.utils.toArray(".card");
@@ -1936,6 +1966,7 @@
         }
       });
     });
+
 
     // ========== CONTACT SECTION ANIMATIONS ==========
     const subjectDisplay = document.getElementById('subject-display');
@@ -2149,7 +2180,7 @@
         }
       });
     });
-
+    
   </script>
 </body>
 </html>
