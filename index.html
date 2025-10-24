@@ -190,7 +190,7 @@
 
     .service-card > * { position: relative; z-index: 1; }
 
-    /* ========== TOOL ICONS ========== */
+    /* ========== APPS ICONS ========== */
     .tool-icon {
       opacity: 0;
       transform: translateY(60px);
@@ -206,12 +206,6 @@
       border-color: rgba(99, 102, 241, 0.3);
     }
 
-    /* ========== BADGE ========== */
-    .badge {
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-
-    /* ========== REVEAL TEXT ========== */
     .reveal-text {
       display: inline-block;
       opacity: 0.2;
@@ -356,7 +350,6 @@
       background: linear-gradient(to bottom, #040404 0%, transparent 70%, transparent 92%, #08081B 100%);
     }
 
-    /* ========== RESPONSIVE ADJUSTMENTS ========== */
     @media (max-width: 768px) {
       .bg-unified {
         background-image:
@@ -374,10 +367,10 @@
     Our favourite
   </div>
 
-  <!-- ==================== COOKIE BACKDROP ==================== -->
+  <!-- ==================== COOKIES ==================== -->
   <div id="backdropBlur" class="fixed inset-0 backdrop-blur-md bg-black/20 z-[9999] transition-all duration-500"></div>
   
-  <!-- ==================== COOKIE BANNER ==================== -->
+  <!-- Cookie banner -->
   <div id="cookieBanner" class="cookie-banner fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-full opacity-0 w-[90%] max-w-[900px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl z-[10000] md:bottom-6 md:left-1/2 max-md:bottom-0 max-md:left-0 max-md:translate-x-0 max-md:w-full max-md:max-w-none max-md:rounded-t-3xl max-md:rounded-b-none">
     <div class="flex flex-wrap gap-6 items-start max-md:flex-col">
       <!-- Icon -->
@@ -412,7 +405,7 @@
     </div>
   </div>
 
-  <!-- ==================== COOKIE SETTINGS MODAL ==================== -->
+  <!-- Cookie Settings -->
   <div id="cookieSettings" class="fixed inset-0 bg-black/80 flex items-center justify-center p-5 z-[10001] opacity-0 invisible transition-all duration-300">
     <div class="bg-black/98 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-[600px] w-full max-h-[80vh] overflow-y-auto scale-90 transition-transform duration-300">
       
@@ -526,7 +519,7 @@
     </div>
   </div>
 
-  <!-- ==================== SPINNING MODAL ==================== -->
+  <!-- Spinning Modal -->
   <div id="notification-container" class="fixed top-4 right-4 z-[200] space-y-2 w-full max-w-sm px-4"></div>
 
   <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] items-center justify-center p-4">
@@ -1436,7 +1429,15 @@
       }
     });
 
-    // ========== SPINNING MODAL FUNCTIONALITY ==========
+    // ========== SPINNING ELEMENT ==========
+    gsap.to(".spinning-text", {
+      rotation: 360,
+      duration: 10,
+      ease: "none",
+      repeat: -1
+    });
+
+    // Spinning Modal Funktionality
     let selectedTime = '';
 
     document.getElementById('day').addEventListener('input', function(e) {
@@ -2149,13 +2150,6 @@
       });
     });
 
-    // ========== SPINNING TEXT ANIMATION ==========
-    gsap.to(".spinning-text", {
-      rotation: 360,
-      duration: 10,
-      ease: "none",
-      repeat: -1
-    });
   </script>
 </body>
 </html>
