@@ -662,13 +662,13 @@
           <a href="#services" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Services</a>
         </li>
         <li class="w-full md:w-auto">
+          <a href="#img-text" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Innovationen</a>
+        </li>
+        <li class="w-full md:w-auto">
           <a href="#tools" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Tools</a>
         </li>
         <li class="w-full md:w-auto">
           <a href="#about" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">About Us</a>
-        </li>
-        <li class="w-full md:w-auto">
-          <a href="#projects" class="nav-link hover:text-white rounded-full px-5 py-1 transition block w-full text-center md:w-auto">Projects</a>
         </li>
       </ul>
 
@@ -735,8 +735,8 @@
 
 
   <!-- ==================== SERVICES SECTION ==================== -->
-  <section id="services" class="py-20">
-    <div class="container mx-auto px-4 text-center">
+  <section id="services" class="py-auto min-h-screen flex items-center">
+    <div class="container mx-auto px-10 text-center">
       <div class="text-center inline-flex bg-gradient-to-r from-blue-800 to-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-800/30 animate-fadeInUp-delay-200">
         Unsere Services
       </div>
@@ -779,8 +779,8 @@
 
 
   <!-- ==================== IMAGE PLUS TEXT SECTION ==================== -->
-  <section class="min-h-screen flex items-center px-6 lg:px-20 py-16">
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+  <section id="img-text" class="min-h-screen flex items-center px-6 lg:px-10 py-16">
+    <div class="max-w-[1660px] mx-auto grid lg:grid-cols-2 gap-12 lg:p-10 xl:p-20 lg:gap-20 items-center lg:bg-[#0a0a0a] shadow-[0_4px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.35),inset_0_2px_6px_rgba(255,255,255,0.05),inset_0_-2px_6px_rgba(0,0,0,0.5)] rounded-[60px] z-10">
 
       <!-- TEXT -->
       <div class="order-2 lg:order-1 space-y-8">
@@ -1582,8 +1582,8 @@
     document.querySelectorAll("section").forEach(section => {
       ScrollTrigger.create({
         trigger: section,
-        start: "top 5%",
-        end: "bottom",
+        start: "top 35%",
+        end: "bottom 35%",
         onEnter: () => setActive(section.id),
         onEnterBack: () => setActive(section.id)
       });
@@ -1757,6 +1757,18 @@
       delay: 0.2,
       stagger: 0.2,
       ease: "power3.out"
+    });
+
+    ScrollTrigger.matchMedia({
+      // Nur ab 1024px (Tailwind lg)
+      "(min-width: 1024px)": function() {
+        ScrollTrigger.create({
+          trigger: "#services",
+          start: "top top",
+          pin: true,
+        pinSpacing: false,
+        });
+      },
     });
 
 
