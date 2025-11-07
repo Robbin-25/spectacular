@@ -1,328 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pool Service - Professional Pool Maintenance</title>
+    <title>PoolPro - Professional Pool Service</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .dropdown-content {
-            display: none;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+        .dropdown-content { display: none; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="bg-slate-900 text-white">
+<body class="bg-white text-slate-900">
     
-    <!-- Navbar -->
-    <nav class="bg-slate-800 py-4 px-8">
+    <nav class="fixed w-full z-50 py-6 px-8 glass transition-all duration-300">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="text-2xl font-bold text-cyan-400">PoolPro</div>
-            
-            <div class="flex items-center gap-8">
+            <div class="text-2xl font-bold text-white">PoolPro</div>
+            <div class="flex items-center gap-8 text-white">
                 <a href="#home" class="hover:text-cyan-400 transition">Home</a>
-                <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
-                
+                <a href="#about" class="hover:text-cyan-400 transition">About</a>
                 <div class="dropdown relative">
-                    <button class="hover:text-cyan-400 transition flex items-center gap-1">
-                        Services
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
+                    <button class="hover:text-cyan-400 transition flex items-center gap-1">Services
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="dropdown-content absolute top-full left-0 mt-2 bg-slate-700 rounded-lg shadow-lg py-2 w-48 z-50">
-                        <a href="#pool-cleaning" class="block px-4 py-2 hover:bg-slate-600">Pool Cleaning</a>
-                        <a href="#maintenance" class="block px-4 py-2 hover:bg-slate-600">Maintenance</a>
-                        <a href="#repairs" class="block px-4 py-2 hover:bg-slate-600">Repairs</a>
-                        <a href="#chemical" class="block px-4 py-2 hover:bg-slate-600">Chemical Balance</a>
+                    <div class="dropdown-content absolute top-full left-0 mt-2 bg-white rounded-none shadow-2xl py-2 w-48 z-50">
+                        <a href="#services" class="block px-4 py-3 hover:bg-slate-100 text-slate-900 transition">Pool Cleaning</a>
+                        <a href="#services" class="block px-4 py-3 hover:bg-slate-100 text-slate-900 transition">Maintenance</a>
+                        <a href="#services" class="block px-4 py-3 hover:bg-slate-100 text-slate-900 transition">Repairs</a>
+                        <a href="#services" class="block px-4 py-3 hover:bg-slate-100 text-slate-900 transition">Chemical Balance</a>
                     </div>
                 </div>
-                
                 <a href="#gallery" class="hover:text-cyan-400 transition">Gallery</a>
+                <a href="#pricing" class="hover:text-cyan-400 transition">Pricing</a>
             </div>
-            
-            <a href="#contact" class="bg-cyan-500 hover:bg-cyan-600 px-6 py-2 rounded-lg transition font-semibold">Contact Us</a>
+            <a href="#contact" class="bg-white hover:bg-slate-100 text-slate-900 px-8 py-3 rounded-none transition font-bold">Contact Us</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=1600'); filter: brightness(0.4);"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=1600'); filter: brightness(0.5);"></div>
         <div class="relative z-10 text-center px-4">
-            <h1 class="text-6xl font-bold mb-4">Professional Pool Services</h1>
-            <p class="text-xl mb-8 text-gray-300">Kristallklares Wasser für Ihren perfekten Pool</p>
-            <a href="#contact" class="inline-block bg-cyan-500 hover:bg-cyan-600 px-8 py-4 rounded-lg text-lg font-semibold transition">Get a Consulting</a>
+            <h1 class="text-7xl font-bold mb-6 text-white">Professional Pool Services</h1>
+            <p class="text-2xl mb-12 text-white">Kristallklares Wasser für Ihren perfekten Pool</p>
+            <a href="#contact" class="inline-block bg-white hover:bg-slate-100 text-slate-900 px-12 py-5 rounded-none text-lg font-bold transition">Get Consulting</a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 px-8 bg-slate-800">
+    <section id="about" class="py-32 px-8 bg-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-5xl font-bold mb-8">Über PoolPro</h2>
+                <p class="text-xl text-slate-600 mb-6 leading-relaxed">Seit über 15 Jahren sind wir Ihr vertrauenswürdiger Partner für professionelle Pool-Dienstleistungen. Unser erfahrenes Team sorgt dafür, dass Ihr Pool immer in perfektem Zustand ist.</p>
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed">Mit modernster Technologie und umweltfreundlichen Produkten garantieren wir höchste Qualität und Kundenzufriedenheit.</p>
+                <div class="grid grid-cols-3 gap-8">
+                    <div><div class="text-4xl font-bold text-cyan-500 mb-2">500+</div><div class="text-slate-600">Zufriedene Kunden</div></div>
+                    <div><div class="text-4xl font-bold text-cyan-500 mb-2">15+</div><div class="text-slate-600">Jahre Erfahrung</div></div>
+                    <div><div class="text-4xl font-bold text-cyan-500 mb-2">24/7</div><div class="text-slate-600">Service</div></div>
+                </div>
+            </div>
+            <div class="h-96 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800');"></div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 px-8 bg-slate-50">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">Unsere Services</h2>
+            <h2 class="text-5xl font-bold text-center mb-20">Unsere Services</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                
-                <div class="bg-slate-700 p-8 rounded-lg hover:bg-slate-600 transition">
-                    <svg class="w-12 h-12 text-cyan-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2">Pool Cleaning</h3>
-                    <p class="text-gray-300">Professionelle Poolreinigung für kristallklares Wasser</p>
+                <div class="bg-white p-10 hover:shadow-2xl transition-all duration-300 border-b-4 border-cyan-500">
+                    <svg class="w-16 h-16 text-cyan-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Pool Cleaning</h3>
+                    <p class="text-slate-600 text-lg">Professionelle Poolreinigung für kristallklares Wasser</p>
                 </div>
-
-                <div class="bg-slate-700 p-8 rounded-lg hover:bg-slate-600 transition">
-                    <svg class="w-12 h-12 text-cyan-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2">Maintenance</h3>
-                    <p class="text-gray-300">Regelmäßige Wartung für langlebige Pool-Systeme</p>
+                <div class="bg-white p-10 hover:shadow-2xl transition-all duration-300 border-b-4 border-cyan-500">
+                    <svg class="w-16 h-16 text-cyan-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Maintenance</h3>
+                    <p class="text-slate-600 text-lg">Regelmäßige Wartung für langlebige Pool-Systeme</p>
                 </div>
-
-                <div class="bg-slate-700 p-8 rounded-lg hover:bg-slate-600 transition">
-                    <svg class="w-12 h-12 text-cyan-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2">Repairs</h3>
-                    <p class="text-gray-300">Schnelle und zuverlässige Reparaturen aller Art</p>
+                <div class="bg-white p-10 hover:shadow-2xl transition-all duration-300 border-b-4 border-cyan-500">
+                    <svg class="w-16 h-16 text-cyan-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Repairs</h3>
+                    <p class="text-slate-600 text-lg">Schnelle und zuverlässige Reparaturen aller Art</p>
                 </div>
-
-                <div class="bg-slate-700 p-8 rounded-lg hover:bg-slate-600 transition">
-                    <svg class="w-12 h-12 text-cyan-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2">Chemical Balance</h3>
-                    <p class="text-gray-300">Optimale Wasserchemie für sicheres Schwimmen</p>
+                <div class="bg-white p-10 hover:shadow-2xl transition-all duration-300 border-b-4 border-cyan-500">
+                    <svg class="w-16 h-16 text-cyan-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Chemical Balance</h3>
+                    <p class="text-slate-600 text-lg">Optimale Wasserchemie für sicheres Schwimmen</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 px-8 bg-slate-900">
+    <section id="pricing" class="py-32 px-8 bg-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">Was unsere Kunden sagen</h2>
+            <h2 class="text-5xl font-bold text-center mb-20">Unsere Preise</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="bg-slate-800 p-8 rounded-lg">
-                    <div class="flex mb-4">
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 mb-4">"Hervorragender Service! Unser Pool war noch nie so sauber."</p>
-                    <p class="font-bold">Maria Schmidt</p>
+                <div class="bg-slate-50 p-10 hover:shadow-2xl transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4">Basic</h3>
+                    <div class="text-5xl font-bold mb-6">€99<span class="text-2xl text-slate-600">/Monat</span></div>
+                    <ul class="space-y-4 mb-8 text-slate-600">
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Wöchentliche Reinigung</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Wassertest</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Chemikalien inklusive</li>
+                    </ul>
+                    <a href="#contact" class="block text-center bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-none font-bold transition">Auswählen</a>
                 </div>
-
-                <div class="bg-slate-800 p-8 rounded-lg">
-                    <div class="flex mb-4">
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 mb-4">"Professionell, pünktlich und sehr kompetent. Absolute Empfehlung!"</p>
-                    <p class="font-bold">Thomas Müller</p>
+                <div class="bg-cyan-500 text-white p-10 transform scale-105 shadow-2xl relative">
+                    <div class="absolute top-0 right-0 bg-white text-cyan-500 px-4 py-1 text-sm font-bold">POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-4">Premium</h3>
+                    <div class="text-5xl font-bold mb-6">€199<span class="text-2xl opacity-80">/Monat</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>2x wöchentliche Reinigung</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Täglicher Wassertest</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Premium Chemikalien</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Prioritäts-Support</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Kostenlose Reparaturen</li>
+                    </ul>
+                    <a href="#contact" class="block text-center bg-white hover:bg-slate-100 text-cyan-500 px-8 py-4 rounded-none font-bold transition">Auswählen</a>
                 </div>
-
-                <div class="bg-slate-800 p-8 rounded-lg">
-                    <div class="flex mb-4">
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 mb-4">"Die beste Entscheidung für unseren Pool. Top Team!"</p>
-                    <p class="font-bold">Lisa Wagner</p>
+                <div class="bg-slate-50 p-10 hover:shadow-2xl transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                    <div class="text-5xl font-bold mb-6">Custom</div>
+                    <ul class="space-y-4 mb-8 text-slate-600">
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Individuelle Lösungen</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Mehrere Pools</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>24/7 Notfall-Service</li>
+                        <li class="flex items-start gap-2"><svg class="w-6 h-6 text-cyan-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dediziertes Team</li>
+                    </ul>
+                    <a href="#contact" class="block text-center bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-none font-bold transition">Kontakt</a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 px-8 bg-slate-800">
+    <section class="py-32 px-8 bg-slate-900 text-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">Unsere Projekte</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600');"></div>
-                <div class="h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600');"></div>
-                <div class="h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1584622781867-8e1d1bff3a63?w=600');"></div>
-                <div class="h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600');"></div>
-                <div class="h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=600');"></div>
-                <div class="h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=600');"></div>
+            <h2 class="text-5xl font-bold text-center mb-20">Unser Prozess</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="text-center"><div class="w-20 h-20 bg-cyan-500 text-white rounded-none flex items-center justify-center text-3xl font-bold mx-auto mb-6">1</div><h3 class="text-2xl font-bold mb-4">Beratung</h3><p class="text-slate-400">Kostenlose Erstberatung und Pool-Analyse vor Ort</p></div>
+                <div class="text-center"><div class="w-20 h-20 bg-cyan-500 text-white rounded-none flex items-center justify-center text-3xl font-bold mx-auto mb-6">2</div><h3 class="text-2xl font-bold mb-4">Angebot</h3><p class="text-slate-400">Individuelles Angebot basierend auf Ihren Bedürfnissen</p></div>
+                <div class="text-center"><div class="w-20 h-20 bg-cyan-500 text-white rounded-none flex items-center justify-center text-3xl font-bold mx-auto mb-6">3</div><h3 class="text-2xl font-bold mb-4">Service</h3><p class="text-slate-400">Professionelle Durchführung aller vereinbarten Leistungen</p></div>
+                <div class="text-center"><div class="w-20 h-20 bg-cyan-500 text-white rounded-none flex items-center justify-center text-3xl font-bold mx-auto mb-6">4</div><h3 class="text-2xl font-bold mb-4">Support</h3><p class="text-slate-400">Kontinuierliche Betreuung und 24/7 Notfall-Service</p></div>
             </div>
         </div>
     </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 px-8 bg-slate-900">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">Häufig gestellte Fragen</h2>
-            
-            <div class="space-y-4">
-                <div class="bg-slate-800 rounded-lg">
-                    <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-700 rounded-lg transition">
-                        <span class="font-semibold">Wie oft sollte ein Pool gereinigt werden?</span>
-                        <svg id="icon-1" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div id="faq-1" class="hidden px-6 pb-4 text-gray-300">
-                        Ein Pool sollte mindestens einmal pro Woche professionell gereinigt werden, um optimale Wasserqualität zu gewährleisten. Bei intensiver Nutzung empfehlen wir häufigere Reinigungen.
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 rounded-lg">
-                    <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-700 rounded-lg transition">
-                        <span class="font-semibold">Welche Chemikalien werden verwendet?</span>
-                        <svg id="icon-2" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div id="faq-2" class="hidden px-6 pb-4 text-gray-300">
-                        Wir verwenden nur hochwertige, umweltfreundliche Poolchemikalien, die sicher für Mensch und Umwelt sind. Dazu gehören pH-Regulatoren, Chlor und Algizide.
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 rounded-lg">
-                    <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-700 rounded-lg transition">
-                        <span class="font-semibold">Bieten Sie Notfall-Reparaturen an?</span>
-                        <svg id="icon-3" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div id="faq-3" class="hidden px-6 pb-4 text-gray-300">
-                        Ja, wir bieten einen 24/7 Notfallservice für dringende Pool-Reparaturen. Kontaktieren Sie uns jederzeit bei Problemen.
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 rounded-lg">
-                    <button onclick="toggleFaq(4)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-700 rounded-lg transition">
-                        <span class="font-semibold">Was kostet eine Poolwartung?</span>
-                        <svg id="icon-4" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div id="faq-4" class="hidden px-6 pb-4 text-gray-300">
-                        Die Kosten variieren je nach Poolgröße und gewünschtem Service. Kontaktieren Sie uns für ein kostenloses, individuelles Angebot.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="bg-slate-950 py-16 px-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            
-            <div>
-                <h3 class="text-2xl font-bold text-cyan-400 mb-4">PoolPro</h3>
-                <p class="text-gray-400">Ihr Experte für professionelle Pool-Services seit 2010.</p>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#home" class="hover:text-cyan-400 transition">Home</a></li>
-                    <li><a href="#about" class="hover:text-cyan-400 transition">About Us</a></li>
-                    <li><a href="#services" class="hover:text-cyan-400 transition">Services</a></li>
-                    <li><a href="#gallery" class="hover:text-cyan-400 transition">Gallery</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-bold mb-4">Services</h4>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#" class="hover:text-cyan-400 transition">Pool Cleaning</a></li>
-                    <li><a href="#" class="hover:text-cyan-400 transition">Maintenance</a></li>
-                    <li><a href="#" class="hover:text-cyan-400 transition">Repairs</a></li>
-                    <li><a href="#" class="hover:text-cyan-400 transition">Chemical Balance</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-bold mb-4">Kontakt</h4>
-                <ul class="space-y-3 text-gray-400">
-                    <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        +49 123 456 789
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        info@poolpro.de
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        Musterstraße 123, 12345 Stadt
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-gray-400">
-            <p>&copy; 2024 PoolPro. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleFaq(id) {
-            const content = document.getElementById('faq-' + id);
-            const icon = document.getElementById('icon-' + id);
-            
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.style.transform = 'rotate(45deg)';
-            } else {
-                content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-    </script>
-
-</body>
-</html>
